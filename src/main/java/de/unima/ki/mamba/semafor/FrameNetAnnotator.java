@@ -1,6 +1,6 @@
 package de.unima.ki.mamba.semafor;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.unima.ki.mamba.pm.model.Activity;
@@ -13,24 +13,24 @@ public class FrameNetAnnotator {
 	private FrameNetXMLParser fnParser;
 	private FrameNetExecutor fnExec;
 	private static FrameNetAnnotator fnAnno;
-	private List<String> labelsToAnnotate;
+	private HashMap<String, String> labelsToAnnotate;
 	
-	public FrameNetAnnotator(FrameNetOptions fnOpt) {
-		this.fnOpt = fnOpt;
+	private FrameNetAnnotator() {
+		this.fnOpt = FrameNetOptions.getStandardOpt();
 		this.fnParser = new FrameNetXMLParser();
 		this.fnExec = new FrameNetExecutor();
-		this.labelsToAnnotate = new ArrayList<String>();
+		this.labelsToAnnotate = new HashMap<String, String>();
 	}
 	
 	public FrameNetAnnotator annotate(Model m) {
+		for(Activity a : m.getActivities()) {
+			this.annotate(a);
+		}
 		return this;
 	}
 		
 	public FrameNetAnnotator annotate(Activity a) {
-		return this;
-	}
-	
-	public FrameNetAnnotator annotate(String s) {
+		labelsToAnnotate.put(a.getId(), a.getLabel());
 		return this;
 	}
 	
@@ -38,8 +38,7 @@ public class FrameNetAnnotator {
 		return null;
 	}
 	
-	public FrameNetAnnotator getInstance() {
-		//TODO: Build instance + options etc.
+	public static FrameNetAnnotator getInstance() {
 		return fnAnno;
 	}
 
