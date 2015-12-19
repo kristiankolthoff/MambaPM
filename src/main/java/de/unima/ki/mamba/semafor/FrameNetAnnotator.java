@@ -9,17 +9,22 @@ import de.unima.ki.mamba.semafor.model.Frame;
 
 public class FrameNetAnnotator {
 
-	private FrameNetOptions fnOpt;
 	private FrameNetXMLParser fnParser;
-	private FrameNetExecutor fnExec;
+	private FrameNetService fnService;
 	private static FrameNetAnnotator fnAnno;
 	private HashMap<String, String> labelsToAnnotate;
 	
 	private FrameNetAnnotator() {
-		this.fnOpt = FrameNetOptions.getStandardOpt();
 		this.fnParser = new FrameNetXMLParser();
-		this.fnExec = new FrameNetExecutor();
+		this.fnService = new FrameNetService();
 		this.labelsToAnnotate = new HashMap<String, String>();
+	}
+	
+	public FrameNetAnnotator annotate(List<Model> models) {
+		for(Model m : models) {
+			annotate(m);
+		}
+		return this;
 	}
 	
 	public FrameNetAnnotator annotate(Model m) {
@@ -35,18 +40,15 @@ public class FrameNetAnnotator {
 	}
 	
 	public List<Frame> execute() {
+		fnService.runFNSemanticParsing();
+		
 		return null;
 	}
 	
 	public static FrameNetAnnotator getInstance() {
+		if(fnAnno == null) {
+			fnAnno = new FrameNetAnnotator();
+		}
 		return fnAnno;
-	}
-
-	public FrameNetOptions getFnOpt() {
-		return fnOpt;
-	}
-
-	public void setFnOpt(FrameNetOptions fnOpt) {
-		this.fnOpt = fnOpt;
 	}
 }

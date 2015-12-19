@@ -9,27 +9,29 @@ public class FrameNetOptions {
 	private boolean graphFilesOn;
 	private String decodingType;
 	private String goldTargetsPath;
-	private String absRootPath;
 	private String javaHomePath;
 	
 	public static final String DECODING_TYPE_AD3 = "ad3";
 	public static final String DECODING_TYPE_BEAM = "beam";
-	public static final String ABS_PATH_FRAMENET = "/src/resources/framenet-semantic-parsing/semafor/";
+	public static final String FN_FILE_NAME = "mambaPM.txt";
+	public static final String FN_FILE_OUT_NAME = FN_FILE_NAME + ".out";
+	public static final String ABS_PATH_SEMAFOR = new File(".").getAbsolutePath() + "/src/resources/framenet-semantic-parsing/semafor/";
+	public static final String ABS_PATH_FNDATA = new File(".").getAbsolutePath() + "/src/resources/framenet-semantic-parsing/frame-data/";
+	public static final String ABS_PATH_DRIVER_SCRIPT = ABS_PATH_SEMAFOR + "release/fnParserDriver.sh";
+	public static final String ABS_PATH_FILE_CONFIG = ABS_PATH_SEMAFOR + "release/config.sh";
 	
 	public FrameNetOptions(String goldTargetsPath) {
 		this.goldTargetsPath = goldTargetsPath;
 	}
 	
-	//TODO: find out path of java installation
 	public static FrameNetOptions getStandardOpt() {
-		final String ABS_PATH = new File(".").getAbsolutePath() + ABS_PATH_FRAMENET;
+		//TODO: find out correct path of java installation
 		final String JAVA_HOME_PATH = "/usr/lib/jvm/java-8-oracle/bin";
 		FrameNetOptions fnOpt = new FrameNetOptions("null")
 				.setServerModeOn(true)
 				.setAutoTargetIDStrictModeOn(true)
 				.setGraphFilesOn(true)
 				.setDecodingType(DECODING_TYPE_AD3)
-				.setAbsRootPath(ABS_PATH)
 				.setJavaHomePath(JAVA_HOME_PATH);
 		return fnOpt;
 	}
@@ -76,15 +78,6 @@ public class FrameNetOptions {
 
 	public FrameNetOptions setGoldTargetsPath(String goldTargetsPath) {
 		this.goldTargetsPath = goldTargetsPath;
-		return this;
-	}
-
-	public String getAbsRootPath() {
-		return absRootPath;
-	}
-
-	public FrameNetOptions setAbsRootPath(String absRootPath) {
-		this.absRootPath = absRootPath;
 		return this;
 	}
 
