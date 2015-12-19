@@ -23,7 +23,11 @@ public class FrameNetAnnotatorTest {
 	
 	@Before
 	public void init() {
-		this.fnAnno = FrameNetAnnotator.getInstance();
+		try {
+			this.fnAnno = FrameNetAnnotator.getInstance();
+		} catch (ParserConfigurationException e1) {
+			e1.printStackTrace();
+		}
 		this.a = new Activity("test_01", "The student sends the letter to the university");
 		this.bpmnParser = new BPMNParser();
 		try {

@@ -8,12 +8,14 @@ public class Frame {
 	private String name;
 	private String target;
 	private List<FElement> fElements;
+	private int rank;
 	
-	public Frame(String sentence, String name, String target, List<FElement> fElements) {
+	public Frame(String sentence, String name, String target, List<FElement> fElements, int rank) {
 		this.sentence = sentence;
 		this.target = target;
 		this.name = name;
 		this.fElements = fElements;
+		this.rank = rank;
 	}
 
 	public String getSentence() {
@@ -46,6 +48,14 @@ public class Frame {
 
 	public void setTarget(String target) {
 		this.target = target;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 	
 }

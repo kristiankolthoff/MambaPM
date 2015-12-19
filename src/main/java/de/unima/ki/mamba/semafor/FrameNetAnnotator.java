@@ -3,6 +3,8 @@ package de.unima.ki.mamba.semafor;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 import de.unima.ki.mamba.pm.model.Activity;
 import de.unima.ki.mamba.pm.model.Model;
 import de.unima.ki.mamba.semafor.model.Frame;
@@ -14,9 +16,9 @@ public class FrameNetAnnotator {
 	private static FrameNetAnnotator fnAnno;
 	private HashMap<String, String> labelsToAnnotate;
 	
-	private FrameNetAnnotator() {
-		this.fnParser = new FrameNetXMLParser();
+	private FrameNetAnnotator() throws ParserConfigurationException {
 		this.fnService = new FrameNetService();
+		this.fnParser = new FrameNetXMLParser(fnService);
 		this.labelsToAnnotate = new HashMap<String, String>();
 	}
 	
@@ -45,7 +47,7 @@ public class FrameNetAnnotator {
 		return null;
 	}
 	
-	public static FrameNetAnnotator getInstance() {
+	public static FrameNetAnnotator getInstance() throws ParserConfigurationException {
 		if(fnAnno == null) {
 			fnAnno = new FrameNetAnnotator();
 		}
