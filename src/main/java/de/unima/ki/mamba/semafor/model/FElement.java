@@ -9,7 +9,7 @@ public class FElement {
 	public FElement(String name, String content, int id) {
 		this.name = name;
 		this.content = content;
-		this.setId(id);
+		this.id = id;
 	}
 	
 	public String getName() {

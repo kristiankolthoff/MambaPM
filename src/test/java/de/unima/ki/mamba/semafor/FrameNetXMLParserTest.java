@@ -18,6 +18,11 @@ import de.unima.ki.mamba.semafor.model.Frame;
 public class FrameNetXMLParserTest {
 
 	private FrameNetXMLParser fnParser;
+	private static final String TEST_XML_PATH;
+	
+	static {
+		TEST_XML_PATH = FrameNetOptions.ABS_PATH_SEMAFOR + "/test/framenet-parsing-test.txt.out";
+	}
 	
 	@Before
 	public void init() {
@@ -30,9 +35,8 @@ public class FrameNetXMLParserTest {
 	
 	@Test
 	public void fetchFNDataTest() {
-		final String testXMLPath = FrameNetOptions.ABS_PATH_SEMAFOR + "/test/framenet-parsing-test.txt.out";
 		try {
-			HashMap<String, List<Frame>> frameMap = this.fnParser.fetchFNData(testXMLPath);
+			HashMap<String, List<Frame>> frameMap = this.fnParser.fetchFNData(TEST_XML_PATH);
 			assertEquals(3, frameMap.size());
 			List<Frame> frames = frameMap.get("The student sends the letter to his girlfriend .");
 			assertEquals(4, frames.size());
@@ -51,6 +55,23 @@ public class FrameNetXMLParserTest {
 			assertEquals("the letter", fElements.get(1).getContent());
 			assertEquals("to his girlfriend", fElements.get(2).getContent());
 			
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void fetchFNDataFrameTargetTest() {
+		try {
+			HashMap<String, List<Frame>> frameMap = this.fnParser.fetchFNData(TEST_XML_PATH);
+			List<Frame> framesSending = frameMap.get("The student sends the letter to his girlfriend .");
+			assertEquals("sends", framesSending.get(1).getTarget());
+			List<Frame> framesInviting = frameMap.get("Invite to an aptitude test .");
+			assertEquals("test", framesInviting.get(0).getTarget());
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {

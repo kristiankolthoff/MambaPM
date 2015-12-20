@@ -1,7 +1,12 @@
 package de.unima.ki.mamba.semafor;
 
+import static org.junit.Assert.*;
+
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -13,6 +18,7 @@ import de.unima.ki.mamba.pm.model.Activity;
 import de.unima.ki.mamba.pm.model.Model;
 import de.unima.ki.mamba.pm.model.parser.BPMNParser;
 import de.unima.ki.mamba.pm.model.parser.Parser;
+import de.unima.ki.mamba.semafor.model.Frame;
 
 public class FrameNetAnnotatorTest {
 
@@ -24,7 +30,11 @@ public class FrameNetAnnotatorTest {
 	@Before
 	public void init() {
 		try {
-			this.fnAnno = FrameNetAnnotator.getInstance();
+			try {
+				this.fnAnno = FrameNetAnnotator.getInstance();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 		} catch (ParserConfigurationException e1) {
 			e1.printStackTrace();
 		}
@@ -42,12 +52,43 @@ public class FrameNetAnnotatorTest {
 	}
 	
 	@Test
-	public void annotateTest() {
-		for(Activity ac : m.getActivities()) {
-			System.out.println(ac.getLabel());
-		}
+	public void annotateActivityTest() {
 		fnAnno.annotate(a);
-		fnAnno.annotate(m);
+		try {
+			HashMap<String, List<Frame>> frameMap = fnAnno.fetchFNResults();
+			assertEquals(1, frameMap.size());
+			List<Frame> frames = frameMap.get(a.getLabel());
+			assertEquals(4, frames.size());
+			assertEquals("Education_teaching", frames.get(0).getName());
+			assertEquals("Sending", frames.get(1).getName());
+			assertEquals("Text", frames.get(2).getName());
+			assertEquals("Locale_by_use", frames.get(3).getName());
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
+	}
+	
+	@Test
+	public void annotateModelTest() {
+		fnAnno.annotate(m);
+		try {
+			HashMap<String, List<Frame>> frameMap = fnAnno.fetchFNResults();
+			List<Frame> frames = frameMap.get("Send letter of acceptance");
+			assertEquals("Sending", frames.get(2).getName());
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for(Activity a : m.getActivities()) {
+			System.out.println(a.getId() + " " + a.getLabel());
+		}
 	}
 }

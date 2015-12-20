@@ -1,5 +1,7 @@
 package de.unima.ki.mamba.semafor;
 
+import java.io.FileNotFoundException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,7 +11,11 @@ public class FrameNetServiceTest {
 	
 	@Before
 	public void init() {
-		fnService = new FrameNetService();
+		try {
+			fnService = new FrameNetService();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test

@@ -95,7 +95,7 @@ public class FrameNetXMLParser {
 	}
 	
 	private String extractTarget(int start, int end, String sentence) {
-		return sentence.substring(start, end);
+		return sentence.substring(start, end+1);
 	}
 	
 	private String extractFEContent(int start, int end, String sentence) {
