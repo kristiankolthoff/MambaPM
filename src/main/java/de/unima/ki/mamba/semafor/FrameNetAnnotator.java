@@ -18,7 +18,7 @@ public class FrameNetAnnotator {
 	
 	private FrameNetAnnotator() throws ParserConfigurationException {
 		this.fnService = new FrameNetService();
-		this.fnParser = new FrameNetXMLParser(fnService);
+		this.fnParser = new FrameNetXMLParser();
 		this.labelsToAnnotate = new HashMap<String, String>();
 	}
 	

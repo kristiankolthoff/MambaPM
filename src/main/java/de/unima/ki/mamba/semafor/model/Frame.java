@@ -7,14 +7,20 @@ public class Frame {
 	private String sentence;
 	private String name;
 	private String target;
-	private List<FElement> fElements;
 	private int rank;
+	private List<FElement> fElements;
 	
 	public Frame(String sentence, String name, String target, List<FElement> fElements, int rank) {
 		this.sentence = sentence;
 		this.target = target;
 		this.name = name;
+		this.rank = rank;
 		this.fElements = fElements;
+	}
+	
+	public Frame(String sentence, String name, int rank) {
+		this.sentence = sentence;
+		this.name = name;
 		this.rank = rank;
 	}
 
