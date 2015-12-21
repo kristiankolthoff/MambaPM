@@ -38,6 +38,11 @@ public class FrameNetAnnotator {
 		return this;
 	}
 	
+	public FrameNetAnnotator annotateSentences(List<String> sentences) {
+		activitiesToAnnotate.addAll(sentences);
+		return this;
+	}
+	
 	public FrameNetAnnotator annotate(Model m) {
 		for(Activity a : m.getActivities()) {
 			this.annotate(a);
