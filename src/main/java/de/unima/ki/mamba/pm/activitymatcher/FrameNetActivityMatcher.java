@@ -6,7 +6,6 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -107,7 +106,7 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 			return similarVerbs;
 		}
 		for (int i = 0; i < dbn.words.length; i++) {
-			if(i >= k) {
+			if(i > k) {
 				return similarVerbs;
 			}
 			String word = dbn.words[i].replace("_", " ");
@@ -120,14 +119,17 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 	
 	public List<String> getSimilarLabels(String label) throws IOException, WrongWordspaceTypeException {
 		List<String> similarSentences = new ArrayList<String>();
+		label = label.toLowerCase();
 		similarSentences.add(label);
 		Optional<String> verb = extractVerb(label);
 		if(verb.isPresent()) {
 			List<String> similarVerbs = getSimilarVerbs(verb.get(), MAX_K);
 			for(String simV : similarVerbs) {
 				similarSentences.add(label.replace(verb.get(), simV));
+				System.out.println(simV);
 			}
 		}
+		System.out.println();
 		return similarSentences;
 	}
 	
@@ -143,11 +145,11 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 		for(List<HasWord> list : docPre) {
 			List<TaggedWord> taggedWords = tagger.apply(list);
 			for(TaggedWord tw : taggedWords) {
-				System.out.println(tw.tag() + " " + tw.word());
 				String t = tw.tag();
+				System.out.println(tw.tag() + " " + tw.word());
 				if(t.equals("VB") || t.equals("VBZ") || t.equals("VBD") || t.equals("VBG")
 						|| t.equals("VBN") || t.equals("VBP")) {
-					return Optional.of(tw.word());
+					return Optional.of(nlpHelper.getNormalized(tw.word(), POS.VERB).toLowerCase());
 				}
 				
 			}
