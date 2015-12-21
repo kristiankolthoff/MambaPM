@@ -13,7 +13,11 @@ import org.xml.sax.SAXException;
 import de.unima.ki.mamba.pm.model.Activity;
 import de.unima.ki.mamba.pm.model.Model;
 import de.unima.ki.mamba.semafor.model.Frame;
-
+/**
+ * 
+ * <br>The <code>FrameNetAnnotator</code> is a wrapper class for extracting frame net semantic annotations from 
+ * the SEMAFOR semantic parser. 
+ */
 public class FrameNetAnnotator {
 
 	private FrameNetXMLParser fnParser;
@@ -42,7 +46,12 @@ public class FrameNetAnnotator {
 	}
 		
 	public FrameNetAnnotator annotate(Activity a) {
-		activitiesToAnnotate.add(a.getLabel());
+		annotate(a.getLabel());
+		return this;
+	}
+	
+	public FrameNetAnnotator annotate(String s) {
+		activitiesToAnnotate.add(s);
 		return this;
 	}
 	

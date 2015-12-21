@@ -17,7 +17,10 @@ import org.xml.sax.SAXException;
 
 import de.unima.ki.mamba.semafor.model.FElement;
 import de.unima.ki.mamba.semafor.model.Frame;
-
+/**
+ * The <code>FrameNetXMLParser</code> parses the XML document produced by SEMAFOR
+ * and constructs <code>Frame</code> objects with <code>FrameElements</code>.
+ */
 public class FrameNetXMLParser {
 
 	private DocumentBuilder db;

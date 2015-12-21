@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
-
-
+/**
+ * <code>FrameNetService</code> provides utilities for the creation and extraction of
+ * semantic FrameNet annotations.
+ */
 public class FrameNetService {
 
 	private FrameNetOptions fnOpt;

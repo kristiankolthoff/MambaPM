@@ -1,5 +1,7 @@
 package de.unima.ki.mamba.semafor.model;
-
+/**
+ * <code>FElement</code> represents a frame element of a <code>Frame</code>.
+ */
 public class FElement {
 
 	private String name;

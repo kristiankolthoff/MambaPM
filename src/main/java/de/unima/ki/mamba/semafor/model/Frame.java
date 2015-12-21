@@ -1,7 +1,9 @@
 package de.unima.ki.mamba.semafor.model;
 
 import java.util.List;
-
+/**
+ * Representing a <code>Frame</code> of the FrameNet semantic parsing and annotation project.
+ */
 public class Frame {
 
 	private String sentence;

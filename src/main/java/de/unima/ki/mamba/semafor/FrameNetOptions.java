@@ -1,7 +1,9 @@
 package de.unima.ki.mamba.semafor;
 
 import java.io.File;
-
+/**
+ * Options object, representing all configuration components for the semantic parser SEMAFOR.
+ */
 public class FrameNetOptions {
 
 	private boolean serverModeOn;
