@@ -64,12 +64,12 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 					labelsToAnnotate.addAll(getSimilarLabels(a.getLabel()));
 				}
 			}
-			this.fnAnno.annotateSentences(labelsToAnnotate);
-			this.frameMap = this.fnAnno.fetchFNResults();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
+//			this.fnAnno.annotateSentences(labelsToAnnotate);
+//			this.frameMap = this.fnAnno.fetchFNResults();
+//		} catch (ParserConfigurationException e) {
+//			e.printStackTrace();
+//		} catch (SAXException e) {
+//			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (WrongWordspaceTypeException e) {

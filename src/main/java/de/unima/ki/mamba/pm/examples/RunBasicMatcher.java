@@ -50,10 +50,10 @@ public class RunBasicMatcher {
 				String targetId = modelIds[j];
 				String mappingId = sourceId + "-" + targetId;
 				bm.setNamespacePrefixes("http://" + sourceId+ "#", "http://" + targetId+ "#");
-				bm.match("src/resources/data/dataset1/models/" + sourceId + ".bpmn", "src/resources/data/dataset1/models/" + targetId + ".bpmn");
+				bm.match("src/main/resources/data/dataset1/models/" + sourceId + ".bpmn", "src/resources/data/dataset1/models/" + targetId + ".bpmn");
 				alignment = bm.getAlignment();
 				System.out.println(mappingId + ": " + alignment.size());
-				alignment.write("src/resources/data/results/basicmatcher1/dataset1/" +  mappingId + ".rdf");
+				alignment.write("src/main/resources/data/results/basicmatcher1/dataset1/" +  mappingId + ".rdf");
 			}
 		}
 		
@@ -84,10 +84,10 @@ public class RunBasicMatcher {
 				String targetId = modelIds[j];
 				String mappingId = sourceId + "-" + targetId;
 				bm.setNamespacePrefixes("http://" + sourceId+ "#", "http://" + targetId+ "#");
-				bm.match("src/resources/data/dataset2/models/" + sourceId + ".pnml", "src/resources/data/dataset2/models/" + targetId + ".pnml");
+				bm.match("src/main/resources/data/dataset2/models/" + sourceId + ".pnml", "src/resources/data/dataset2/models/" + targetId + ".pnml");
 				alignment = bm.getAlignment();
 				System.out.println(mappingId + ": " + alignment.size());
-				alignment.write("src/resources/data/results/basicmatcher1/dataset2/" +  mappingId + ".rdf");
+				alignment.write("src/main/resources/data/results/basicmatcher1/dataset2/" +  mappingId + ".rdf");
 			}
 		}
 		

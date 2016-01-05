@@ -1,3 +1,21 @@
+/**
+ * 
+ * SEMAFOR4J
+ * 
+ * Copyright (C) 2015 Kristian Kolthoff
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package de.unima.ki.mamba.semafor;
 
 import java.io.IOException;
@@ -17,9 +35,11 @@ import org.xml.sax.SAXException;
 
 import de.unima.ki.mamba.semafor.model.FElement;
 import de.unima.ki.mamba.semafor.model.Frame;
+
 /**
  * The <code>FrameNetXMLParser</code> parses the XML document produced by SEMAFOR
  * and constructs <code>Frame</code> objects with <code>FrameElements</code>.
+ * @author Kristian Kolthoff
  */
 public class FrameNetXMLParser {
 
@@ -42,9 +62,20 @@ public class FrameNetXMLParser {
 	
 	
 	public FrameNetXMLParser() throws ParserConfigurationException {
-		this.db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		this.db = DocumentBuilderFactory
+				    .newInstance()
+				    .newDocumentBuilder();
 	}
 	
+	/**
+	 * Extracts lists of <code>Frame</code>s for each sentence
+	 * found in the XML file to parse.
+	 * @param path the file path to the XML document produced by SEMAFOR
+	 * @return a mapping of sentences to their invoked frames
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public HashMap<String,List<Frame>> fetchFNData(String path) throws ParserConfigurationException, SAXException, IOException {
 		HashMap<String, List<Frame>> frameMap = new HashMap<String, List<Frame>>();
 		doc = db.parse(path);
@@ -97,10 +128,24 @@ public class FrameNetXMLParser {
 		return frameMap;
 	}
 	
+	/**
+	 * Extracts the <code>Frame</code> target from a given string
+	 * @param start to extract <code>Frame</code> target from
+	 * @param end to extract <code>Frame</code> target from
+	 * @param sentence to extract target from
+	 * @return the extracted <code>Frame</code> target
+	 */
 	private String extractTarget(int start, int end, String sentence) {
 		return sentence.substring(start, end+1);
 	}
 	
+	/**
+	 * Extracts <code>FElement</code> content from a given string
+	 * @param start to extract <code>FElement</code> content from
+	 * @param end to extract <code>FElement</code> content from
+	 * @param sentence to extract content from
+	 * @return the extracted <code>FElement</code> content
+	 */
 	private String extractFEContent(int start, int end, String sentence) {
 		return sentence.substring(start, end+1);
 	}

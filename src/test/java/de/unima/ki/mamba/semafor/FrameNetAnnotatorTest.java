@@ -31,7 +31,8 @@ public class FrameNetAnnotatorTest {
 	public void init() {
 		try {
 			try {
-				this.fnAnno = FrameNetAnnotator.getInstance();
+				final String javaHomePath = "/usr/lib/jvm/java-8-oracle/bin";
+				this.fnAnno = new FrameNetAnnotator(javaHomePath);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -41,7 +42,7 @@ public class FrameNetAnnotatorTest {
 		this.a = new Activity("test_01", "The student sends the letter to the university");
 		this.bpmnParser = new BPMNParser();
 		try {
-			this.m = bpmnParser.parse(new File(".").getAbsolutePath() + "/src/resources/data/dataset1/models/Cologne.bpmn");
+			this.m = bpmnParser.parse(new File(".").getAbsolutePath() + "/src/main/resources/data/dataset1/models/Cologne.bpmn");
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {
@@ -53,9 +54,9 @@ public class FrameNetAnnotatorTest {
 	
 	@Test
 	public void annotateActivityTest() {
-		fnAnno.annotate(a);
+		this.fnAnno.addToCache(a.getLabel());
 		try {
-			HashMap<String, List<Frame>> frameMap = fnAnno.fetchFNResults();
+			HashMap<String, List<Frame>> frameMap = this.fnAnno.fetchFNResultsFromCache();
 			assertEquals(1, frameMap.size());
 			List<Frame> frames = frameMap.get(a.getLabel());
 			assertEquals(4, frames.size());
@@ -75,11 +76,16 @@ public class FrameNetAnnotatorTest {
 	
 	@Test
 	public void annotateModelTest() {
-		fnAnno.annotate(m);
+		for(Activity a : m.getActivities()) {
+			this.fnAnno.addToCache(a.getLabel());
+		}
 		try {
-			HashMap<String, List<Frame>> frameMap = fnAnno.fetchFNResults();
+			HashMap<String, List<Frame>> frameMap = this.fnAnno.fetchFNResultsFromCache();
 			List<Frame> frames = frameMap.get("Send letter of acceptance");
-			assertEquals("Sending", frames.get(2).getName());
+			for(Frame f : frames) {
+				System.out.println(f.toString());
+			}
+			assertEquals("Sending", frames.get(0).getName());
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {

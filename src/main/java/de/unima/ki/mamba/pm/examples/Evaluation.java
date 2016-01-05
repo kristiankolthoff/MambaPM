@@ -11,7 +11,6 @@ import de.unima.ki.mamba.om.alignment.Alignment;
 import de.unima.ki.mamba.om.alignment.Characteristic;
 import de.unima.ki.mamba.pm.model.Model;
 import de.unima.ki.mamba.pm.model.parser.BPMNParser;
-import de.unima.ki.mamba.pm.model.parser.PNMLParser;
 import de.unima.ki.mamba.pm.model.parser.Parser;
 
 public class Evaluation {
@@ -43,20 +42,21 @@ public class Evaluation {
 	public static void main(String[] args) throws AlignmentException, ParserConfigurationException, SAXException, IOException {
 		
 
-		/*
+		
 		String[] modelIds = modelIdsDS1;
 		String datasetId = "dataset1";
 		String gsExtension = ".rdf";
 		String modelExtension = ".bpmn";
 		Parser parser = new BPMNParser();
-		*/
 		
 		
+		/*
 		String[] modelIds = modelIdsDS2;
 		String datasetId = "dataset2";
 		String gsExtension = "";
 		String modelExtension = ".pnml";
 		Parser parser = new PNMLParser();
+		*/
 		
 		Alignment alignmentAll = new Alignment();
 		Alignment referenceAll = new Alignment();
@@ -66,13 +66,13 @@ public class Evaluation {
 		
 		for (int i = 0; i < modelIds.length - 1; i++) {
 			String sourceId = modelIds[i];
-			Model sourceModel = parser.parse("src/resources/data/" + datasetId + "/models/" + sourceId  + modelExtension);
+			Model sourceModel = parser.parse("src/main/resources/data/" + datasetId + "/models/" + sourceId  + modelExtension);
 			for (int j = i+1; j < modelIds.length; j++) {	
 				String targetId = modelIds[j];
-				Model targetModel = parser.parse("src/resources/data/" + datasetId + "/models/" + targetId  + modelExtension);
+				Model targetModel = parser.parse("src/main/resources/data/" + datasetId + "/models/" + targetId  + modelExtension);
 				String mappingId = sourceId + "-" + targetId;
-				Alignment alignment = new Alignment("src/resources/data/results/basicmatcher1/" + datasetId + "/" +  mappingId + ".rdf");
-				Alignment reference = new Alignment("src/resources/data/" + datasetId + "/goldstandard/" +  mappingId + gsExtension);
+				Alignment alignment = new Alignment("src/main/resources/data/results/basicmatcher1/" + datasetId + "/" +  mappingId + ".rdf");
+				Alignment reference = new Alignment("src/main/resources/data/" + datasetId + "/goldstandard/" +  mappingId + gsExtension);
 				
 				
 				Alignment notFound = reference.minus(alignment);
