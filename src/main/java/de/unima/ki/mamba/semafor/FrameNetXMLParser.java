@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -76,8 +77,8 @@ public class FrameNetXMLParser {
 	 * @throws SAXException
 	 * @throws IOException
 	 */
-	public HashMap<String,List<Frame>> fetchFNData(String path) throws ParserConfigurationException, SAXException, IOException {
-		HashMap<String, List<Frame>> frameMap = new HashMap<String, List<Frame>>();
+	public Map<String,List<Frame>> fetchFNData(String path) throws ParserConfigurationException, SAXException, IOException {
+		Map<String, List<Frame>> frameMap = new HashMap<String, List<Frame>>();
 		doc = db.parse(path);
 		/**Get list of sentences which were annotated**/
 		NodeList listSentence = doc.getElementsByTagName(TAG_SENTENCE);

@@ -91,6 +91,7 @@ public class NLPHelper {
 		return pos;
 	}
 	
+	//TODO Does not remove s in verbs like: visits
 	public String getNormalized(String w, POS p) {
 		IIndexWord indexWord;
 		Set<ISynset> synsets;
@@ -165,6 +166,11 @@ public class NLPHelper {
 		
 		
 		return POS.ADJECTIVE;
+	}
+	
+	public boolean isPennTreebankVerbTag(String t) {
+		return t.equals("VB") || t.equals("VBZ") || t.equals("VBD") || t.equals("VBG")
+				|| t.equals("VBN") || t.equals("VBP");
 	}
 	
 

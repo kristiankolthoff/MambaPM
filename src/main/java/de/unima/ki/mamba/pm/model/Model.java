@@ -5,11 +5,12 @@ import java.util.Set;
 
 public class Model {
 
-	Set<Activity> activities;
-	Set<Flow> flows;
+	private Set<Activity> activities;
+	private Set<Flow> flows;
 	
 	public Model() {
-		this.activities = new HashSet<Activity>();
+		this.activities = new HashSet<>();
+		this.flows = new HashSet<>();
 	}
 	
 	public void addActivity(Activity activity) {

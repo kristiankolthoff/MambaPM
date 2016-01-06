@@ -18,11 +18,13 @@
  */
 package de.unima.ki.mamba.semafor;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,12 +103,15 @@ public class FrameNetService {
 
 	public void runFNSemanticParsing() {
 		try{
-		 Process proc = Runtime.getRuntime().exec(FrameNetOptions.ABS_PATH_DRIVER_SCRIPT + " " 
-				 			+ FrameNetOptions.ABS_PATH_FNDATA + FrameNetOptions.FN_FILE_NAME);
-		 proc.waitFor();
-         } catch (InterruptedException e) {
-             e.printStackTrace();
-         } catch (IOException e) {
+			Process proc = Runtime.getRuntime().exec(FrameNetOptions.ABS_PATH_DRIVER_SCRIPT + " " 
+		 			+ FrameNetOptions.ABS_PATH_FNDATA + FrameNetOptions.FN_FILE_NAME);
+			BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+			String line;
+			while((line = br.readLine()) != null) {
+				System.out.println(line);
+			}
+			proc.waitFor();
+         } catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
 	}

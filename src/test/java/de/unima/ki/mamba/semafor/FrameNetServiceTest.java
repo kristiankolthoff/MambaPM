@@ -52,7 +52,4 @@ public class FrameNetServiceTest {
 		fnService.cleanAll();
 	}
 	
-	public static void main(String[] args) {
-		
-	}
 }

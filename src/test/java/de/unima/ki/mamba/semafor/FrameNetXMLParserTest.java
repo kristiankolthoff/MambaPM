@@ -36,7 +36,7 @@ public class FrameNetXMLParserTest {
 	@Test
 	public void fetchFNDataTest() {
 		try {
-			HashMap<String, List<Frame>> frameMap = this.fnParser.fetchFNData(TEST_XML_PATH);
+			HashMap<String, List<Frame>> frameMap = (HashMap<String, List<Frame>>) this.fnParser.fetchFNData(TEST_XML_PATH);
 			assertEquals(3, frameMap.size());
 			List<Frame> frames = frameMap.get("The student sends the letter to his girlfriend .");
 			assertEquals(4, frames.size());
@@ -67,7 +67,7 @@ public class FrameNetXMLParserTest {
 	@Test
 	public void fetchFNDataFrameTargetTest() {
 		try {
-			HashMap<String, List<Frame>> frameMap = this.fnParser.fetchFNData(TEST_XML_PATH);
+			HashMap<String, List<Frame>> frameMap = (HashMap<String, List<Frame>>) this.fnParser.fetchFNData(TEST_XML_PATH);
 			List<Frame> framesSending = frameMap.get("The student sends the letter to his girlfriend .");
 			assertEquals("sends", framesSending.get(1).getTarget());
 			List<Frame> framesInviting = frameMap.get("Invite to an aptitude test .");

@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -56,7 +57,7 @@ public class FrameNetAnnotatorTest {
 	public void annotateActivityTest() {
 		this.fnAnno.addToCache(a.getLabel());
 		try {
-			HashMap<String, List<Frame>> frameMap = this.fnAnno.fetchFNResultsFromCache();
+			HashMap<String, List<Frame>> frameMap = (HashMap<String, List<Frame>>) this.fnAnno.fetchFNResultsFromCache();
 			assertEquals(1, frameMap.size());
 			List<Frame> frames = frameMap.get(a.getLabel());
 			assertEquals(4, frames.size());
@@ -75,12 +76,31 @@ public class FrameNetAnnotatorTest {
 	}
 	
 	@Test
+	public void annotateActivity2Test() {
+		this.fnAnno.addToCache(new Activity("a2", "Send application files to the university"));
+		try {
+			HashMap<String, List<Frame>> frameMap = (HashMap<String, List<Frame>>) this.fnAnno.fetchFNResultsFromCache();
+			assertEquals(1, frameMap.size());
+			for(Entry<String,List<Frame>> e : frameMap.entrySet()) {
+				e.getValue().forEach(s -> System.out.println(s));
+			}
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Test
 	public void annotateModelTest() {
 		for(Activity a : m.getActivities()) {
 			this.fnAnno.addToCache(a.getLabel());
 		}
 		try {
-			HashMap<String, List<Frame>> frameMap = this.fnAnno.fetchFNResultsFromCache();
+			HashMap<String, List<Frame>> frameMap = (HashMap<String, List<Frame>>) this.fnAnno.fetchFNResultsFromCache();
 			List<Frame> frames = frameMap.get("Send letter of acceptance");
 			for(Frame f : frames) {
 				System.out.println(f.toString());
@@ -97,4 +117,5 @@ public class FrameNetAnnotatorTest {
 			System.out.println(a.getId() + " " + a.getLabel());
 		}
 	}
+	
 }

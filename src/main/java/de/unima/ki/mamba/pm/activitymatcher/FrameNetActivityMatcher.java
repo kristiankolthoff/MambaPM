@@ -6,6 +6,8 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -48,11 +50,13 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 	public static final boolean LOAD_IN_MEMORY = false;
 	
 	public FrameNetActivityMatcher() throws FileNotFoundException, CorruptIndexException, 
-					IOException, CorruptConfigFileException {
+					IOException, CorruptConfigFileException, ParserConfigurationException {
+		this.fnAnno = new FrameNetAnnotator(Settings.JAVA_HOME);
 		this.disco = new DISCO(Settings.WORDSPACE_WORD2VEC_DIRECTORY, LOAD_IN_MEMORY);
 		this.dict = new Dictionary(new URL("file:" + Settings.WORDNET_DIRECTORY));
 		this.tagger = new MaxentTagger(Settings.POS_TAGGER_DIRECTORY);
 		this.nlpHelper = new NLPHelper();
+		this.frameMap = new HashMap<>();
 		this.dict.open();
 	}
 	
@@ -64,12 +68,11 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 					labelsToAnnotate.addAll(getSimilarLabels(a.getLabel()));
 				}
 			}
-//			this.fnAnno.annotateSentences(labelsToAnnotate);
-//			this.frameMap = this.fnAnno.fetchFNResults();
-//		} catch (ParserConfigurationException e) {
-//			e.printStackTrace();
-//		} catch (SAXException e) {
-//			e.printStackTrace();
+			this.frameMap = this.fnAnno.fetchFNResults(labelsToAnnotate);
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (WrongWordspaceTypeException e) {
@@ -77,19 +80,30 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 		}
 	}
 	
+	//TODO NullPointerexecption occurs if there is no frame invoked and stored in the map. consider optional
+	@Override
 	public boolean match(Activity a1, Activity a2) {
 		try {
 			/**Get all frames for the k similar sentences for the label of activity a1**/
-			List<String> similarLabels1 = getSimilarLabels(a1.getLabel());
-			List<List<Frame>> framesAct1 = new ArrayList<List<Frame>>();
-			for(String simLabel1 : similarLabels1) {
-				framesAct1.add(frameMap.get(simLabel1));				
-			}
+			List<List<Frame>> frames1 = this.getSimilarFrames(a1);
 			/**Get all frames for the k similar sentences for the label of activity a2**/
-			List<String> similarLabels2 = getSimilarLabels(a2.getLabel());
-			List<List<Frame>> framesAct2 = new ArrayList<List<Frame>>();
-			for(String simLabel2 : similarLabels2) {
-				framesAct2.add(frameMap.get(simLabel2));
+			List<List<Frame>> frames2 = this.getSimilarFrames(a2);
+			for (int i = 0; i < frames1.size(); i++) {
+				for (int j = 0; j < frames1.get(i).size(); j++) {
+					Frame f1 = frames1.get(i).get(j);
+					for (int k = 0; k < frames2.size(); k++) {
+						for (int l = 0; l < frames2.get(k).size(); l++) {
+							Frame f2 = frames2.get(k).get(l);
+							if(f1.equalsLessStrict(f2)) {
+								System.err.println("--------Matching Frame--------");
+								System.out.println(f1.toString());
+								System.out.println(f2.toString());
+								System.err.println("------------------------------");
+								return true;
+							}
+						}
+					}
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -97,6 +111,15 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public List<List<Frame>> getSimilarFrames(Activity a) throws IOException, WrongWordspaceTypeException {
+		List<String> similarLabels = getSimilarLabels(a.getLabel());
+		List<List<Frame>> framesAct = new ArrayList<List<Frame>>();
+		for(String simLabel : similarLabels) {
+			framesAct.add(frameMap.get(simLabel));				
+		}
+		return framesAct;
 	}
 	
 	public List<String> getSimilarVerbs(String verb, int k) throws IOException, WrongWordspaceTypeException {
@@ -126,16 +149,15 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 			List<String> similarVerbs = getSimilarVerbs(verb.get(), MAX_K);
 			for(String simV : similarVerbs) {
 				similarSentences.add(label.replace(verb.get(), simV));
-				System.out.println(simV);
 			}
 		}
-		System.out.println();
 		return similarSentences;
 	}
 	
 	/**
 	 * TODO Consider extracting the stem of the verb instead of the inflated form
-	 * TODO Consider the case with multiple verbs in one sentence
+	 * TODO Consider the case with multiple verbs in one sentence, currently 
+	 * only extracting the first verb
 	 * @param label
 	 * @return
 	 */
@@ -146,10 +168,8 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 			List<TaggedWord> taggedWords = tagger.apply(list);
 			for(TaggedWord tw : taggedWords) {
 				String t = tw.tag();
-				System.out.println(tw.tag() + " " + tw.word());
-				if(t.equals("VB") || t.equals("VBZ") || t.equals("VBD") || t.equals("VBG")
-						|| t.equals("VBN") || t.equals("VBP")) {
-					return Optional.of(nlpHelper.getNormalized(tw.word(), POS.VERB).toLowerCase());
+				if(this.nlpHelper.isPennTreebankVerbTag(t)) {
+					return Optional.of(this.nlpHelper.getNormalized(tw.word(), POS.VERB).toLowerCase());
 				}
 				
 			}
@@ -161,8 +181,13 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 	public boolean isVerb(String word) {
 		word = nlpHelper.getNormalized(word, POS.VERB);
 		IIndexWord idxWord = dict.getIndexWord(word, POS.VERB);
-		return !(idxWord == null);
+		return idxWord != null;
 	}
+	
+	public Frame majorityVoteFrame(Collection<Collection<Frame>> frames) {
+		return null;
+	}
+	
 
 	public static void main(String[] args) {
 		try {
@@ -186,6 +211,8 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 		} catch (CorruptConfigFileException e) {
 			e.printStackTrace();
 		} catch (WrongWordspaceTypeException e) {
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}
 		
