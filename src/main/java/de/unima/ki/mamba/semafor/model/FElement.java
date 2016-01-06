@@ -116,6 +116,7 @@ public class FElement implements Comparable<FElement>{
 				this.name + ", " + this.content + "]";
 	}
 
+	@Override
 	public int compareTo(FElement that) {
 		return this.name.compareTo(that.name);
 	}

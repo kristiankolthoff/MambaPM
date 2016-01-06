@@ -17,6 +17,7 @@ import de.linguatools.disco.CorruptConfigFileException;
 import de.linguatools.disco.WrongWordspaceTypeException;
 import de.unima.ki.mamba.pm.model.Activity;
 import de.unima.ki.mamba.pm.model.Model;
+import de.unima.ki.mamba.semafor.model.Frame;
 
 public class FrameNetActivityMatcherTest {
 
@@ -113,6 +114,18 @@ public class FrameNetActivityMatcherTest {
 	}
 	
 	@Test
+	public void noFramesInvokedTest() {
+		Activity a1 = new Activity("a1", "asd gda");
+		Activity a2 = new Activity("a2", "Accepted");
+		this.model = new Model();
+		this.model.addActivity(a1);
+		this.model.addActivity(a2);
+		this.models.add(this.model);
+		this.fnActMatcher.annotateFNActivities(this.models);
+		assertFalse(this.fnActMatcher.match(a1, a2));
+	}
+	
+	@Test
 	public void matchTrivialActivitiesTest() {
 		Activity a1 = new Activity("a1", "The student sends the letter");
 		Activity a2 = new Activity("a2", "The student sends the letter");
@@ -122,6 +135,26 @@ public class FrameNetActivityMatcherTest {
 		this.models.add(this.model);
 		this.fnActMatcher.annotateFNActivities(this.models);
 		assertTrue(this.fnActMatcher.match(a1, a2));
+	}
+	
+	@Test
+	public void majorityVoteFrameNullTest() {
+		List<Frame> frames = null;
+		assertEquals(new Frame("", "", Integer.MAX_VALUE), this.fnActMatcher.majorityVoteFrames(frames));
+		List<Frame> framesZero = new ArrayList<>();
+		assertEquals(new Frame("", "", Integer.MAX_VALUE), this.fnActMatcher.majorityVoteFrames(framesZero));
+	}
+	
+	@Test
+	public void majorityVoteFrameTest() {
+		List<Frame> frames = new ArrayList<>();
+		frames.add(new Frame("test3", "Text", 5));
+		frames.add(new Frame("tes3t3", "Text", 5));
+		frames.add(new Frame("test3", "Text", 543));
+		frames.add(new Frame("test1", "Sending", 1));
+		frames.add(new Frame("test4", "Sending", 0));
+		frames.add(new Frame("test4", "Respond_to_proposal", 2));
+		assertEquals(new Frame("testtest", "Text", 0), this.fnActMatcher.majorityVoteFrames(frames));
 	}
 	
 

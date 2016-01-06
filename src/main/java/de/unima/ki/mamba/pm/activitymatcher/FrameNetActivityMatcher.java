@@ -6,7 +6,6 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,31 +79,11 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 		}
 	}
 	
-	//TODO NullPointerexecption occurs if there is no frame invoked and stored in the map. consider optional
+	
 	@Override
 	public boolean match(Activity a1, Activity a2) {
 		try {
-			/**Get all frames for the k similar sentences for the label of activity a1**/
-			List<List<Frame>> frames1 = this.getSimilarFrames(a1);
-			/**Get all frames for the k similar sentences for the label of activity a2**/
-			List<List<Frame>> frames2 = this.getSimilarFrames(a2);
-			for (int i = 0; i < frames1.size(); i++) {
-				for (int j = 0; j < frames1.get(i).size(); j++) {
-					Frame f1 = frames1.get(i).get(j);
-					for (int k = 0; k < frames2.size(); k++) {
-						for (int l = 0; l < frames2.get(k).size(); l++) {
-							Frame f2 = frames2.get(k).get(l);
-							if(f1.equalsLessStrict(f2)) {
-								System.err.println("--------Matching Frame--------");
-								System.out.println(f1.toString());
-								System.out.println(f2.toString());
-								System.err.println("------------------------------");
-								return true;
-							}
-						}
-					}
-				}
-			}
+			this.matchMajorityVote(a1, a2);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (WrongWordspaceTypeException e) {
@@ -113,13 +92,53 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 		return false;
 	}
 	
-	public List<List<Frame>> getSimilarFrames(Activity a) throws IOException, WrongWordspaceTypeException {
-		List<String> similarLabels = getSimilarLabels(a.getLabel());
-		List<List<Frame>> framesAct = new ArrayList<List<Frame>>();
-		for(String simLabel : similarLabels) {
-			framesAct.add(frameMap.get(simLabel));				
+	public boolean matchSimple(Activity a1, Activity a2) throws IOException, WrongWordspaceTypeException {
+		/**Get all frames for the k similar sentences for the label of activity a1**/
+		List<Frame> frames1 = this.getSimilarFrames(a1);
+		/**Get all frames for the k similar sentences for the label of activity a2**/
+		List<Frame> frames2 = this.getSimilarFrames(a2);
+		for(Frame f1 : frames1) {
+			for(Frame f2 : frames2) {
+				if(f1.equals(f2)) {
+					System.err.println("--------Matching Frame--------");
+					System.out.println(f1.toString());
+					System.out.println(f2.toString());
+					System.err.println("------------------------------");
+					return true;
+				}
+			}
 		}
-		return framesAct;
+		return false;
+	}
+	
+	public boolean matchMajorityVote(Activity a1, Activity a2) throws IOException, WrongWordspaceTypeException {
+		/**Get all frames for the k similar sentences for the label of activity a1**/
+		List<Frame> frames1 = this.getSimilarFrames(a1);
+		/**Get all frames for the k similar sentences for the label of activity a2**/
+		List<Frame> frames2 = this.getSimilarFrames(a2);
+		System.err.println("---Majority-1---");
+		List<Frame> frameMaj1 = this.majorityVoteFrames(frames1);
+		System.err.println(frameMaj1);
+		System.err.println("---Majority-2---");
+		List<Frame> frameMaj2 = this.majorityVoteFrames(frames2);
+		System.err.println(frameMaj2);
+		for(Frame f1 : frameMaj1) {
+			for(Frame f2 : frameMaj2) {
+				if(f1.equals(f2)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public List<Frame> getSimilarFrames(Activity a) throws IOException, WrongWordspaceTypeException {
+		List<String> similarLabels = getSimilarLabels(a.getLabel());
+		List<Frame> frames = new ArrayList<>();
+		for(String simLabel : similarLabels) {
+			frames.addAll(frameMap.get(simLabel));
+		}
+		return frames;
 	}
 	
 	public List<String> getSimilarVerbs(String verb, int k) throws IOException, WrongWordspaceTypeException {
@@ -184,8 +203,34 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 		return idxWord != null;
 	}
 	
-	public Frame majorityVoteFrame(Collection<Collection<Frame>> frames) {
-		return null;
+	public List<Frame> majorityVoteFrames(List<Frame> frames) {
+		if(frames == null || frames.size() == 0) {
+			return new ArrayList<>();
+		}
+		Map<Frame,Integer> countMap = new HashMap<>();
+		for (Frame frame : frames) {
+			if(countMap.containsKey(frame)) {
+				countMap.put(frame, countMap.get(frame) + 1);				
+			} else {
+				countMap.put(frame, 1);
+			}
+		}
+		int maxValue = Integer.MIN_VALUE;
+		for(Map.Entry<Frame, Integer> e : countMap.entrySet()) {
+			System.out.println(e.getKey() + " " + e.getValue());
+			if(e.getValue() > maxValue) {
+				maxValue = e.getValue();
+			}
+		}
+		List<Frame> bestFrames = new ArrayList<>();
+		System.out.println(countMap.size());
+		for(Map.Entry<Frame, Integer> e : countMap.entrySet()) {
+			System.out.println(e.getKey() + " " + e.getValue());
+			if(e.getValue() == maxValue) {
+				bestFrames.add(e.getKey());
+			}
+		}
+		return bestFrames;
 	}
 	
 
