@@ -2,13 +2,11 @@ package de.unima.ki.mamba.om.alignment;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.channels.Pipe.SourceChannel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
 import de.unima.ki.mamba.exceptions.AlignmentException;
-import de.unima.ki.mamba.pm.model.Activity;
 import de.unima.ki.mamba.pm.model.Model;
 
 
