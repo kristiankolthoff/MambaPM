@@ -36,6 +36,8 @@ public class CorrespondenceException extends DioException {
 	public static final int INVALID_CONFIDENCE_VALUE = 2;
 	public static final int MISSING_NAMESPACE = 3;
 	public static final int NON_REFERING = 4;
+	public static final int UNSUPPORTED_TYPE = 5;
+	public static final int MISSING_TYPE_ANNOTATION = 6;
 	
 
 	public CorrespondenceException(int generalDescriptionId, String specificDescription, Exception e) {
@@ -62,6 +64,12 @@ public class CorrespondenceException extends DioException {
 			break;
 		case NON_REFERING:
 			this.generalDescription = "A non refering entity reference has been detected";
+			break;
+		case UNSUPPORTED_TYPE:
+			this.generalDescription = "An unsupported type category has been detected:";
+			break;
+		case MISSING_TYPE_ANNOTATION:
+			this.generalDescription = "Type annototation missing in reference alignment";
 			break;
 		default:
 			this.generalDescription = "General description is missing";

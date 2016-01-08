@@ -22,11 +22,14 @@
 //
 // *********************************************************************************
 
-package de.unima.ki.mamba.om.alignment;
+package de.unima.ki.mamba.evaluation;
 
 
 import java.text.DecimalFormat;
+import java.util.List;
 
+import de.unima.ki.mamba.om.alignment.Alignment;
+import de.unima.ki.mamba.om.alignment.Correspondence;
 
 
 
@@ -61,7 +64,7 @@ public class Characteristic {
 	* @param numOfRulesCorrect Number of correspondences that are both the reference mapping and the 
 	* generated mapping.
 	*/
-	protected Characteristic(int numOfRulesGold, int numOfRulesMatcher, int numOfRulesCorrect) {
+	public Characteristic(int numOfRulesGold, int numOfRulesMatcher, int numOfRulesCorrect) {
 		this.numOfRulesGold = numOfRulesGold;
 		this.numOfRulesMatcher = numOfRulesMatcher;
 		this.numOfRulesCorrect = numOfRulesCorrect;
@@ -142,6 +145,15 @@ public class Characteristic {
 		return (2 * precision * recall) / (precision + recall);
 	}
 	
+	/**
+	 * 
+	 * @param n1 number of rules from the matcher
+	 * @param n2 number of rules from gold standard
+	 * @return recall
+	 */
+	public static double computeRecall(int n1, int n2) {
+		return (n1/(double)n2);
+	}
 	
 	
 	public String getF() {
@@ -208,11 +220,142 @@ public class Characteristic {
 	public static boolean strictEvaluationActive() {
 		return strictEvaluation;
 	}
-
-
-
-
-
-
+	
+	/**
+	 * Compute the macro precision over a list of characteristics. The
+	 * macro precision is the average of all the precision values of
+	 * all characteristics. Note that this metric can be easily biased
+	 * if the testsets are not equally large.
+	 * @param characteristics - the characteristic to compute the macro precision from
+	 * @return macro precision
+	 */
+	public static double getPrecisionMacro(List<Characteristic> characteristics) {
+		double sum = 0;
+		int numOfOcc = 0;
+		for(Characteristic c : characteristics) {
+			double currPrecision = c.getPrecision();
+			if(!Double.isNaN(currPrecision)) {
+				sum += currPrecision;
+				numOfOcc++;
+			}
+		}
+		return sum / numOfOcc;
+	}
+	
+	/**
+	 * Compute the macro recall over a list of characteristics. The
+	 * macro recall is the average of all the recall values of
+	 * all characteristics. Note that this metric can be easily biased
+	 * if the testsets are not equally large.
+	 * @param characteristics - the characteristic to compute the macro recall from
+	 * @return macro recall
+	 */
+	public static double getRecallMacro(List<Characteristic> characteristics) {
+		double sum = 0;
+		for(Characteristic c : characteristics) {
+			sum += c.getRecall();
+		}
+		return sum / characteristics.size();
+	}
+	
+	/**
+	 * Compute the micro precision over a list of characteristics. 
+	 * Avoids biasing the value by unequally large data sets.
+	 * @param characteristics - the characteristic to compute the micro precision from
+	 * @return micro precision
+	 */
+	public static double getPrecisionMicro(List<Characteristic> characteristics) {
+		int sumNumOfRulesCorrect = 0;
+		int sumNumOfRulesMatcher = 0;
+		for(Characteristic c : characteristics) {
+			sumNumOfRulesCorrect += c.getNumOfRulesCorrect();
+			sumNumOfRulesMatcher += c.getNumOfRulesMatcher();
+		}
+		return sumNumOfRulesCorrect / (double)sumNumOfRulesMatcher;
+	}
+	
+	/**
+	 * Compute the micro recall over a list of characteristics. 
+	 * Avoids biasing the value by unequally large data sets.
+	 * @param characteristics - the characteristic to compute the micro recall from
+	 * @return micro recall
+	 */
+	public static double getRecallMicro(List<Characteristic> characteristics) {
+		int sumNumOfRulesCorrect = 0;
+		int sumNumOfRulesGold = 0;
+		for(Characteristic c : characteristics) {
+			sumNumOfRulesCorrect += c.getNumOfRulesCorrect();
+			sumNumOfRulesGold += c.getNumOfRulesGold();
+		}
+		return computeRecall(sumNumOfRulesCorrect, sumNumOfRulesGold);
+	}
+	
+	/**
+	 * Compute the macro f measure over a list of characteristics. 
+	 * Avoids biasing the value by unequally large data sets.
+	 * @param characteristics - the characteristic to compute the f measure from
+	 * @return macro f measure
+	 */
+	public static double getFMeasureMacro(List<Characteristic> characteristics) {
+		double sum = 0;
+		for(Characteristic c : characteristics) {
+			sum += c.getFMeasure();
+		}
+		return sum / characteristics.size();
+	}
+	
+	/**
+	 * Compute the micro f measure over a list of characteristics. 
+	 * Avoids biasing the value by unequally large data sets.
+	 * @param characteristics - the characteristic to compute the f measure from
+	 * @return micro f measure
+	 */
+	public static double getFMeasureMicro(List<Characteristic> characteristics) {
+		int sumNumOfMatcher = 0;
+		int sumNumOfGold = 0;
+		int sumNumOfCorrect = 0;
+		for(Characteristic c : characteristics) {
+			sumNumOfMatcher += c.getNumOfRulesMatcher();
+			sumNumOfGold += c.getNumOfRulesGold();
+			sumNumOfCorrect += c.getNumOfRulesCorrect();
+		}
+		return Characteristic.computeFFromPR(Characteristic.computeRecall(sumNumOfCorrect, sumNumOfMatcher), 
+				Characteristic.computeRecall(sumNumOfCorrect, sumNumOfGold));
+	}
+	
+	public static double getPrecisionStdDev(List<Characteristic> characteristics) {
+		double avgMacro = Characteristic.getPrecisionMacro(characteristics);
+		double dev = 0;
+		int numOfOcc = 0;
+		for(Characteristic c : characteristics) {
+			double currPrecision = c.getPrecision();
+			if(!Double.isNaN(currPrecision)) {
+				double currDev = Math.abs(currPrecision - avgMacro);
+				dev += Math.pow(currDev, 2);	
+				numOfOcc++;
+			}
+		}
+		return Math.sqrt(dev/numOfOcc);
+	}
+	
+	public static double getRecallStdDev(List<Characteristic> characteristics) {
+		double avgMacro = Characteristic.getRecallMacro(characteristics);
+		double dev = 0;
+		for(Characteristic c : characteristics) {
+			double currDev = Math.abs(c.getRecall() - avgMacro);
+			dev += Math.pow(currDev, 2);
+		}
+		return Math.sqrt(dev/characteristics.size());
+	}
+	
+	public static double getFMeasureStdDev(List<Characteristic> characteristics) {
+		double avgMacro = Characteristic.getFMeasureMacro(characteristics);
+		double dev = 0;
+		for(Characteristic c : characteristics) {
+			double currDev = Math.abs(c.getFMeasure() - avgMacro);
+			dev += Math.pow(currDev, 2);
+		}
+		return Math.sqrt(dev/characteristics.size());
+	}
 	
 }

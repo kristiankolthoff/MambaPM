@@ -6,9 +6,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import de.unima.ki.mamba.evaluation.Characteristic;
 import de.unima.ki.mamba.exceptions.AlignmentException;
 import de.unima.ki.mamba.om.alignment.Alignment;
-import de.unima.ki.mamba.om.alignment.Characteristic;
 import de.unima.ki.mamba.pm.model.Model;
 import de.unima.ki.mamba.pm.model.parser.BPMNParser;
 import de.unima.ki.mamba.pm.model.parser.Parser;
