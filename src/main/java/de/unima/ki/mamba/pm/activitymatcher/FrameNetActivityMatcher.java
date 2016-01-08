@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.BiPredicate;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -80,10 +82,11 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 	}
 	
 	
+	
 	@Override
-	public boolean match(Activity a1, Activity a2) {
+	public boolean test(Activity a1, Activity a2) {
 		try {
-			this.matchMajorityVote(a1, a2);
+			return this.matchSimple(a1, a2);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (WrongWordspaceTypeException e) {
@@ -204,7 +207,8 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 	}
 	
 	public List<Frame> majorityVoteFrames(List<Frame> frames) {
-		if(frames == null || frames.size() == 0) {
+		Objects.requireNonNull(frames);
+		if(frames.size() == 0) {
 			return new ArrayList<>();
 		}
 		Map<Frame,Integer> countMap = new HashMap<>();
@@ -217,15 +221,12 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 		}
 		int maxValue = Integer.MIN_VALUE;
 		for(Map.Entry<Frame, Integer> e : countMap.entrySet()) {
-			System.out.println(e.getKey() + " " + e.getValue());
 			if(e.getValue() > maxValue) {
 				maxValue = e.getValue();
 			}
 		}
 		List<Frame> bestFrames = new ArrayList<>();
-		System.out.println(countMap.size());
 		for(Map.Entry<Frame, Integer> e : countMap.entrySet()) {
-			System.out.println(e.getKey() + " " + e.getValue());
 			if(e.getValue() == maxValue) {
 				bestFrames.add(e.getKey());
 			}
