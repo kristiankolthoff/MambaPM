@@ -13,6 +13,7 @@ import org.xml.sax.*;
 import org.xml.sax.helpers.DefaultHandler;
 
 import de.unima.ki.mamba.exceptions.AlignmentException;
+import de.unima.ki.mamba.exceptions.CorrespondenceException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -34,6 +35,8 @@ public class AlignmentReaderXml extends DefaultHandler implements AlignmentReade
 	private boolean readRelation;
 	private String confidence;
 	private boolean readConfidence;
+	private String type;
+	private boolean readType;
 	private ArrayList<Correspondence> correspondences;
 	private AlignmentException internalException = null;
 	private String filepathOrUri;
@@ -41,6 +44,7 @@ public class AlignmentReaderXml extends DefaultHandler implements AlignmentReade
 	
 	public AlignmentReaderXml() {
 		this.confidence = "";
+		this.type = "";
 	}
 
 	public Alignment getAlignment(String filepathOrUri) throws AlignmentException {
@@ -108,6 +112,9 @@ public class AlignmentReaderXml extends DefaultHandler implements AlignmentReade
     	if (qName.toLowerCase().equals("measure")) {
     		this.readConfidence = true;
     	}
+    	if(qName.toLowerCase().equals("type")) {
+    		this.readType = true; 
+    	}
     }
     
     public void characters(char buf[], int offset, int len) throws SAXException {
@@ -116,7 +123,10 @@ public class AlignmentReaderXml extends DefaultHandler implements AlignmentReade
         }
         if (this.readConfidence) {
         	this.confidence += new String(buf, offset, len);
-        }        
+        }
+        if(this.readType) {
+        	this.type = new String(buf, offset, len);
+        }
         
     }    
 
@@ -128,7 +138,7 @@ public class AlignmentReaderXml extends DefaultHandler implements AlignmentReade
     			sim = d.floatValue();
     		}
     		this.confidence = "";
-    		Correspondence correspondence;
+    		Correspondence correspondence = null;
     		
     		SemanticRelation relationType = SemanticRelation.NA;
     		if (this.relation == null) { relationType = SemanticRelation.EQUIV; }
@@ -141,16 +151,30 @@ public class AlignmentReaderXml extends DefaultHandler implements AlignmentReade
     		}
     		SemanticRelation semanticRelation;
 			semanticRelation = relationType;
-			correspondence = new Correspondence(this.entity1 , this.entity2, semanticRelation, (double)sim);
+			/**
+			 * Hack that should be improved
+			 * TODO: This is a bug, creates type if type == ** or == ??, there should not be a type here
+			 */
+			if(this.type.isEmpty() || this.type.equals("**") || this.type.equals("??")) {
+				correspondence = new Correspondence(this.entity1 , this.entity2, semanticRelation, (double)sim);
+			} else {
+				if(Correspondence.isSupportedType(this.type)) {
+					correspondence = new Correspondence(this.entity1, this.entity2, semanticRelation, (double)sim, this.type);
+				} else {
+					try {
+						throw new CorrespondenceException(CorrespondenceException.UNSUPPORTED_TYPE, this.type);
+					} catch (CorrespondenceException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			this.type = "";
 			correspondences.add(correspondence);
 
 			
     	}
     	this.readConfidence = false;
     	this.readRelation = false;
+    	this.readType = false;
     }
-    
-    
-
-
 }

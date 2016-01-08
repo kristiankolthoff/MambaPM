@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+         xmlns:xsd='http://www.w3.org/2001/XMLSchema#'
+         xmlns:alext='http://exmo.inrialpes.fr/align/ext/1.0/'
+         xmlns:align='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'>
+<Alignment>
+  <xml>yes</xml>
+  <level>0</level>
+  <type>**</type>
+  <onto1>
+    <Ontology rdf:about="null">
+      <location>null</location>
+    </Ontology>
+  </onto1>
+  <onto2>
+    <Ontology rdf:about="null">
+      <location>null</location>
+    </Ontology>
+  </onto2>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://TU_Munich#sid-5CAA1911-2EA6-4A98-87A7-9BD000B0A191'/>
+      <entity2 rdf:resource='http://Muenster#sid-5DBF77E5-6F45-462A-9589-8B8A202D5C1A'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://TU_Munich#sid-B9C01B9A-294C-4E27-A0A8-DB69025E4284'/>
+      <entity2 rdf:resource='http://Muenster#sid-5DBF77E5-6F45-462A-9589-8B8A202D5C1A'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://TU_Munich#sid-AFB67B06-BDE2-40B6-B3C2-A3665192D791'/>
+      <entity2 rdf:resource='http://Muenster#sid-5DBF77E5-6F45-462A-9589-8B8A202D5C1A'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://TU_Munich#sid-A050A33E-6163-44B5-965A-614CBFDB17C2'/>
+      <entity2 rdf:resource='http://Muenster#sid-13F8AF16-C3E3-42BC-95BB-98450FD7603D'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://TU_Munich#sid-86BEFE55-806A-4B19-9DF6-EB0B403B6890'/>
+      <entity2 rdf:resource='http://Muenster#sid-5D36CFBD-36D5-4A2F-81E6-83F468923C4B'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://TU_Munich#sid-465F693F-A9A4-43B7-86FB-B6F16EAD8DE7'/>
+      <entity2 rdf:resource='http://Muenster#sid-222C84E3-5DAD-480E-B504-E79874210FEA'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://TU_Munich#sid-3B9A1679-D9C0-48D4-B6EB-EE354AB529F2'/>
+      <entity2 rdf:resource='http://Muenster#sid-3680E18B-E26C-4B7E-8462-F4CAD48F4985'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://TU_Munich#sid-906427E0-F446-4C6B-851B-F3872CE2302E'/>
+      <entity2 rdf:resource='http://Muenster#sid-FA818A39-9A60-4A73-9DB3-536ECED36803'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://TU_Munich#sid-40C33EDB-612C-481C-926B-D0FFABA5B170'/>
+      <entity2 rdf:resource='http://Muenster#sid-FA818A39-9A60-4A73-9DB3-536ECED36803'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://TU_Munich#sid-C35B2287-57A3-420B-A8B3-86E1FBC12BDA'/>
+      <entity2 rdf:resource='http://Muenster#sid-5D36CFBD-36D5-4A2F-81E6-83F468923C4B'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+</Alignment>
+</rdf:RDF>
