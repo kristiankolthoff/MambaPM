@@ -8,22 +8,6 @@
 <level>0</level>
 <type>??</type>
 
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://birthCertificate_p31#t1"/>
-		<entity2 rdf:resource="http://birthCertificate_p33#t1"/>
-		<measure rdf:datatype="xsd:float">1.0</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://birthCertificate_p31#t33"/>
-		<entity2 rdf:resource="http://birthCertificate_p33#t17"/>
-		<measure rdf:datatype="xsd:float">1.0</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
 
 </Alignment>
 </rdf:RDF>

@@ -5,8 +5,15 @@ import java.util.Set;
 
 public class Model {
 
+	private String id;
 	private Set<Activity> activities;
 	private Set<Flow> flows;
+	
+	public Model(String id) {
+		this.id = id;
+		this.activities = new HashSet<>();
+		this.flows = new HashSet<>();
+	}
 	
 	public Model() {
 		this.activities = new HashSet<>();
@@ -41,9 +48,11 @@ public class Model {
 		}
 	}
 
-	
-	
-	
-	
+	public String getId() {
+		return id;
+	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
 }

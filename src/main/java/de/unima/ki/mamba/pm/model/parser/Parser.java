@@ -10,6 +10,9 @@ import de.unima.ki.mamba.pm.model.Model;
 
 public interface Parser {
 	
+	public static final String TYPE_BPMN = "bpmn";
+	public static final String TYPE_PNML = "pnml";
+	
 	public Model parse(String filepath) throws ParserConfigurationException, SAXException, IOException;
 
 }

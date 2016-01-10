@@ -1,41 +1,39 @@
 package de.unima.ki.mamba.pm.matcher;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.lucene.index.CorruptIndexException;
 import org.xml.sax.SAXException;
 
+import de.linguatools.disco.CorruptConfigFileException;
 import de.unima.ki.mamba.om.alignment.Alignment;
 import de.unima.ki.mamba.om.alignment.Correspondence;
+import de.unima.ki.mamba.pm.activitymatcher.ActivityMatcher;
+import de.unima.ki.mamba.pm.activitymatcher.FrameNetActivityMatcher;
+import de.unima.ki.mamba.pm.activitymatcher.SimpleSyntacticActivityMatcher;
 import de.unima.ki.mamba.pm.model.Activity;
 import de.unima.ki.mamba.pm.model.Model;
-import de.unima.ki.mamba.pm.model.parser.BPMNParser;
-import de.unima.ki.mamba.pm.model.parser.PNMLParser;
-import de.unima.ki.mamba.pm.model.parser.Parser;
 
 public class BasicMatcher {
 
-	private Alignment alignment = null; 
-	
 	private String sourceNS = null;
 	private String targetNS = null;
+	private List<ActivityMatcher> activityMatchers;
 	
-	private Parser parser = null;
-	
-	public BasicMatcher() {
-		
-		
+	public BasicMatcher() throws FileNotFoundException, CorruptIndexException, IOException, 
+			CorruptConfigFileException, ParserConfigurationException {
+		this.activityMatchers = new ArrayList<>();
+		registerActivityMatcher();
 	}
 	
-	public void setParser(String extension) {
-		if (extension.equals("bpmn")) {
-			this.parser = new BPMNParser();
-		}
-		if (extension.equals("pnml")) {
-			this.parser = new PNMLParser();
-		}
-		
+	private void registerActivityMatcher() throws FileNotFoundException, CorruptIndexException, IOException, 
+			CorruptConfigFileException, ParserConfigurationException {
+		this.activityMatchers.add(new FrameNetActivityMatcher());
 	}
 	
 	public void setNamespacePrefixes(String sourceNS, String targetNS)  {
@@ -43,11 +41,8 @@ public class BasicMatcher {
 		this.targetNS = targetNS;
 	}
 	
-	public void match(String sourceModelPath, String targetModelPath) throws ParserConfigurationException, SAXException, IOException {
-		
-		Model sourceModel = parser.parse(sourceModelPath);
-		Model targetModel = parser.parse(targetModelPath);
-		this.alignment = new Alignment();
+	public Alignment match(Model sourceModel, Model targetModel) throws ParserConfigurationException, SAXException, IOException {
+		Alignment alignment = new Alignment();
 		for (Activity sourceActivity : sourceModel.getActivities()) {
 			for (Activity targetActivity : targetModel.getActivities()) {
 				if (matchActivities(sourceActivity, targetActivity)) {
@@ -62,25 +57,19 @@ public class BasicMatcher {
 		}
 		this.sourceNS = null;
 		this.targetNS = null;
-		
+		return alignment;
 	}
 	
 	public boolean matchActivities(Activity a1, Activity a2) {
-		if (normalize(a1.getLabel()).equals(normalize(a2.getLabel()))) {
-			return true;
+		for(ActivityMatcher am : this.activityMatchers) {
+			if(am.test(a1, a2)) {
+				return true;
+			}
 		}
 		return false;
-		
 	}
 	
 	public String normalize(String label) {
 		return label.toLowerCase();
 	}
-	
-	
-	public Alignment getAlignment() {
-		return this.alignment;
-	}
-	
-
-}
+}	

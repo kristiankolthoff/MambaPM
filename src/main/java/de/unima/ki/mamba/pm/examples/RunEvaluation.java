@@ -94,7 +94,7 @@ public class RunEvaluation {
 				TypeCharacteristic tc = new TypeCharacteristic(mapping, reference);
 				tcharacteristics.add(tc);
 				} catch (CorrespondenceException ex){
-					System.err.println("Correspondence exception");
+					ex.printStackTrace();
 				} catch(IndexOutOfBoundsException ex) {
 					System.err.println("Number of reference and matcher "
 							+ "alignments unequal : " + ex.getMessage());
