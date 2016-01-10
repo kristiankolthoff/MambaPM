@@ -2,8 +2,10 @@ package de.unima.ki.mamba.pm.nlp;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import de.unima.ki.mamba.pm.utils.Settings;
@@ -16,6 +18,9 @@ import edu.mit.jwi.item.ISynset;
 import edu.mit.jwi.item.ISynsetID;
 import edu.mit.jwi.item.IWordID;
 import edu.mit.jwi.item.POS;
+import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.process.CoreLabelTokenFactory;
+import edu.stanford.nlp.process.PTBTokenizer;
 
 public class NLPHelper {
 	
@@ -31,7 +36,7 @@ public class NLPHelper {
 			"will","with","would","yet","you","your"};
 
 	public NLPHelper() {
-		this.dict = new RAMDictionary(new File(Settings.WORDNET_DIRECTORY) , ILoadPolicy.NO_LOAD); 
+		this.dict = new RAMDictionary(new File(Settings.getWordnetDirectory()) , ILoadPolicy.NO_LOAD); 
 		try {
 			this.dict.open();
 		}
@@ -171,6 +176,20 @@ public class NLPHelper {
 	public boolean isPennTreebankVerbTag(String t) {
 		return t.equals("VB") || t.equals("VBZ") || t.equals("VBD") || t.equals("VBG")
 				|| t.equals("VBN") || t.equals("VBP");
+	}
+	
+	public String getTokenizedString(String sentence) {
+		PTBTokenizer<CoreLabel> tokenizer = new PTBTokenizer<CoreLabel>(new StringReader(sentence), 
+				new CoreLabelTokenFactory(), "");
+		List<CoreLabel> tokens = tokenizer.tokenize();
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < tokens.size(); i++) {
+			sb.append(tokens.get(i).originalText());
+			if(i!=tokens.size()-1) {
+				sb.append(" ");
+			}
+		}
+		return sb.toString();
 	}
 	
 

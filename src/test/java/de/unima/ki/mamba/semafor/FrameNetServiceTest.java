@@ -25,31 +25,31 @@ public class FrameNetServiceTest {
 	
 	@Test
 	public void createAnnotationFileTest() {
-		fnService.createAnnotationFile(sentences);
+		this.fnService.createAnnotationFile(sentences);
 		File f = new File(FrameNetOptions.ABS_PATH_FNDATA + FrameNetOptions.FN_FILE_NAME);
 		assertEquals(true, f.exists());
 	}
 	
 	@Test
 	public void runFNSemanticParsingTest() {
-		fnService.runFNSemanticParsing();
+		this.fnService.runFNSemanticParsing();
 		File f = new File(FrameNetOptions.ABS_PATH_FNDATA + FrameNetOptions.FN_FILE_OUT_NAME);
 		assertEquals(true, f.exists());
 	}
 	
 	@Test
 	public void runDirCleanerTest() {
-		fnService.runFNSemanticParsing();
+		this.fnService.runFNSemanticParsing();
 		File fIn = new File(FrameNetOptions.ABS_PATH_FNDATA + FrameNetOptions.FN_FILE_NAME);
 		File fOut = new File(FrameNetOptions.ABS_PATH_FNDATA + FrameNetOptions.FN_FILE_OUT_NAME);
-		fnService.cleanAll();
+		this.fnService.cleanAll();
 		assertEquals(false, fIn.exists());
 		assertEquals(false, fOut.exists());
 	}
 	
 	@After
 	public void clean() {
-		fnService.cleanAll();
+		this.fnService.cleanAll();
 	}
 	
 }

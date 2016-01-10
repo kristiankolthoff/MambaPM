@@ -31,13 +31,13 @@ public class RunBasicMatcher {
 		MODELS_DATASET1 = new String[]  {
 				"Cologne",
 				"Frankfurt",
-				"FU_Berlin",
-				"Hohenheim",
-				"IIS_Erlangen",
-				"Muenster",
-				"Potsdam",
-				"TU_Munich",
-				"Wuerzburg"
+//				"FU_Berlin",
+//				"Hohenheim",
+//				"IIS_Erlangen",
+//				"Muenster",
+//				"Potsdam",
+//				"TU_Munich",
+//				"Wuerzburg"
 		};
 		MODELS_DATASET2 = new String[] {
 				"birthCertificate_p31",
@@ -67,9 +67,8 @@ public class RunBasicMatcher {
 		/**
 		 * Match PNML dataset2
 		 */
-		List<Model> models2 = readModels(MODELS_DATASET2, Parser.TYPE_PNML, MODELS_DATASET2_SRC);
-		matchDataset(models2, RESULTS_DATASET2_SRC);
-		
+//		List<Model> models2 = readModels(MODELS_DATASET2, Parser.TYPE_PNML, MODELS_DATASET2_SRC);
+//		matchDataset(models2, RESULTS_DATASET2_SRC);
 	}
 	
 	public static void matchDataset(List<Model> models, String output) throws ParserConfigurationException, 

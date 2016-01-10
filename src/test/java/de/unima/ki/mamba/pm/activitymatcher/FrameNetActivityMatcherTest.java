@@ -23,13 +23,11 @@ public class FrameNetActivityMatcherTest {
 
 	private FrameNetActivityMatcher fnActMatcher;
 	private Model model;
-	private List<Model> models;
 	
 	@Before
 	public void init() {
 		try {
 			this.fnActMatcher = new FrameNetActivityMatcher();
-			this.models = new ArrayList<>();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (CorruptIndexException e) {
@@ -84,8 +82,7 @@ public class FrameNetActivityMatcherTest {
 		this.model = new Model();
 		this.model.addActivity(a1);
 		this.model.addActivity(a2);
-		this.models.add(this.model);
-		this.fnActMatcher.annotateFNActivities(this.models);
+		this.fnActMatcher.annotateFNActivities(this.model);
 		assertTrue(this.fnActMatcher.test(a1, a2));
 	}
 	
@@ -96,8 +93,7 @@ public class FrameNetActivityMatcherTest {
 		this.model = new Model();
 		this.model.addActivity(a1);
 		this.model.addActivity(a2);
-		this.models.add(this.model);
-		this.fnActMatcher.annotateFNActivities(this.models);
+		this.fnActMatcher.annotateFNActivities(this.model);
 		assertTrue(this.fnActMatcher.test(a1, a2));
 	}
 	
@@ -108,8 +104,7 @@ public class FrameNetActivityMatcherTest {
 		this.model = new Model();
 		this.model.addActivity(a1);
 		this.model.addActivity(a2);
-		this.models.add(this.model);
-		this.fnActMatcher.annotateFNActivities(this.models);
+		this.fnActMatcher.annotateFNActivities(this.model);
 		assertFalse(this.fnActMatcher.test(a1, a2));
 	}
 	
@@ -120,8 +115,7 @@ public class FrameNetActivityMatcherTest {
 		this.model = new Model();
 		this.model.addActivity(a1);
 		this.model.addActivity(a2);
-		this.models.add(this.model);
-		this.fnActMatcher.annotateFNActivities(this.models);
+		this.fnActMatcher.annotateFNActivities(this.model);
 		assertFalse(this.fnActMatcher.test(a1, a2));
 	}
 	
@@ -132,8 +126,7 @@ public class FrameNetActivityMatcherTest {
 		this.model = new Model();
 		this.model.addActivity(a1);
 		this.model.addActivity(a2);
-		this.models.add(this.model);
-		this.fnActMatcher.annotateFNActivities(this.models);
+		this.fnActMatcher.annotateFNActivities(this.model);
 		System.out.println(this.fnActMatcher.test(a1, a2));
 		assertTrue(this.fnActMatcher.test(a1, a2));
 	}

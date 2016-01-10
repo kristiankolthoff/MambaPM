@@ -22,8 +22,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -107,6 +109,10 @@ public class FrameNetAnnotator {
 	 */
 	public Map<String, List<Frame>> fetchFNResults(Collection<String> sentences) 
 			throws ParserConfigurationException, SAXException, IOException {
+		Objects.requireNonNull(sentences);
+		if(sentences.isEmpty()) {
+			return Collections.emptyMap();
+		}
 		this.sentences.addAll(sentences);
 		return this.fetchFNResultsFromCache();
 	}
@@ -122,6 +128,10 @@ public class FrameNetAnnotator {
 	 */
 	public Map<String, List<Frame>> fetchFNResults(String sentence) 
 			throws ParserConfigurationException, SAXException, IOException {
+		Objects.requireNonNull(sentence);
+		if(sentence.isEmpty()) {
+			return Collections.emptyMap();
+		}
 		this.sentences.add(sentence);
 		return this.fetchFNResultsFromCache();
 	}
@@ -158,7 +168,7 @@ public class FrameNetAnnotator {
 		this.fnService.runFNSemanticParsing();
 		Map<String, List<Frame>> frameMap = this.fnParser.fetchFNData(FrameNetOptions.ABS_PATH_FNDATA + 
 				FrameNetOptions.FN_FILE_OUT_NAME);
-		this.fnService.cleanAll();
+//		this.fnService.cleanAll();
 		this.sentences.clear();
 		return frameMap;
 	}

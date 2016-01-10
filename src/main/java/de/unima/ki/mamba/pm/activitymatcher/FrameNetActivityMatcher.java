@@ -38,7 +38,7 @@ import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.process.DocumentPreprocessor;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
-public class FrameNetActivityMatcher implements ActivityMatcher{
+public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 
 	private FrameNetAnnotator fnAnno;
 	private DISCO disco;
@@ -52,33 +52,29 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 	
 	public FrameNetActivityMatcher() throws FileNotFoundException, CorruptIndexException, 
 					IOException, CorruptConfigFileException, ParserConfigurationException {
-		this.fnAnno = new FrameNetAnnotator(Settings.JAVA_HOME);
-		this.disco = new DISCO(Settings.WORDSPACE_WORD2VEC_DIRECTORY, LOAD_IN_MEMORY);
-		this.dict = new Dictionary(new URL("file:" + Settings.WORDNET_DIRECTORY));
-		this.tagger = new MaxentTagger(Settings.POS_TAGGER_DIRECTORY);
+		this.fnAnno = new FrameNetAnnotator(Settings.getJavaHomeDirectory());
+		this.disco = new DISCO(Settings.getWordspaceWord2VecDirectory(), LOAD_IN_MEMORY);
+		this.dict = new Dictionary(new URL("file:" + Settings.getWordnetDirectory()));
+		this.tagger = new MaxentTagger(Settings.getPosTaggerDirectory());
 		this.nlpHelper = new NLPHelper();
 		this.frameMap = new HashMap<>();
 		this.dict.open();
 	}
 	
-	public void annotateFNActivities(List<Model> models) {
+	public FrameNetActivityMatcher annotateFNActivities(Model model) {
 		List<String> labelsToAnnotate = new ArrayList<String>();
-		try {
-			for(Model model : models) {
-				for(Activity a : model.getActivities()) {
-					labelsToAnnotate.addAll(getSimilarLabels(a.getLabel()));
-				}
+		for (Activity a : model.getActivities()) {
+			if(Objects.isNull(this.frameMap.get(this.nlpHelper.getTokenizedString(a.getLabel())))) {
+				labelsToAnnotate.add(a.getLabel());
 			}
-			this.frameMap = this.fnAnno.fetchFNResults(labelsToAnnotate);
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (WrongWordspaceTypeException e) {
+		}
+		try {
+			this.frameMap.putAll(this.fnAnno.fetchFNResults(labelsToAnnotate));
+		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 		}
+		
+		return this;
 	}
 	
 	
@@ -139,7 +135,7 @@ public class FrameNetActivityMatcher implements ActivityMatcher{
 		List<String> similarLabels = getSimilarLabels(a.getLabel());
 		List<Frame> frames = new ArrayList<>();
 		for(String simLabel : similarLabels) {
-			frames.addAll(frameMap.get(simLabel));
+			frames.addAll(frameMap.get(this.nlpHelper.getTokenizedString(simLabel)));
 		}
 		return frames;
 	}

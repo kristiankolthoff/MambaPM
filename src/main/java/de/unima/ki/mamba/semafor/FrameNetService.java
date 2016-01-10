@@ -116,12 +116,16 @@ public class FrameNetService {
 		}
 	}
 	
-	private void startServer() {
+	public void startServer() {
 //		try{
-//			 Process proc = Runtime.getRuntime().exec(FrameNetOptions.ABS_PATH_DRIVER_SCRIPT + " " 
+//			 Process proc = Runtime.getRuntime().exec(FrameNetOptions.ABS_PATH_MST_SERVER_SCRIPT + " " 
 //					 			+ FrameNetOptions.ABS_PATH_FNDATA + FrameNetOptions.FN_FILE_NAME);
-//			 //Notice that this will run as long as it is not shut down. Hence this should be removed here
-//			 proc.waitFor();
+//			 BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+//				String line;
+//				while((line = br.readLine()) != null) {
+//					System.out.println(line);
+//				}
+//				proc.waitFor();
 //	         } catch (InterruptedException e) {
 //	             e.printStackTrace();
 //	         } catch (IOException e) {

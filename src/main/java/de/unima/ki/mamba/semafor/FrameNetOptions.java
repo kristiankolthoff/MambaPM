@@ -42,6 +42,7 @@ public class FrameNetOptions {
 	public static final String ABS_PATH_SEMAFOR = new File(".").getAbsolutePath() + "/src/main/resources/framenet-semantic-parsing/semafor/";
 	public static final String ABS_PATH_FNDATA = new File(".").getAbsolutePath() + "/src/main/resources/framenet-semantic-parsing/frame-data/";
 	public static final String ABS_PATH_DRIVER_SCRIPT = ABS_PATH_SEMAFOR + "release/fnParserDriver.sh";
+	public static final String ABS_PATH_MST_SERVER_SCRIPT = ABS_PATH_SEMAFOR + "release/startMSTServer.sh";
 	public static final String ABS_PATH_FILE_CONFIG = ABS_PATH_SEMAFOR + "release/config";
 	public static final String ABS_PATH_DIR_TEMP = ABS_PATH_SEMAFOR + "temp/";
 

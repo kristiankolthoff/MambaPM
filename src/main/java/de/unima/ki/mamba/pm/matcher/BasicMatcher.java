@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiPredicate;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -13,7 +14,6 @@ import org.xml.sax.SAXException;
 import de.linguatools.disco.CorruptConfigFileException;
 import de.unima.ki.mamba.om.alignment.Alignment;
 import de.unima.ki.mamba.om.alignment.Correspondence;
-import de.unima.ki.mamba.pm.activitymatcher.ActivityMatcher;
 import de.unima.ki.mamba.pm.activitymatcher.FrameNetActivityMatcher;
 import de.unima.ki.mamba.pm.activitymatcher.SimpleSyntacticActivityMatcher;
 import de.unima.ki.mamba.pm.model.Activity;
@@ -23,7 +23,8 @@ public class BasicMatcher {
 
 	private String sourceNS = null;
 	private String targetNS = null;
-	private List<ActivityMatcher> activityMatchers;
+	private List<BiPredicate<Activity, Activity>> activityMatchers;
+	private BiPredicate<Activity, Activity> allActivityMatcher;
 	
 	public BasicMatcher() throws FileNotFoundException, CorruptIndexException, IOException, 
 			CorruptConfigFileException, ParserConfigurationException {
@@ -34,6 +35,15 @@ public class BasicMatcher {
 	private void registerActivityMatcher() throws FileNotFoundException, CorruptIndexException, IOException, 
 			CorruptConfigFileException, ParserConfigurationException {
 		this.activityMatchers.add(new FrameNetActivityMatcher());
+		this.activityMatchers.add(new SimpleSyntacticActivityMatcher());
+		BiPredicate<Activity, Activity>  firstActMatcher = this.activityMatchers.get(0);
+		BiPredicate<Activity, Activity> secondActMatcher = this.activityMatchers.get(1);
+		this.allActivityMatcher = firstActMatcher.or(secondActMatcher);
+		for (int i = 2; i < this.activityMatchers.size(); i++) {
+			BiPredicate<Activity, Activity> currActMatcher = this.activityMatchers.get(i);
+			this.allActivityMatcher = this.allActivityMatcher.or(currActMatcher);
+		}
+		
 	}
 	
 	public void setNamespacePrefixes(String sourceNS, String targetNS)  {
@@ -42,6 +52,13 @@ public class BasicMatcher {
 	}
 	
 	public Alignment match(Model sourceModel, Model targetModel) throws ParserConfigurationException, SAXException, IOException {
+		/**
+		 * TODO: Note that the activity strings are often corrupted or contain extra symbols.
+		 * Important to sanitize the activities labels to avoid bugs in finding the frame list for an activity
+		 */
+		FrameNetActivityMatcher fnActMatcher = (FrameNetActivityMatcher) this.activityMatchers.get(0);
+		fnActMatcher.annotateFNActivities(sourceModel)
+					.annotateFNActivities(targetModel);
 		Alignment alignment = new Alignment();
 		for (Activity sourceActivity : sourceModel.getActivities()) {
 			for (Activity targetActivity : targetModel.getActivities()) {
@@ -61,12 +78,7 @@ public class BasicMatcher {
 	}
 	
 	public boolean matchActivities(Activity a1, Activity a2) {
-		for(ActivityMatcher am : this.activityMatchers) {
-			if(am.test(a1, a2)) {
-				return true;
-			}
-		}
-		return false;
+		return this.allActivityMatcher.test(a1, a2);
 	}
 	
 	public String normalize(String label) {

@@ -1,9 +1,11 @@
 package de.unima.ki.mamba.pm.activitymatcher;
 
+import java.util.function.BiPredicate;
+
 import de.unima.ki.mamba.pm.model.Activity;
 import de.unima.ki.mamba.pm.nlp.NLPHelper;
 
-public class SimpleSyntacticActivityMatcher implements ActivityMatcher{
+public class SimpleSyntacticActivityMatcher implements BiPredicate<Activity, Activity>{
 
 	private NLPHelper nlpHelper;
 	
