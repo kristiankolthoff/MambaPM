@@ -44,7 +44,6 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 	private DISCO disco;
 	private IDictionary dict;
 	private MaxentTagger tagger;
-	private NLPHelper nlpHelper;
 	private Map<String, List<Frame>> frameMap;
 	
 	public static final int MAX_K = 20;
@@ -56,7 +55,6 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 		this.disco = new DISCO(Settings.getWordspaceWord2VecDirectory(), LOAD_IN_MEMORY);
 		this.dict = new Dictionary(new URL("file:" + Settings.getWordnetDirectory()));
 		this.tagger = new MaxentTagger(Settings.getPosTaggerDirectory());
-		this.nlpHelper = new NLPHelper();
 		this.frameMap = new HashMap<>();
 		this.dict.open();
 	}
@@ -64,8 +62,15 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 	public FrameNetActivityMatcher annotateFNActivities(Model model) {
 		List<String> labelsToAnnotate = new ArrayList<String>();
 		for (Activity a : model.getActivities()) {
-			if(Objects.isNull(this.frameMap.get(this.nlpHelper.getTokenizedString(a.getLabel())))) {
-				labelsToAnnotate.add(a.getLabel());
+			try {
+				List<String> simLabels = this.getSimilarLabels(a.getLabel());
+				for(String label : simLabels) {
+					if(Objects.isNull(this.frameMap.get(label))) {
+						labelsToAnnotate.add(label);
+					}
+				}
+			} catch (IOException | WrongWordspaceTypeException e) {
+				e.printStackTrace();
 			}
 		}
 		try {
@@ -117,10 +122,10 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 		List<Frame> frames2 = this.getSimilarFrames(a2);
 		System.err.println("---Majority-1---");
 		List<Frame> frameMaj1 = this.majorityVoteFrames(frames1);
-		System.err.println(frameMaj1);
+		System.out.println(frameMaj1);
 		System.err.println("---Majority-2---");
 		List<Frame> frameMaj2 = this.majorityVoteFrames(frames2);
-		System.err.println(frameMaj2);
+		System.out.println(frameMaj2);
 		for(Frame f1 : frameMaj1) {
 			for(Frame f2 : frameMaj2) {
 				if(f1.equals(f2)) {
@@ -135,7 +140,7 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 		List<String> similarLabels = getSimilarLabels(a.getLabel());
 		List<Frame> frames = new ArrayList<>();
 		for(String simLabel : similarLabels) {
-			frames.addAll(frameMap.get(this.nlpHelper.getTokenizedString(simLabel).trim()));
+			frames.addAll(frameMap.get(simLabel));
 		}
 		return frames;
 	}
@@ -160,7 +165,6 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 	
 	public List<String> getSimilarLabels(String label) throws IOException, WrongWordspaceTypeException {
 		List<String> similarSentences = new ArrayList<String>();
-		label = label.toLowerCase();
 		similarSentences.add(label);
 		Optional<String> verb = extractVerb(label);
 		if(verb.isPresent()) {
@@ -186,8 +190,8 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 			List<TaggedWord> taggedWords = tagger.apply(list);
 			for(TaggedWord tw : taggedWords) {
 				String t = tw.tag();
-				if(this.nlpHelper.isPennTreebankVerbTag(t)) {
-					return Optional.of(this.nlpHelper.getNormalized(tw.word(), POS.VERB).toLowerCase());
+				if(NLPHelper.isPennTreebankVerbTag(t)) {
+					return Optional.of(NLPHelper.getNormalized(tw.word(), POS.VERB).toLowerCase());
 				}
 				
 			}
@@ -197,7 +201,7 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 	
 	
 	public boolean isVerb(String word) {
-		word = nlpHelper.getNormalized(word, POS.VERB);
+		word = NLPHelper.getNormalized(word, POS.VERB);
 		IIndexWord idxWord = dict.getIndexWord(word, POS.VERB);
 		return idxWord != null;
 	}
@@ -239,8 +243,7 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 				System.out.println(s);
 			}
 			fnam.extractVerb("The student sends the letter to the university.");
-			NLPHelper nlp = new NLPHelper();
-			Set<POS> set = nlp.getPOS("sending");
+			Set<POS> set = NLPHelper.getPOS("sending");
 			for(POS pos : set) {
 				System.out.println(pos);
 			}

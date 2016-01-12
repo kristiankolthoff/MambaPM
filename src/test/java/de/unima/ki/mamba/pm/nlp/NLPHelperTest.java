@@ -3,7 +3,6 @@ package de.unima.ki.mamba.pm.nlp;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import de.unima.ki.mamba.pm.nlp.NLPHelper;
@@ -11,16 +10,23 @@ import de.unima.ki.mamba.pm.nlp.NLPHelper;
 
 public class NLPHelperTest {
 
-	private NLPHelper nlpHelper;
-	
-	@Before
-	public void init() {
-		this.nlpHelper = new NLPHelper();
-	}
-
 	@Test
 	public void getPOSTest() {
-		assertEquals("noun",this.nlpHelper.getPOS("documents").iterator().next().toString());
+		assertEquals("noun",NLPHelper.getPOS("documents").iterator().next().toString());
+	}
+	
+	@Test
+	public void sanitizeLabelsTest() {
+		final String label = " Send letter of rejection   ";
+		assertEquals("send letter of rejection", NLPHelper.getSanitizeLabel(label));
+		final String label2 = "The student attends the university.";
+		assertEquals("the student attends the university .", NLPHelper.getSanitizeLabel(label2));
+		final String label3 = "Send letter of \nprovisional acceptance";
+		assertEquals("send letter of provisional acceptance", NLPHelper.getSanitizeLabel(label3));
+		final String label4 = "Attach bachelor's certificate";
+		assertEquals("attach bachelor 's certificate", NLPHelper.getSanitizeLabel(label4));
+		final String label5 = "Find Results IN the documents";
+		assertEquals("find results in the documents", NLPHelper.getSanitizeLabel(label5));
 	}
 	
 	public static void main(String[] args) {
@@ -31,9 +37,7 @@ public class NLPHelperTest {
 		System.out.println(x1 + "e");
 
 
-		NLPHelper nlphelper = new NLPHelper();
-		System.out.println(nlphelper.getPOS("documents"));
-		
+		System.out.println(NLPHelper.getPOS("documents"));
 		
 	}
 	

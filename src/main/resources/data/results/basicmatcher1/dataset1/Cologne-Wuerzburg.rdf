@@ -8,6 +8,830 @@
 <level>0</level>
 <type>??</type>
 
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-257EB9F2-1203-4F54-8E2E-43FE6ABA096E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-48539062-6B70-468F-BF19-F74EEE12F0EB"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-257EB9F2-1203-4F54-8E2E-43FE6ABA096E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-925591B8-59CC-4806-B43B-3B5F10D7794F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-257EB9F2-1203-4F54-8E2E-43FE6ABA096E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-BE11AE1D-B085-42FA-B004-A17ABBDB94F0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-257EB9F2-1203-4F54-8E2E-43FE6ABA096E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-257EB9F2-1203-4F54-8E2E-43FE6ABA096E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-B06626EF-C70E-4D70-B20F-BA3DAC313DD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-257EB9F2-1203-4F54-8E2E-43FE6ABA096E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-4905EF0C-869A-4E84-B972-D562472547A0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-257EB9F2-1203-4F54-8E2E-43FE6ABA096E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-03231681-FE58-415D-AECB-BC1143526ED5"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-257EB9F2-1203-4F54-8E2E-43FE6ABA096E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-7334C78B-F3F1-449E-9B9B-D39C17261BD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-257EB9F2-1203-4F54-8E2E-43FE6ABA096E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5545318C-6215-4794-ACBD-3A422064C54E"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-B11703D1-08C3-416B-8947-76CE10A27978"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-48539062-6B70-468F-BF19-F74EEE12F0EB"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-B11703D1-08C3-416B-8947-76CE10A27978"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-925591B8-59CC-4806-B43B-3B5F10D7794F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-B11703D1-08C3-416B-8947-76CE10A27978"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-B11703D1-08C3-416B-8947-76CE10A27978"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-8C628809-B4AD-4A0E-9BB9-E3AFAB22381C"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-B11703D1-08C3-416B-8947-76CE10A27978"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-7334C78B-F3F1-449E-9B9B-D39C17261BD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-48539062-6B70-468F-BF19-F74EEE12F0EB"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-925591B8-59CC-4806-B43B-3B5F10D7794F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-BE11AE1D-B085-42FA-B004-A17ABBDB94F0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-B06626EF-C70E-4D70-B20F-BA3DAC313DD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-4905EF0C-869A-4E84-B972-D562472547A0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-8C069EC3-1A91-4327-9C7C-364898A9A6BF"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-03231681-FE58-415D-AECB-BC1143526ED5"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-7334C78B-F3F1-449E-9B9B-D39C17261BD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5545318C-6215-4794-ACBD-3A422064C54E"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-A3568080-F469-4D86-BB96-7A5C48342857"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-925591B8-59CC-4806-B43B-3B5F10D7794F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-A3568080-F469-4D86-BB96-7A5C48342857"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-A3568080-F469-4D86-BB96-7A5C48342857"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-A3568080-F469-4D86-BB96-7A5C48342857"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-4905EF0C-869A-4E84-B972-D562472547A0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-A3568080-F469-4D86-BB96-7A5C48342857"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-8C069EC3-1A91-4327-9C7C-364898A9A6BF"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-A3568080-F469-4D86-BB96-7A5C48342857"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-03231681-FE58-415D-AECB-BC1143526ED5"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-A3568080-F469-4D86-BB96-7A5C48342857"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-7334C78B-F3F1-449E-9B9B-D39C17261BD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-A3568080-F469-4D86-BB96-7A5C48342857"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5545318C-6215-4794-ACBD-3A422064C54E"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-48539062-6B70-468F-BF19-F74EEE12F0EB"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-925591B8-59CC-4806-B43B-3B5F10D7794F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-BE11AE1D-B085-42FA-B004-A17ABBDB94F0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-B06626EF-C70E-4D70-B20F-BA3DAC313DD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-4905EF0C-869A-4E84-B972-D562472547A0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-8C069EC3-1A91-4327-9C7C-364898A9A6BF"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-03231681-FE58-415D-AECB-BC1143526ED5"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-7334C78B-F3F1-449E-9B9B-D39C17261BD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5545318C-6215-4794-ACBD-3A422064C54E"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-D4F6E283-16FB-458A-830A-03336924C1D2"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-48539062-6B70-468F-BF19-F74EEE12F0EB"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-D4F6E283-16FB-458A-830A-03336924C1D2"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5A0807EA-8206-4037-A55F-0A3C9605ABF7"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-D4F6E283-16FB-458A-830A-03336924C1D2"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-925591B8-59CC-4806-B43B-3B5F10D7794F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-D4F6E283-16FB-458A-830A-03336924C1D2"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-BE11AE1D-B085-42FA-B004-A17ABBDB94F0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-D4F6E283-16FB-458A-830A-03336924C1D2"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-D4F6E283-16FB-458A-830A-03336924C1D2"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-4905EF0C-869A-4E84-B972-D562472547A0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-D4F6E283-16FB-458A-830A-03336924C1D2"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-03231681-FE58-415D-AECB-BC1143526ED5"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-D4F6E283-16FB-458A-830A-03336924C1D2"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-7334C78B-F3F1-449E-9B9B-D39C17261BD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-D4F6E283-16FB-458A-830A-03336924C1D2"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5545318C-6215-4794-ACBD-3A422064C54E"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-B41B5C8F-D1D5-4641-943B-DB396FD69D0B"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-4C472B5F-9246-41F6-8544-E43B5C588540"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-F6E821C8-4300-4AA0-B6D1-6BA5D15FA7DE"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-F6E821C8-4300-4AA0-B6D1-6BA5D15FA7DE"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-8C069EC3-1A91-4327-9C7C-364898A9A6BF"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-885F9233-8A3A-470C-90D9-FA7F483D69CA"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-48539062-6B70-468F-BF19-F74EEE12F0EB"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-885F9233-8A3A-470C-90D9-FA7F483D69CA"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5A0807EA-8206-4037-A55F-0A3C9605ABF7"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-885F9233-8A3A-470C-90D9-FA7F483D69CA"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-925591B8-59CC-4806-B43B-3B5F10D7794F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-885F9233-8A3A-470C-90D9-FA7F483D69CA"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-885F9233-8A3A-470C-90D9-FA7F483D69CA"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-EEC31819-F1F0-4A9F-8EE8-D442CF2E2622"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-885F9233-8A3A-470C-90D9-FA7F483D69CA"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-8C628809-B4AD-4A0E-9BB9-E3AFAB22381C"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-885F9233-8A3A-470C-90D9-FA7F483D69CA"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-C583433D-A7B4-47FE-9B68-EEB7E514DB1E"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-885F9233-8A3A-470C-90D9-FA7F483D69CA"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-7334C78B-F3F1-449E-9B9B-D39C17261BD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-48539062-6B70-468F-BF19-F74EEE12F0EB"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-925591B8-59CC-4806-B43B-3B5F10D7794F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-BE11AE1D-B085-42FA-B004-A17ABBDB94F0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-B06626EF-C70E-4D70-B20F-BA3DAC313DD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-4905EF0C-869A-4E84-B972-D562472547A0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-8C069EC3-1A91-4327-9C7C-364898A9A6BF"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-03231681-FE58-415D-AECB-BC1143526ED5"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-7334C78B-F3F1-449E-9B9B-D39C17261BD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5545318C-6215-4794-ACBD-3A422064C54E"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-DF0BF153-C7B8-47A6-9436-2217B6A02FB9"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-925591B8-59CC-4806-B43B-3B5F10D7794F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-DF0BF153-C7B8-47A6-9436-2217B6A02FB9"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-DF0BF153-C7B8-47A6-9436-2217B6A02FB9"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-B06626EF-C70E-4D70-B20F-BA3DAC313DD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-DF0BF153-C7B8-47A6-9436-2217B6A02FB9"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-4905EF0C-869A-4E84-B972-D562472547A0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-DF0BF153-C7B8-47A6-9436-2217B6A02FB9"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5545318C-6215-4794-ACBD-3A422064C54E"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-7657E804-205F-446E-A919-FE7008355206"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5A0807EA-8206-4037-A55F-0A3C9605ABF7"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-7657E804-205F-446E-A919-FE7008355206"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-925591B8-59CC-4806-B43B-3B5F10D7794F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-7657E804-205F-446E-A919-FE7008355206"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-7657E804-205F-446E-A919-FE7008355206"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-7657E804-205F-446E-A919-FE7008355206"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-EEC31819-F1F0-4A9F-8EE8-D442CF2E2622"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-7657E804-205F-446E-A919-FE7008355206"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-4905EF0C-869A-4E84-B972-D562472547A0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-7657E804-205F-446E-A919-FE7008355206"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-8C069EC3-1A91-4327-9C7C-364898A9A6BF"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-7657E804-205F-446E-A919-FE7008355206"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-03231681-FE58-415D-AECB-BC1143526ED5"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-7657E804-205F-446E-A919-FE7008355206"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-C583433D-A7B4-47FE-9B68-EEB7E514DB1E"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-7657E804-205F-446E-A919-FE7008355206"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-7334C78B-F3F1-449E-9B9B-D39C17261BD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-7657E804-205F-446E-A919-FE7008355206"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5545318C-6215-4794-ACBD-3A422064C54E"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-48539062-6B70-468F-BF19-F74EEE12F0EB"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-925591B8-59CC-4806-B43B-3B5F10D7794F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-BE11AE1D-B085-42FA-B004-A17ABBDB94F0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-4C472B5F-9246-41F6-8544-E43B5C588540"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-B06626EF-C70E-4D70-B20F-BA3DAC313DD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-4905EF0C-869A-4E84-B972-D562472547A0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-8C069EC3-1A91-4327-9C7C-364898A9A6BF"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-03231681-FE58-415D-AECB-BC1143526ED5"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-7334C78B-F3F1-449E-9B9B-D39C17261BD9"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5545318C-6215-4794-ACBD-3A422064C54E"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
 
 </Alignment>
 </rdf:RDF>

@@ -35,15 +35,18 @@ public class BasicMatcher {
 	private void registerActivityMatcher() throws FileNotFoundException, CorruptIndexException, IOException, 
 			CorruptConfigFileException, ParserConfigurationException {
 		this.activityMatchers.add(new FrameNetActivityMatcher());
-		this.activityMatchers.add(new SimpleSyntacticActivityMatcher());
-		BiPredicate<Activity, Activity>  firstActMatcher = this.activityMatchers.get(0);
-		BiPredicate<Activity, Activity> secondActMatcher = this.activityMatchers.get(1);
-		this.allActivityMatcher = firstActMatcher.or(secondActMatcher);
-		for (int i = 2; i < this.activityMatchers.size(); i++) {
-			BiPredicate<Activity, Activity> currActMatcher = this.activityMatchers.get(i);
-			this.allActivityMatcher = this.allActivityMatcher.or(currActMatcher);
-		}
-		
+		/**
+		 * Use do while loop
+		 */
+//		this.activityMatchers.add(new SimpleSyntacticActivityMatcher());
+//		BiPredicate<Activity, Activity>  firstActMatcher = this.activityMatchers.get(0);
+//		BiPredicate<Activity, Activity> secondActMatcher = this.activityMatchers.get(1);
+//		this.allActivityMatcher = firstActMatcher.or(secondActMatcher);
+//		for (int i = 2; i < this.activityMatchers.size(); i++) {
+//			BiPredicate<Activity, Activity> currActMatcher = this.activityMatchers.get(i);
+//			this.allActivityMatcher = this.allActivityMatcher.or(currActMatcher);
+//		}
+//		
 	}
 	
 	public void setNamespacePrefixes(String sourceNS, String targetNS)  {
@@ -52,10 +55,6 @@ public class BasicMatcher {
 	}
 	
 	public Alignment match(Model sourceModel, Model targetModel) throws ParserConfigurationException, SAXException, IOException {
-		/**
-		 * TODO: Note that the activity strings are often corrupted or contain extra symbols.
-		 * Important to sanitize the activities labels to avoid bugs in finding the frame list for an activity
-		 */
 		FrameNetActivityMatcher fnActMatcher = (FrameNetActivityMatcher) this.activityMatchers.get(0);
 		fnActMatcher.annotateFNActivities(sourceModel)
 					.annotateFNActivities(targetModel);
@@ -78,7 +77,8 @@ public class BasicMatcher {
 	}
 	
 	public boolean matchActivities(Activity a1, Activity a2) {
-		return this.allActivityMatcher.test(a1, a2);
+//		return this.allActivityMatcher.test(a1, a2);
+		return this.activityMatchers.get(0).test(a1, a2);
 	}
 	
 	public String normalize(String label) {

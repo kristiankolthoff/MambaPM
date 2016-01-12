@@ -25,31 +25,35 @@ import edu.stanford.nlp.process.PTBTokenizer;
 
 public class NLPHelper {
 	
-	private IRAMDictionary dict;
-	private HashSet<String> stopwords;
+	private static IRAMDictionary dict;
+	private static HashSet<String> stopwords;
 	
-	private final String[] STOP_WORDS = new String[]{
-			"a","able","about","across","after","all","almost","also","am","among","an","and","any","are","as","at","be","because","been","but","by","can","cannot",
-			"could","dear","did","do","does","either","else","ever","every","for","from","get","got","had","has","have","he","her","hers","him","his","how","however",
-			"i","if","in","into","is","it","its","just","least","let","like","likely","may","me","might","most","must","my","neither","no","nor","not","of","off",
-			"often","on","only","or","other","our","own","rather","said","say","says","she","should","since","so","some","than","that","the","their","them",
-			"then","there","these","they","this","tis","to","too","twas","us","wants","was","we","were","what","when","where","which","while","who","whom","why",
-			"will","with","would","yet","you","your"};
-
-	public NLPHelper() {
-		this.dict = new RAMDictionary(new File(Settings.getWordnetDirectory()) , ILoadPolicy.NO_LOAD); 
+	private static final String[] STOP_WORDS;
+	
+	static {
+		dict = new RAMDictionary(new File(Settings.getWordnetDirectory()) , ILoadPolicy.NO_LOAD); 
 		try {
-			this.dict.open();
-		}
-		catch (IOException e) {
-			System.exit(0);
+			dict.open();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.stopwords = new HashSet<String>();
-		this.stopwords.addAll(Arrays.asList(STOP_WORDS));
+		STOP_WORDS = new String[]{
+				"a","able","about","across","after","all","almost","also","am","among","an","and","any","are","as","at","be","because","been","but","by","can","cannot",
+				"could","dear","did","do","does","either","else","ever","every","for","from","get","got","had","has","have","he","her","hers","him","his","how","however",
+				"i","if","in","into","is","it","its","just","least","let","like","likely","may","me","might","most","must","my","neither","no","nor","not","of","off",
+				"often","on","only","or","other","our","own","rather","said","say","says","she","should","since","so","some","than","that","the","their","them",
+				"then","there","these","they","this","tis","to","too","twas","us","wants","was","we","were","what","when","where","which","while","who","whom","why",
+				"will","with","would","yet","you","your"};
+		stopwords = new HashSet<String>();
+		stopwords.addAll(Arrays.asList(STOP_WORDS));
 	}
 	
-	public Set<POS> getPOS(String w) {
+
+	private NLPHelper() {
+		
+	}
+	
+	public static Set<POS> getPOS(String w) {
 		IIndexWord indexWord;
 		Set<ISynset> synsets;
 		Set<POS> pos = new HashSet<POS>();
@@ -98,7 +102,7 @@ public class NLPHelper {
 	}
 	
 	//TODO Does not remove s in verbs like: visits
-	public String getNormalized(String w, POS p) {
+	public static String getNormalized(String w, POS p) {
 		IIndexWord indexWord;
 		Set<ISynset> synsets;
 		if (p == POS.ADVERB) {
@@ -142,11 +146,11 @@ public class NLPHelper {
 	}
 	
 		
-	public boolean isStopword(String w) {
-		return this.stopwords.contains(w);
+	public static boolean isStopword(String w) {
+		return stopwords.contains(w);
 	}
 	
-	public void showSenses(String w, POS p) {
+	public static void showSenses(String w, POS p) {
 
 		IIndexWord indexWord = dict.getIndexWord(w, p);
 		Set<ISynset> synsets = getSynsetsByIndexWord(indexWord);
@@ -156,12 +160,12 @@ public class NLPHelper {
 	}
 	
 	
-	private Set<ISynset> getSynsetsByIndexWord(IIndexWord indexWord) {
+	private static Set<ISynset> getSynsetsByIndexWord(IIndexWord indexWord) {
 		Set<ISynset> synsets = new HashSet<ISynset>();
 		if (indexWord != null && indexWord.getWordIDs() != null) {
 			for (IWordID wordId : indexWord.getWordIDs()) {
 				ISynsetID synsetid = wordId.getSynsetID();
-				ISynset synset = this.dict.getSynset(synsetid);
+				ISynset synset = dict.getSynset(synsetid);
 				synsets.add(synset);
 			}
 		}
@@ -174,12 +178,12 @@ public class NLPHelper {
 		return POS.ADJECTIVE;
 	}
 	
-	public boolean isPennTreebankVerbTag(String t) {
+	public static boolean isPennTreebankVerbTag(String t) {
 		return t.equals("VB") || t.equals("VBZ") || t.equals("VBD") || t.equals("VBG")
 				|| t.equals("VBN") || t.equals("VBP");
 	}
 	
-	public String getTokenizedString(String sentence) {
+	public static String getTokenizedString(String sentence) {
 		PTBTokenizer<CoreLabel> tokenizer = new PTBTokenizer<CoreLabel>(new StringReader(sentence), 
 				new CoreLabelTokenFactory(), "");
 		List<CoreLabel> tokens = tokenizer.tokenize();
@@ -193,7 +197,7 @@ public class NLPHelper {
 		return sb.toString();
 	}
 	
-	public List<String> getTokens(String sentence) {
+	public static List<String> getTokens(String sentence) {
 		PTBTokenizer<CoreLabel> tokenizer = new PTBTokenizer<CoreLabel>(new StringReader(sentence),
 				new CoreLabelTokenFactory(), "");
 		List<CoreLabel> tokens = tokenizer.tokenize();
@@ -204,16 +208,24 @@ public class NLPHelper {
 		return sTokens;
 	}
 	
-	public List<String> getStemmedTokens(String sentence) {
-		List<String> tokens = this.getTokens(sentence);
+	public static List<String> getStemmedTokens(String sentence) {
+		List<String> tokens = getTokens(sentence);
 		List<String> stemmedTokens = new ArrayList<>();
 		for (int i = 0; i < tokens.size(); i++) {
-			stemmedTokens.add(this.getWordStem(tokens.get(i)));
+			stemmedTokens.add(getWordStem(tokens.get(i)));
 		}
 		return stemmedTokens;
 	}
 	
-	public String getWordStem(String word) {
+	public static String getWordStem(String word) {
 		return null;
+	}
+	
+	public static String getSanitizeLabel(String label) {
+		label = label.trim();
+		label = label.toLowerCase();
+		label = getTokenizedString(label);
+		label = label.replace("\n", "");
+		return label;
 	}
 }

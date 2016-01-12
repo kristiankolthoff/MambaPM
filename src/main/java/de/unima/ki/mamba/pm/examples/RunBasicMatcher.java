@@ -31,13 +31,13 @@ public class RunBasicMatcher {
 		MODELS_DATASET1 = new String[]  {
 				"Cologne",
 				"Frankfurt",
-//				"FU_Berlin",
-//				"Hohenheim",
-//				"IIS_Erlangen",
-//				"Muenster",
-//				"Potsdam",
-//				"TU_Munich",
-//				"Wuerzburg"
+				"FU_Berlin",
+				"Hohenheim",
+				"IIS_Erlangen",
+				"Muenster",
+				"Potsdam",
+				"TU_Munich",
+				"Wuerzburg"
 		};
 		MODELS_DATASET2 = new String[] {
 				"birthCertificate_p31",
@@ -59,6 +59,9 @@ public class RunBasicMatcher {
 	
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, 
 			IOException, AlignmentException, CorruptConfigFileException {
+		/**
+		 * Stop time
+		 */
 		/**
 		 * Match BPMN dataset1
 		 */

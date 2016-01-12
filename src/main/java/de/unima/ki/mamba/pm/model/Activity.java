@@ -3,6 +3,8 @@ package de.unima.ki.mamba.pm.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import de.unima.ki.mamba.pm.nlp.NLPHelper;
+
 public class Activity {
 	
 	private Set<Flow> flowTo;
@@ -15,7 +17,7 @@ public class Activity {
 
 	public Activity(String id, String label) {
 		this.id = id;
-		this.label = label;	
+		this.label = NLPHelper.getSanitizeLabel(label);	
 		this.labels = new HashSet<String[]>();	
 	}
 	
@@ -34,9 +36,10 @@ public class Activity {
 	public void addFlowTo(Flow flow) {
 		this.flowTo.add(flow);
 	}
-	
+
+	@Override
 	public String toString() {
-		return this.id + "\" " + this.label + "\"";
+		return "Activity [id=" + id + ", label=" + label + "]";
 	}
 
 	public void normalizeLabels() {
