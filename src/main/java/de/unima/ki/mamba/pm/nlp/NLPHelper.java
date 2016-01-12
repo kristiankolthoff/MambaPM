@@ -3,6 +3,7 @@ package de.unima.ki.mamba.pm.nlp;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -192,5 +193,27 @@ public class NLPHelper {
 		return sb.toString();
 	}
 	
-
+	public List<String> getTokens(String sentence) {
+		PTBTokenizer<CoreLabel> tokenizer = new PTBTokenizer<CoreLabel>(new StringReader(sentence),
+				new CoreLabelTokenFactory(), "");
+		List<CoreLabel> tokens = tokenizer.tokenize();
+		List<String> sTokens = new ArrayList<>();
+		for(CoreLabel token : tokens) {
+			sTokens.add(token.originalText());
+		}
+		return sTokens;
+	}
+	
+	public List<String> getStemmedTokens(String sentence) {
+		List<String> tokens = this.getTokens(sentence);
+		List<String> stemmedTokens = new ArrayList<>();
+		for (int i = 0; i < tokens.size(); i++) {
+			stemmedTokens.add(this.getWordStem(tokens.get(i)));
+		}
+		return stemmedTokens;
+	}
+	
+	public String getWordStem(String word) {
+		return null;
+	}
 }

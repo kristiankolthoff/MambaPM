@@ -135,7 +135,7 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 		List<String> similarLabels = getSimilarLabels(a.getLabel());
 		List<Frame> frames = new ArrayList<>();
 		for(String simLabel : similarLabels) {
-			frames.addAll(frameMap.get(this.nlpHelper.getTokenizedString(simLabel)));
+			frames.addAll(frameMap.get(this.nlpHelper.getTokenizedString(simLabel).trim()));
 		}
 		return frames;
 	}
