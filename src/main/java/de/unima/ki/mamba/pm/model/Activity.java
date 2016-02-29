@@ -17,7 +17,8 @@ public class Activity {
 
 	public Activity(String id, String label) {
 		this.id = id;
-		this.label = NLPHelper.getSanitizeLabel(label);	
+		//TODO should be moved, creates unnecessary dependency
+		this.label = NLPHelper.getSanitizeLabel(label);
 		this.labels = new HashSet<String[]>();	
 	}
 	

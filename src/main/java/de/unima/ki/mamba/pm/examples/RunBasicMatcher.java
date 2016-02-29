@@ -12,6 +12,7 @@ import de.linguatools.disco.CorruptConfigFileException;
 import de.unima.ki.mamba.exceptions.AlignmentException;
 import de.unima.ki.mamba.om.alignment.Alignment;
 import de.unima.ki.mamba.pm.matcher.BasicMatcher;
+import de.unima.ki.mamba.pm.model.Activity;
 import de.unima.ki.mamba.pm.model.Model;
 import de.unima.ki.mamba.pm.model.parser.Parser;
 import de.unima.ki.mamba.pm.model.parser.ParserFactory;
@@ -101,5 +102,14 @@ public class RunBasicMatcher {
 			models.add(model);
 		}
 		return models;
+	}
+	
+	public static void printAllActivites(List<Model> models) {
+		for(Model model : models) {
+			System.out.println("----" + model.getId() + "----");
+			for(Activity a : model.getActivities()) {
+				System.out.println(a.getLabel());
+			}
+		}
 	}
 }

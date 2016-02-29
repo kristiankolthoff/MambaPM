@@ -24,29 +24,17 @@ public class BasicMatcher {
 	private String sourceNS = null;
 	private String targetNS = null;
 	private List<BiPredicate<Activity, Activity>> activityMatchers;
-	private BiPredicate<Activity, Activity> allActivityMatcher;
 	
 	public BasicMatcher() throws FileNotFoundException, CorruptIndexException, IOException, 
 			CorruptConfigFileException, ParserConfigurationException {
 		this.activityMatchers = new ArrayList<>();
-		registerActivityMatcher();
+		this.registerActivityMatcher();
 	}
 	
 	private void registerActivityMatcher() throws FileNotFoundException, CorruptIndexException, IOException, 
 			CorruptConfigFileException, ParserConfigurationException {
-		this.activityMatchers.add(new FrameNetActivityMatcher());
-		/**
-		 * Use do while loop
-		 */
-//		this.activityMatchers.add(new SimpleSyntacticActivityMatcher());
-//		BiPredicate<Activity, Activity>  firstActMatcher = this.activityMatchers.get(0);
-//		BiPredicate<Activity, Activity> secondActMatcher = this.activityMatchers.get(1);
-//		this.allActivityMatcher = firstActMatcher.or(secondActMatcher);
-//		for (int i = 2; i < this.activityMatchers.size(); i++) {
-//			BiPredicate<Activity, Activity> currActMatcher = this.activityMatchers.get(i);
-//			this.allActivityMatcher = this.allActivityMatcher.or(currActMatcher);
-//		}
-//		
+		this.activityMatchers.add(new SimpleSyntacticActivityMatcher());
+//		this.activityMatchers.add(new FrameNetActivityMatcher());	
 	}
 	
 	public void setNamespacePrefixes(String sourceNS, String targetNS)  {
@@ -55,9 +43,9 @@ public class BasicMatcher {
 	}
 	
 	public Alignment match(Model sourceModel, Model targetModel) throws ParserConfigurationException, SAXException, IOException {
-		FrameNetActivityMatcher fnActMatcher = (FrameNetActivityMatcher) this.activityMatchers.get(0);
-		fnActMatcher.annotateFNActivities(sourceModel)
-					.annotateFNActivities(targetModel);
+//		FrameNetActivityMatcher fnActMatcher = (FrameNetActivityMatcher) this.activityMatchers.get(0);
+//		fnActMatcher.annotateFNActivities(sourceModel)
+//					.annotateFNActivities(targetModel);
 		Alignment alignment = new Alignment();
 		for (Activity sourceActivity : sourceModel.getActivities()) {
 			for (Activity targetActivity : targetModel.getActivities()) {
@@ -77,8 +65,12 @@ public class BasicMatcher {
 	}
 	
 	public boolean matchActivities(Activity a1, Activity a2) {
-//		return this.allActivityMatcher.test(a1, a2);
-		return this.activityMatchers.get(0).test(a1, a2);
+		for(BiPredicate<Activity, Activity> actMatcher : this.activityMatchers) {
+			if(actMatcher.test(a1, a2)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public String normalize(String label) {

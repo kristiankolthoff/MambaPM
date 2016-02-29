@@ -14,6 +14,7 @@ public class SimpleSyntacticActivityMatcher implements BiPredicate<Activity, Act
 	public boolean test(Activity a1, Activity a2) {
 		String label1 = a1.getLabel();
 		String label2 = a2.getLabel();
+		System.out.println(label1 + "  " + label2);
 		return simpleStringEquality(label1, label2);
 	}
 	

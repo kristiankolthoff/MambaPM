@@ -36,7 +36,12 @@ public class TypeCharacteristic extends Characteristic{
 			for(Correspondence cRef : reference.getCorrespondences()) {
 				if(cMap.equals(cRef)) {
 					correct.add(cRef);
-				} 
+				} else {
+					if(cRef.getType().get().equals(Correspondence.TYPE_TRIVIAL)) {
+						System.out.println(cRef);
+						
+					}
+				}
 			}
 		}
 		/**
@@ -247,6 +252,14 @@ public class TypeCharacteristic extends Characteristic{
 		return Characteristic.computeRecall(sumNumOfMatcher, sumNumOfGold);
 	}
 	
+	/**
+	 * Returns recall standard deviation for a given correspondence type for multiple
+	 * <code>TypeCharacteristic</code>s.
+	 * @param characteristics - the characteristics to compute the macro recall from
+	 * @param type - the correspondence type
+	 * @return recall standard deviation
+	 * @throws CorrespondenceException 
+	 */
 	public static double getRecallStdDev(List<TypeCharacteristic> characteristics, String type) 
 			throws CorrespondenceException {
 		Objects.requireNonNull(characteristics);
@@ -280,7 +293,5 @@ public class TypeCharacteristic extends Characteristic{
 		sb.append("Precision: " + (100.0 * this.getPrecision()) + "%\n");
 		return super.toString() + sb.toString();
 	}
-	
-	
 
 }
