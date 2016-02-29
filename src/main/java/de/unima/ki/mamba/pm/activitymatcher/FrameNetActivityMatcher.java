@@ -104,10 +104,10 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 		for(Frame f1 : frames1) {
 			for(Frame f2 : frames2) {
 				if(f1.equals(f2)) {
-					System.err.println("--------Matching Frame--------");
+					System.out.println("--------Matching Frame--------");
 					System.out.println(f1.toString());
 					System.out.println(f2.toString());
-					System.err.println("------------------------------");
+					System.out.println("------------------------------");
 					return true;
 				}
 			}

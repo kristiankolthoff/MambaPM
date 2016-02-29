@@ -35,31 +35,31 @@ public class RunEvaluation {
 		final String[] dirs = new String[] {
 				"src/main/resources/data/results/goldstandard/dataset1",
 				"src/main/resources/data/results/basicmatcher1/dataset1",
-				RESULTS_PATH + "AML-PM" + END_DIR,
-				RESULTS_PATH + "BPLangMatch" + END_DIR,
-				RESULTS_PATH + "KnoMa-Proc" + END_DIR,
-				RESULTS_PATH + "Know-Match-SSS" + END_DIR,
-				RESULTS_PATH + "Match-SSS" + END_DIR,
-				RESULTS_PATH + "OPBOT" + END_DIR,
-				RESULTS_PATH + "pPalm-DS" + END_DIR,
-				RESULTS_PATH + "RMM-NHCM" + END_DIR,
-				RESULTS_PATH + "RMM-NLM" + END_DIR,
-				RESULTS_PATH + "RMM-SMSL" + END_DIR,
-				RESULTS_PATH + "TripleS" + END_DIR
+//				RESULTS_PATH + "AML-PM" + END_DIR,
+//				RESULTS_PATH + "BPLangMatch" + END_DIR,
+//				RESULTS_PATH + "KnoMa-Proc" + END_DIR,
+//				RESULTS_PATH + "Know-Match-SSS" + END_DIR,
+//				RESULTS_PATH + "Match-SSS" + END_DIR,
+//				RESULTS_PATH + "OPBOT" + END_DIR,
+//				RESULTS_PATH + "pPalm-DS" + END_DIR,
+//				RESULTS_PATH + "RMM-NHCM" + END_DIR,
+//				RESULTS_PATH + "RMM-NLM" + END_DIR,
+//				RESULTS_PATH + "RMM-SMSL" + END_DIR,
+//				RESULTS_PATH + "TripleS" + END_DIR
 		};
 		final String[] mappingInfo = new String[] {
 				"MambaPM",
-				"AML-PM",
-				"BPLangMatch",
-				"KnoMa-Proc",
-				"Know-Match-SSS",
-				"Match-SSS",
-				"OPBOT",
-				"pPalm-DS",
-				"RMM-NHCM",
-				"RMM-NLM",
-				"RMM-SMSL",
-				"TripleS"
+//				"AML-PM",
+//				"BPLangMatch",
+//				"KnoMa-Proc",
+//				"Know-Match-SSS",
+//				"Match-SSS",
+//				"OPBOT",
+//				"pPalm-DS",
+//				"RMM-NHCM",
+//				"RMM-NLM",
+//				"RMM-SMSL",
+//				"TripleS"
 		};
 		/**
 		 * Read all alignments from gold standard and matchers 

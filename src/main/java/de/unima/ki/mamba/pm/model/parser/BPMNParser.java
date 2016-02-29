@@ -46,12 +46,27 @@ public class BPMNParser implements Parser {
 
 		
 		NodeList taskList = document.getDocumentElement().getElementsByTagName("task");
+		NodeList catchEventList = document.getDocumentElement().getElementsByTagName("intermediateCatchEvent");
+		NodeList startEventList = document.getDocumentElement().getElementsByTagName("startEvent");
 		
 		for (int i = 0; i < taskList.getLength(); i++) {
 			Node task = taskList.item(i);
 			String name = task.getAttributes().getNamedItem("name").getNodeValue();
 			String id = task.getAttributes().getNamedItem("id").getNodeValue();
-			// System.out.println(name);
+			Activity activity = new Activity(id, name);
+			pm.addActivity(activity);
+		}
+		for (int i = 0; i < catchEventList.getLength(); i++) {
+			Node task = catchEventList.item(i);
+			String name = task.getAttributes().getNamedItem("name").getNodeValue();
+			String id = task.getAttributes().getNamedItem("id").getNodeValue();
+			Activity activity = new Activity(id, name);
+			pm.addActivity(activity);
+		}
+		for (int i = 0; i < startEventList.getLength(); i++) {
+			Node task = startEventList.item(i);
+			String name = task.getAttributes().getNamedItem("name").getNodeValue();
+			String id = task.getAttributes().getNamedItem("id").getNodeValue();
 			Activity activity = new Activity(id, name);
 			pm.addActivity(activity);
 		}
