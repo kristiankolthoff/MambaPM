@@ -36,11 +36,6 @@ public class TypeCharacteristic extends Characteristic{
 			for(Correspondence cRef : reference.getCorrespondences()) {
 				if(cMap.equals(cRef)) {
 					correct.add(cRef);
-				} else {
-					if(cRef.getType().get().equals(Correspondence.TYPE_TRIVIAL)) {
-						System.out.println(cRef);
-						
-					}
 				}
 			}
 		}
@@ -282,6 +277,20 @@ public class TypeCharacteristic extends Characteristic{
 
 	public HashMap<String, Double> getRecallMap() {
 		return recallMap;
+	}
+	
+	public static double getTypePercentage(List<TypeCharacteristic> characteristics, String type) throws CorrespondenceException {
+		Objects.requireNonNull(characteristics);
+		if(!Correspondence.isSupportedType(type)) {
+			throw new CorrespondenceException(CorrespondenceException.UNSUPPORTED_TYPE, type);
+		}
+		int sumAll = 0;
+		int sumType = 0;
+		for(TypeCharacteristic c : characteristics) {
+			sumAll += c.getNumOfRulesGold();
+			sumType += c.getNumOfGold(type);
+		}
+		return sumType / (double) sumAll;
 	}
 
 	@Override
