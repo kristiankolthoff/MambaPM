@@ -19,6 +19,7 @@ import edu.mit.jwi.item.ISynset;
 import edu.mit.jwi.item.ISynsetID;
 import edu.mit.jwi.item.IWordID;
 import edu.mit.jwi.item.POS;
+import edu.mit.jwi.morph.WordnetStemmer;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.process.CoreLabelTokenFactory;
 import edu.stanford.nlp.process.PTBTokenizer;
@@ -212,13 +213,19 @@ public class NLPHelper {
 		List<String> tokens = getTokens(sentence);
 		List<String> stemmedTokens = new ArrayList<>();
 		for (int i = 0; i < tokens.size(); i++) {
-			stemmedTokens.add(getWordStem(tokens.get(i)));
+			List<String> possibleStems = getWordStem(tokens.get(i));
+			if(possibleStems.size() >= 1) {
+				stemmedTokens.add(possibleStems.get(0));				
+			} else {
+				stemmedTokens.add(tokens.get(i));
+			}
 		}
 		return stemmedTokens;
 	}
 	
-	public static String getWordStem(String word) {
-		return null;
+	public static List<String> getWordStem(String word) {
+		WordnetStemmer ws = new WordnetStemmer(dict);
+		return ws.findStems(word, null);
 	}
 	
 	public static String getSanitizeLabel(String label) {

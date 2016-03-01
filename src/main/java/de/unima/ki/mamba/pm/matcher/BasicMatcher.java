@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiPredicate;
+import java.util.function.BiFunction;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -23,7 +23,7 @@ public class BasicMatcher {
 
 	private String sourceNS = null;
 	private String targetNS = null;
-	private List<BiPredicate<Activity, Activity>> activityMatchers;
+	private List<BiFunction<Activity, Activity, Double>> activityMatchers;
 	
 	public BasicMatcher() throws FileNotFoundException, CorruptIndexException, IOException, 
 			CorruptConfigFileException, ParserConfigurationException {
@@ -49,10 +49,12 @@ public class BasicMatcher {
 		Alignment alignment = new Alignment();
 		for (Activity sourceActivity : sourceModel.getActivities()) {
 			for (Activity targetActivity : targetModel.getActivities()) {
-				if (matchActivities(sourceActivity, targetActivity)) {
+				double confidence = this.matchActivities(sourceActivity, targetActivity);
+				if(confidence > 0) {
 					Correspondence c = new Correspondence(
 							this.sourceNS + sourceActivity.getId(),
-							this.targetNS + targetActivity.getId()
+							this.targetNS + targetActivity.getId(),
+							confidence
 					);
 					alignment.add(c);
 					
@@ -64,13 +66,14 @@ public class BasicMatcher {
 		return alignment;
 	}
 	
-	public boolean matchActivities(Activity a1, Activity a2) {
-		for(BiPredicate<Activity, Activity> actMatcher : this.activityMatchers) {
-			if(actMatcher.test(a1, a2)) {
-				return true;
+	public double matchActivities(Activity a1, Activity a2) {
+		for(BiFunction<Activity, Activity, Double> actMatcher : this.activityMatchers) {
+			double confidence = actMatcher.apply(a1, a2);
+			if(confidence > 0) {
+				return confidence;
 			}
 		}
-		return false;
+		return 0d;
 	}
 	
 	public String normalize(String label) {

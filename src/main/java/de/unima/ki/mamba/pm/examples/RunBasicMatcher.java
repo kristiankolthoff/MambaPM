@@ -11,6 +11,7 @@ import org.xml.sax.SAXException;
 import de.linguatools.disco.CorruptConfigFileException;
 import de.unima.ki.mamba.exceptions.AlignmentException;
 import de.unima.ki.mamba.om.alignment.Alignment;
+import de.unima.ki.mamba.om.alignment.Correspondence;
 import de.unima.ki.mamba.pm.matcher.BasicMatcher;
 import de.unima.ki.mamba.pm.model.Activity;
 import de.unima.ki.mamba.pm.model.Model;
@@ -75,21 +76,28 @@ public class RunBasicMatcher {
 //		matchDataset(models2, RESULTS_DATASET2_SRC);
 	}
 	
-	public static void matchDataset(List<Model> models, String output) throws ParserConfigurationException, 
+	public static List<Alignment> matchDataset(List<Model> models, String output) throws ParserConfigurationException, 
 			SAXException, IOException, AlignmentException, CorruptConfigFileException {
 		basicMatcher = new BasicMatcher();
-		Alignment alignment;
+		List<Alignment> alignments = new ArrayList<>();
 		for (int i = 0; i < models.size() - 1; i++) {
 			Model soureModel = models.get(i);
 			for (int j = i+1; j < models.size(); j++) {	
 				Model targetModel = models.get(j);
 				String mappingId = soureModel.getId() + "-" + targetModel.getId();
 				basicMatcher.setNamespacePrefixes("http://" + soureModel.getId() + "#", "http://" + targetModel.getId() + "#");
-				alignment = basicMatcher.match(soureModel, targetModel);
+				Alignment alignment = basicMatcher.match(soureModel, targetModel);
 				System.out.println(mappingId + ": " + alignment.size());
 				alignment.write(output +  mappingId + ".rdf");
+				alignments.add(alignment);
 			}
 		}
+		int sum = 0;
+		for(Alignment alignment : alignments) {
+			sum += alignment.size();
+		}
+		System.out.println("Sum of generated correspondences : " + sum);
+		return alignments;
 	}
 	
 	public static List<Model> readModels(String[] modelIds, String modelType, String src) throws ParserConfigurationException, 

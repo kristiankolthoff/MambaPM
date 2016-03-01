@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.BiPredicate;
+import java.util.function.BiFunction;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -38,7 +38,7 @@ import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.process.DocumentPreprocessor;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
-public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
+public class FrameNetActivityMatcher implements BiFunction<Activity, Activity, Double>{
 
 	private FrameNetAnnotator fnAnno;
 	private DISCO disco;
@@ -83,20 +83,19 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 	}
 	
 	
-	
 	@Override
-	public boolean test(Activity a1, Activity a2) {
+	public Double apply(Activity a1, Activity a2) {
 		try {
-			return this.matchSimple(a1, a2);
+			return this.matchMajorityVote(a1, a2);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (WrongWordspaceTypeException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return 0d;
 	}
 	
-	public boolean matchSimple(Activity a1, Activity a2) throws IOException, WrongWordspaceTypeException {
+	public double matchSimple(Activity a1, Activity a2) throws IOException, WrongWordspaceTypeException {
 		/**Get all frames for the k similar sentences for the label of activity a1**/
 		List<Frame> frames1 = this.getSimilarFrames(a1);
 		/**Get all frames for the k similar sentences for the label of activity a2**/
@@ -108,14 +107,14 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 					System.out.println(f1.toString());
 					System.out.println(f2.toString());
 					System.out.println("------------------------------");
-					return true;
+					return MAX_K / ((double) MAX_K + 1);
 				}
 			}
 		}
-		return false;
+		return 0d;
 	}
 	
-	public boolean matchMajorityVote(Activity a1, Activity a2) throws IOException, WrongWordspaceTypeException {
+	public double matchMajorityVote(Activity a1, Activity a2) throws IOException, WrongWordspaceTypeException {
 		/**Get all frames for the k similar sentences for the label of activity a1**/
 		List<Frame> frames1 = this.getSimilarFrames(a1);
 		/**Get all frames for the k similar sentences for the label of activity a2**/
@@ -129,11 +128,17 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 		for(Frame f1 : frameMaj1) {
 			for(Frame f2 : frameMaj2) {
 				if(f1.equals(f2)) {
-					return true;
+					if(f1.getWeight().isPresent() && f2.getWeight().isPresent()) {
+						if(f1.getWeight().get() > f2.getWeight().get()) {
+							return f2.getWeight().get() / ((double) MAX_K + 1);
+						} else { 
+							return f1.getWeight().get() / ((double) MAX_K +1);
+						}
+					}
 				}
 			}
 		}
-		return false;
+		return 0d;
 	}
 	
 	public List<Frame> getSimilarFrames(Activity a) throws IOException, WrongWordspaceTypeException {
@@ -228,7 +233,9 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 		List<Frame> bestFrames = new ArrayList<>();
 		for(Map.Entry<Frame, Integer> e : countMap.entrySet()) {
 			if(e.getValue() == maxValue) {
-				bestFrames.add(e.getKey());
+				Frame frame = e.getKey();
+				frame.setWeight(Optional.of(e.getValue()));
+				bestFrames.add(frame);
 			}
 		}
 		return bestFrames;
@@ -262,4 +269,5 @@ public class FrameNetActivityMatcher implements BiPredicate<Activity, Activity>{
 		}
 		
 	}
+
 }

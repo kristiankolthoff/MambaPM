@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import de.unima.ki.mamba.exceptions.AlignmentException;
 import de.unima.ki.mamba.pm.model.Model;
@@ -24,7 +25,7 @@ public class Alignment implements Iterable<Correspondence>{
 	*/
 	public static final int FORMAT_RDF = 1;
 	
-	private ArrayList<Correspondence> correspondences = new ArrayList<Correspondence>();
+	private List<Correspondence> correspondences = new ArrayList<Correspondence>();
 	
 	
 	/**
@@ -134,11 +135,11 @@ public class Alignment implements Iterable<Correspondence>{
 		
 	}
 
-	public void setCorrespondences(ArrayList<Correspondence> correspondences) {
+	public void setCorrespondences(List<Correspondence> correspondences) {
 		this.correspondences = correspondences;	
 	}
 	
-	public ArrayList<Correspondence> getCorrespondences() {
+	public List<Correspondence> getCorrespondences() {
 		return this.correspondences;	
 	}
 	

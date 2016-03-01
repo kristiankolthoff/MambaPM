@@ -24,23 +24,29 @@ public class HTMLTableRenderer extends Renderer{
 	
 	private Table table;
 	private DecimalFormat df;
+	private boolean initialized;
 	
 	public HTMLTableRenderer(String file) throws IOException {
 		super(file);
 		this.table = new Table();
 		this.df = new DecimalFormat("#.###");
-		this.init();
+		this.initialized = false;
 	}
 	
-	private void init() {
+	private void init(List<TypeCharacteristic> characteristics) throws CorrespondenceException {
 		this.startTable();
 		this.createTableHeadRow1();
+		this.createTableHeadRow3(characteristics);
 		this.createTableHeadRow2();
+		this.initialized = true;
 	}
 	
 	@Override
 	public void render(List<TypeCharacteristic> characteristics, String mappingInfo)
 			throws IOException, CorrespondenceException {
+		if(!this.initialized) {
+			this.init(characteristics);			
+		}
 		this.appendMetricData(characteristics, mappingInfo);
 	}
 	
@@ -85,6 +91,34 @@ public class HTMLTableRenderer extends Renderer{
 			th4.setStyle("border:none;");
 			trHead1.addElement(th4.addAttribute("width", "20"));
 			trHead1.addElement(new TH("Recall " + type).addAttribute("colspan", "3"));
+		}
+		this.table.addElement(trHead1);
+	}
+	
+	private void createTableHeadRow3(List<TypeCharacteristic> characteristics) throws CorrespondenceException {
+		TR trHead1 = new TR();
+		trHead1.setPrettyPrint(HTMLTableRenderer.PRETTY_PRINT);
+		trHead1.addElement(new TH().setStyle("border:none;"));
+		TH th1 = new TH();
+		th1.setStyle("border:none;");
+		trHead1.addElement(th1.addAttribute("width", "15"));
+		trHead1.addElement(new TH("").addAttribute("colspan", "3"));
+		TH th2 = new TH();
+		th2.setStyle("border:none;");
+		trHead1.addElement(th2.addAttribute("width", "20"));
+		trHead1.addElement(new TH("").addAttribute("colspan", "3"));
+		TH th3 = new TH();
+		th3.setStyle("border:none;");
+		trHead1.addElement(th3.addAttribute("width", "20"));
+		trHead1.addElement(new TH("").addAttribute("colspan", "3"));
+		for(String type : Correspondence.getTypes()) {
+			TH th4 = new TH();
+			th4.setStyle("border:none;");
+			trHead1.addElement(th4.addAttribute("width", "20"));
+			trHead1.addElement(new TH(String.valueOf(this.df.format
+					(TypeCharacteristic.getTypePercentage(characteristics, type) * 100)
+					+ "%"))
+					.addAttribute("colspan", "3"));
 		}
 		this.table.addElement(trHead1);
 	}

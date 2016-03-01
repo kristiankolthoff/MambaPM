@@ -30,6 +30,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import de.unima.ki.mamba.exceptions.AlignmentException;
 
@@ -59,7 +60,7 @@ public class AlignmentWriterXml implements AlignmentWriter {
 	
 	private String getXMLString(Alignment mapping) {
 		StringBuffer mappingXML = new StringBuffer();
-		ArrayList<Correspondence> correspondences = mapping.getCorrespondences();
+		List<Correspondence> correspondences = mapping.getCorrespondences();
 		mappingXML.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
 		// mappingXML.append("<!DOCTYPE rdf:RDF SYSTEM \"align.dtd\">\n");
 		mappingXML.append("<rdf:RDF xmlns=\"http://knowledgeweb.semanticweb.org/heterogeneity/alignment\" ");

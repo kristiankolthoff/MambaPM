@@ -21,6 +21,7 @@ package de.unima.ki.mamba.semafor.model;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 /**
  * Representing a <code>Frame</code> of the FrameNet semantic parsing and annotation 
  *<a href="https://github.com/Noahs-ARK/semafor-semantic-parser">project</a>.
@@ -36,6 +37,7 @@ public class Frame implements Comparable<Frame>, Iterable<FElement>{
 	private String name;
 	private String target;
 	private int rank;
+	private Optional<Integer> weight;
 	private List<FElement> fElements;
 	
 	public Frame(String sentence, String name, String target, List<FElement> fElements, int rank) {
@@ -161,6 +163,14 @@ public class Frame implements Comparable<Frame>, Iterable<FElement>{
 	@Override
 	public Iterator<FElement> iterator() {
 		return this.fElements.iterator();
+	}
+
+	public Optional<Integer> getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Optional<Integer> weight) {
+		this.weight = weight;
 	}
 	
 }
