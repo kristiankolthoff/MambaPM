@@ -83,7 +83,7 @@ public class FrameNetActivityMatcherTest {
 		this.model.addActivity(a1);
 		this.model.addActivity(a2);
 		this.fnActMatcher.annotateFNActivities(this.model);
-		assertTrue(this.fnActMatcher.test(a1, a2));
+		assertEquals(1, this.fnActMatcher.apply(a1, a2), 0.2);
 	}
 	
 	@Test
@@ -94,7 +94,7 @@ public class FrameNetActivityMatcherTest {
 		this.model.addActivity(a1);
 		this.model.addActivity(a2);
 		this.fnActMatcher.annotateFNActivities(this.model);
-		assertTrue(this.fnActMatcher.test(a1, a2));
+		assertEquals(1, this.fnActMatcher.apply(a1, a2), 0.2);
 	}
 	
 	@Test
@@ -105,7 +105,7 @@ public class FrameNetActivityMatcherTest {
 		this.model.addActivity(a1);
 		this.model.addActivity(a2);
 		this.fnActMatcher.annotateFNActivities(this.model);
-		assertFalse(this.fnActMatcher.test(a1, a2));
+		assertEquals(0, this.fnActMatcher.apply(a1, a2), 0);
 	}
 	
 	@Test
@@ -116,7 +116,7 @@ public class FrameNetActivityMatcherTest {
 		this.model.addActivity(a1);
 		this.model.addActivity(a2);
 		this.fnActMatcher.annotateFNActivities(this.model);
-		assertFalse(this.fnActMatcher.test(a1, a2));
+		assertEquals(0, this.fnActMatcher.apply(a1, a2), 0);
 	}
 	
 	@Test
@@ -127,8 +127,8 @@ public class FrameNetActivityMatcherTest {
 		this.model.addActivity(a1);
 		this.model.addActivity(a2);
 		this.fnActMatcher.annotateFNActivities(this.model);
-		System.out.println(this.fnActMatcher.test(a1, a2));
-		assertTrue(this.fnActMatcher.test(a1, a2));
+		System.out.println(this.fnActMatcher.apply(a1, a2));
+		assertEquals(1, this.fnActMatcher.apply(a1, a2), 0);
 	}
 	
 	@Test

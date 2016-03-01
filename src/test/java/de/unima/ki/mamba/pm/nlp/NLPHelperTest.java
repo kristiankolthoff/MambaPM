@@ -3,6 +3,8 @@ package de.unima.ki.mamba.pm.nlp;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import de.unima.ki.mamba.pm.nlp.NLPHelper;
@@ -27,6 +29,12 @@ public class NLPHelperTest {
 		assertEquals("attach bachelor 's certificate", NLPHelper.getSanitizeLabel(label4));
 		final String label5 = "Find Results IN the documents";
 		assertEquals("find results in the documents", NLPHelper.getSanitizeLabel(label5));
+	}
+	
+	public void getWordStemsTest() {
+		List<String> stems = NLPHelper.getStemmedTokens("Sending bachelors documents to universities");
+		assertEquals("send", stems.get(0));
+		assertEquals("document", stems.get(2));
 	}
 	
 	public static void main(String[] args) {

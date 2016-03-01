@@ -116,4 +116,12 @@ public class TypeCharacteristicTest {
 	public void recallTrivialAfterBasicNormMacroTest() throws CorrespondenceException {
 		assertEquals(1, TypeCharacteristic.getRecallMacro(this.characteristics, Correspondence.TYPE_TRIVIAL_BASIC_NORM), 0);
 	}
+	
+	@Test
+	public void typePercentageTest() throws CorrespondenceException {
+		assertEquals(0.25, TypeCharacteristic.getTypePercentage(this.characteristics, Correspondence.TYPE_MISC), 0);
+		assertEquals(1/12d, TypeCharacteristic.getTypePercentage(this.characteristics, Correspondence.TYPE_TRIVIAL), 0);
+		assertEquals(1/6d, TypeCharacteristic.getTypePercentage(this.characteristics, Correspondence.TYPE_DIFFICULT), 0);
+	}
+	
 }
