@@ -59,11 +59,11 @@ public class FrameNetActivityMatcherTest {
 			for(String s : similarVerbs) {
 				System.out.println(s);
 			}
-			List<String> similarLabels = this.fnActMatcher.getSimilarLabels("Add" + stemSentence);
+			List<String> similarLabels = this.fnActMatcher.getSimilarLabels("add" + stemSentence);
 			for(String s : similarLabels) {
 				System.out.println(s);
 			}
-			assertEquals(20, similarLabels.size());
+			assertEquals(FrameNetActivityMatcher.MAX_K, similarLabels.size());
 			assertEquals("add" + stemSentence, similarLabels.get(0));
 			assertEquals("introduce" + stemSentence, similarLabels.get(1));
 			assertEquals("upgrade" + stemSentence, similarLabels.get(2));

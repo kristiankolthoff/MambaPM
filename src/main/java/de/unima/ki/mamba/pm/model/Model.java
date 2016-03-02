@@ -10,6 +10,7 @@ import java.util.Set;
 
 import de.unima.ki.mamba.om.alignment.Alignment;
 import de.unima.ki.mamba.om.alignment.Correspondence;
+import de.unima.ki.mamba.om.alignment.CorrespondenceType;
 
 public class Model {
 
@@ -79,7 +80,7 @@ public class Model {
 						labels[1] = a.getLabel();
 						if(c.getType().isPresent()) {
 							labels[1] += " (" + c.getType().get() + ")";
-							if(c.getType().get().equals(Correspondence.TYPE_TRIVIAL_EXTENDED_NORM)) {
+							if(c.getType().get().equals(CorrespondenceType.TRIVIAL_EXTENDED_NORM.getName())) {
 								System.err.println(String.join(" = ", labels));
 							}
 						}

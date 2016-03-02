@@ -46,7 +46,7 @@ public class FrameNetActivityMatcher implements BiFunction<Activity, Activity, D
 	private MaxentTagger tagger;
 	private Map<String, List<Frame>> frameMap;
 	
-	public static final int MAX_K = 5;
+	public static final int MAX_K = 20;
 	public static final boolean LOAD_IN_MEMORY = false;
 	
 	public FrameNetActivityMatcher() throws FileNotFoundException, CorruptIndexException, 

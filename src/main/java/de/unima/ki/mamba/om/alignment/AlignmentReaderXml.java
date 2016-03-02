@@ -158,14 +158,10 @@ public class AlignmentReaderXml extends DefaultHandler implements AlignmentReade
 			if(this.type.isEmpty() || this.type.equals("**") || this.type.equals("??")) {
 				correspondence = new Correspondence(this.entity1 , this.entity2, semanticRelation, (double)sim);
 			} else {
-				if(Correspondence.isSupportedType(this.type)) {
-					correspondence = new Correspondence(this.entity1, this.entity2, semanticRelation, (double)sim, this.type);
-				} else {
-					try {
-						throw new CorrespondenceException(CorrespondenceException.UNSUPPORTED_TYPE, this.type);
-					} catch (CorrespondenceException e) {
-						e.printStackTrace();
-					}
+				try {
+					correspondence = new Correspondence(this.entity1, this.entity2, semanticRelation, (double)sim, CorrespondenceType.getValue(this.type));
+				} catch (CorrespondenceException e) {
+					e.printStackTrace();
 				}
 			}
 			this.type = "";

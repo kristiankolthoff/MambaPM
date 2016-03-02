@@ -15,7 +15,7 @@ import org.apache.ecs.html.Table;
 import de.unima.ki.mamba.evaluation.Characteristic;
 import de.unima.ki.mamba.evaluation.TypeCharacteristic;
 import de.unima.ki.mamba.exceptions.CorrespondenceException;
-import de.unima.ki.mamba.om.alignment.Correspondence;
+import de.unima.ki.mamba.om.alignment.CorrespondenceType;
 
 
 public class HTMLTableRenderer extends Renderer{
@@ -86,7 +86,7 @@ public class HTMLTableRenderer extends Renderer{
 		th3.setStyle("border:none;");
 		trHead1.addElement(th3.addAttribute("width", "20"));
 		trHead1.addElement(new TH("F-Measure").addAttribute("colspan", "3"));
-		for(String type : Correspondence.getTypes()) {
+		for(String type : CorrespondenceType.getNames()) {
 			TH th4 = new TH();
 			th4.setStyle("border:none;");
 			trHead1.addElement(th4.addAttribute("width", "20"));
@@ -111,7 +111,7 @@ public class HTMLTableRenderer extends Renderer{
 		th3.setStyle("border:none;");
 		trHead1.addElement(th3.addAttribute("width", "20"));
 		trHead1.addElement(new TH("").addAttribute("colspan", "3"));
-		for(String type : Correspondence.getTypes()) {
+		for(CorrespondenceType type : CorrespondenceType.values()) {
 			TH th4 = new TH();
 			th4.setStyle("border:none;");
 			trHead1.addElement(th4.addAttribute("width", "20"));
@@ -135,11 +135,11 @@ public class HTMLTableRenderer extends Renderer{
 			trHead2.addElement(new TD("SD"));
 			trHead2.addElement(new TD().setStyle("border:none;"));
 		}
-		for(int i = 0; i < Correspondence.getTypes().size(); i++) {
+		for(int i = 0; i < CorrespondenceType.values().length; i++) {
 			trHead2.addElement(new TD(AVG_ICON + ";-mic"));
 			trHead2.addElement(new TD(AVG_ICON + "-mac"));
 			trHead2.addElement(new TD("SD"));
-			if(i!=Correspondence.getTypes().size()-1) {
+			if(i!=CorrespondenceType.values().length-1) {
 				trHead2.addElement(new TD().setStyle("border:none;"));
 			}
 		}
@@ -182,7 +182,7 @@ public class HTMLTableRenderer extends Renderer{
 		/**
 		 * Recall values for different correpsondence types
 		 */
-		for (String type : Correspondence.getTypes()) {
+		for (CorrespondenceType type : CorrespondenceType.values()) {
 			String typeRecallMicro = null;
 			String typeRecallMacro = null;
 			String typeRecallStdDev = null;

@@ -8,13 +8,14 @@ import java.util.Objects;
 import de.unima.ki.mamba.exceptions.CorrespondenceException;
 import de.unima.ki.mamba.om.alignment.Alignment;
 import de.unima.ki.mamba.om.alignment.Correspondence;
+import de.unima.ki.mamba.om.alignment.CorrespondenceType;
 
 
 public class TypeCharacteristic extends Characteristic{
 
-	private Map<String, Integer> numOfGoldMap;
-	private Map<String, Integer> numOfMatcherMap;
-	private Map<String, Double> recallMap;
+	private Map<CorrespondenceType, Integer> numOfGoldMap;
+	private Map<CorrespondenceType, Integer> numOfMatcherMap;
+	private Map<CorrespondenceType, Double> recallMap;
 	
 	public TypeCharacteristic(Alignment mapping, Alignment reference) throws CorrespondenceException {
 		super(mapping, reference);
@@ -45,33 +46,33 @@ public class TypeCharacteristic extends Characteristic{
 		for(Correspondence cRef : reference.getCorrespondences()) {
 			if(cRef.getType().isPresent()) {
 				switch (cRef.getType().get()) {
-				case Correspondence.TYPE_DIFFICULT:
-					this.numOfGoldMap.put(Correspondence.TYPE_DIFFICULT, 
-							this.numOfGoldMap.get(Correspondence.TYPE_DIFFICULT) + 1);
+				case DIFFICULT:
+					this.numOfGoldMap.put(CorrespondenceType.DIFFICULT, 
+							this.numOfGoldMap.get(CorrespondenceType.DIFFICULT) + 1);
 					break;
-				case Correspondence.TYPE_DIFFICULT_SIMILAR_VERB:
-					this.numOfGoldMap.put(Correspondence.TYPE_DIFFICULT_SIMILAR_VERB, 
-							this.numOfGoldMap.get(Correspondence.TYPE_DIFFICULT_SIMILAR_VERB) + 1);
+				case DIFFICULT_SIMILAR_VERB:
+					this.numOfGoldMap.put(CorrespondenceType.DIFFICULT_SIMILAR_VERB, 
+							this.numOfGoldMap.get(CorrespondenceType.DIFFICULT_SIMILAR_VERB) + 1);
 					break;
-				case Correspondence.TYPE_ONE_WORD_SIMILAR:
-					this.numOfGoldMap.put(Correspondence.TYPE_ONE_WORD_SIMILAR, 
-							this.numOfGoldMap.get(Correspondence.TYPE_ONE_WORD_SIMILAR) + 1);
+				case ONE_WORD_SIMILAR:
+					this.numOfGoldMap.put(CorrespondenceType.ONE_WORD_SIMILAR, 
+							this.numOfGoldMap.get(CorrespondenceType.ONE_WORD_SIMILAR) + 1);
 					break;
-				case Correspondence.TYPE_TRIVIAL:
-					this.numOfGoldMap.put(Correspondence.TYPE_TRIVIAL, 
-							this.numOfGoldMap.get(Correspondence.TYPE_TRIVIAL) + 1);
+				case TRIVIAL:
+					this.numOfGoldMap.put(CorrespondenceType.TRIVIAL, 
+							this.numOfGoldMap.get(CorrespondenceType.TRIVIAL) + 1);
 					break;
-				case Correspondence.TYPE_TRIVIAL_BASIC_NORM:
-					this.numOfGoldMap.put(Correspondence.TYPE_TRIVIAL_BASIC_NORM, 
-							this.numOfGoldMap.get(Correspondence.TYPE_TRIVIAL_BASIC_NORM) + 1);
+				case TRIVIAL_BASIC_NORM:
+					this.numOfGoldMap.put(CorrespondenceType.TRIVIAL_BASIC_NORM, 
+							this.numOfGoldMap.get(CorrespondenceType.TRIVIAL_BASIC_NORM) + 1);
 					break;
-				case Correspondence.TYPE_TRIVIAL_EXTENDED_NORM:
-					this.numOfGoldMap.put(Correspondence.TYPE_TRIVIAL_EXTENDED_NORM, 
-							this.numOfGoldMap.get(Correspondence.TYPE_TRIVIAL_EXTENDED_NORM) + 1);
+				case TRIVIAL_EXTENDED_NORM:
+					this.numOfGoldMap.put(CorrespondenceType.TRIVIAL_EXTENDED_NORM, 
+							this.numOfGoldMap.get(CorrespondenceType.TRIVIAL_EXTENDED_NORM) + 1);
 					break;
-				case Correspondence.TYPE_MISC:
-					this.numOfGoldMap.put(Correspondence.TYPE_MISC, 
-							this.numOfGoldMap.get(Correspondence.TYPE_MISC) + 1);
+				case MISC:
+					this.numOfGoldMap.put(CorrespondenceType.MISC, 
+							this.numOfGoldMap.get(CorrespondenceType.MISC) + 1);
 					break;
 				}
 			} else {
@@ -83,80 +84,55 @@ public class TypeCharacteristic extends Characteristic{
 		 */
 		for(Correspondence cMap : correct.getCorrespondences()) {
 			switch (cMap.getType().get()) {
-			case Correspondence.TYPE_DIFFICULT:
-				this.numOfMatcherMap.put(Correspondence.TYPE_DIFFICULT, 
-						this.numOfMatcherMap.get(Correspondence.TYPE_DIFFICULT) + 1);
+			case DIFFICULT:
+				this.numOfMatcherMap.put(CorrespondenceType.DIFFICULT, 
+						this.numOfMatcherMap.get(CorrespondenceType.DIFFICULT) + 1);
 				break;
-			case Correspondence.TYPE_DIFFICULT_SIMILAR_VERB:
-				this.numOfMatcherMap.put(Correspondence.TYPE_DIFFICULT_SIMILAR_VERB, 
-						this.numOfMatcherMap.get(Correspondence.TYPE_DIFFICULT_SIMILAR_VERB) + 1);
+			case DIFFICULT_SIMILAR_VERB:
+				this.numOfMatcherMap.put(CorrespondenceType.DIFFICULT_SIMILAR_VERB, 
+						this.numOfMatcherMap.get(CorrespondenceType.DIFFICULT_SIMILAR_VERB) + 1);
 				break;
-			case Correspondence.TYPE_ONE_WORD_SIMILAR:
-				this.numOfMatcherMap.put(Correspondence.TYPE_ONE_WORD_SIMILAR, 
-						this.numOfMatcherMap.get(Correspondence.TYPE_ONE_WORD_SIMILAR) + 1);
+			case ONE_WORD_SIMILAR:
+				this.numOfMatcherMap.put(CorrespondenceType.ONE_WORD_SIMILAR, 
+						this.numOfMatcherMap.get(CorrespondenceType.ONE_WORD_SIMILAR) + 1);
 				break;
-			case Correspondence.TYPE_TRIVIAL:
-				this.numOfMatcherMap.put(Correspondence.TYPE_TRIVIAL, 
-						this.numOfMatcherMap.get(Correspondence.TYPE_TRIVIAL) + 1);
+			case TRIVIAL:
+				this.numOfMatcherMap.put(CorrespondenceType.TRIVIAL, 
+						this.numOfMatcherMap.get(CorrespondenceType.TRIVIAL) + 1);
 				break;
-			case Correspondence.TYPE_TRIVIAL_BASIC_NORM:
-				this.numOfMatcherMap.put(Correspondence.TYPE_TRIVIAL_BASIC_NORM, 
-						this.numOfMatcherMap.get(Correspondence.TYPE_TRIVIAL_BASIC_NORM) + 1);
+			case TRIVIAL_BASIC_NORM:
+				this.numOfMatcherMap.put(CorrespondenceType.TRIVIAL_BASIC_NORM, 
+						this.numOfMatcherMap.get(CorrespondenceType.TRIVIAL_BASIC_NORM) + 1);
 				break;
-			case Correspondence.TYPE_TRIVIAL_EXTENDED_NORM:
-				this.numOfMatcherMap.put(Correspondence.TYPE_TRIVIAL_EXTENDED_NORM, 
-						this.numOfMatcherMap.get(Correspondence.TYPE_TRIVIAL_EXTENDED_NORM) + 1);
+			case TRIVIAL_EXTENDED_NORM:
+				this.numOfMatcherMap.put(CorrespondenceType.TRIVIAL_EXTENDED_NORM, 
+						this.numOfMatcherMap.get(CorrespondenceType.TRIVIAL_EXTENDED_NORM) + 1);
 				break;
-			case Correspondence.TYPE_MISC:
-				this.numOfMatcherMap.put(Correspondence.TYPE_MISC, 
-						this.numOfMatcherMap.get(Correspondence.TYPE_MISC) + 1);
+			case MISC:
+				this.numOfMatcherMap.put(CorrespondenceType.MISC, 
+						this.numOfMatcherMap.get(CorrespondenceType.MISC) + 1);
 				break;
 			}
 		}
 	}
 	
 	private void initNumOfGoldMap() {
-		this.numOfGoldMap.put(Correspondence.TYPE_DIFFICULT, 0);
-		this.numOfGoldMap.put(Correspondence.TYPE_DIFFICULT_SIMILAR_VERB, 0);
-		this.numOfGoldMap.put(Correspondence.TYPE_ONE_WORD_SIMILAR, 0);
-		this.numOfGoldMap.put(Correspondence.TYPE_TRIVIAL, 0);
-		this.numOfGoldMap.put(Correspondence.TYPE_TRIVIAL_BASIC_NORM, 0);
-		this.numOfGoldMap.put(Correspondence.TYPE_TRIVIAL_EXTENDED_NORM, 0);
-		this.numOfGoldMap.put(Correspondence.TYPE_MISC, 0);
+		for(CorrespondenceType type : CorrespondenceType.values()) {
+			this.numOfGoldMap.put(type, 0);
+		}
 	}
 	
 	private void initNumOfMatcherMap() {
-		this.numOfMatcherMap.put(Correspondence.TYPE_DIFFICULT, 0);
-		this.numOfMatcherMap.put(Correspondence.TYPE_DIFFICULT_SIMILAR_VERB, 0);
-		this.numOfMatcherMap.put(Correspondence.TYPE_ONE_WORD_SIMILAR, 0);
-		this.numOfMatcherMap.put(Correspondence.TYPE_TRIVIAL, 0);
-		this.numOfMatcherMap.put(Correspondence.TYPE_TRIVIAL_BASIC_NORM, 0);
-		this.numOfMatcherMap.put(Correspondence.TYPE_TRIVIAL_EXTENDED_NORM, 0);
-		this.numOfMatcherMap.put(Correspondence.TYPE_MISC, 0);
+		for(CorrespondenceType type : CorrespondenceType.values()) {
+			this.numOfMatcherMap.put(type, 0);
+		}
 	}
 	
 	private void initRecallMap() {
-		this.recallMap.put(Correspondence.TYPE_DIFFICULT, 
-				Characteristic.computeRecall(this.numOfMatcherMap.get(Correspondence.TYPE_DIFFICULT), 
-						this.numOfGoldMap.get(Correspondence.TYPE_DIFFICULT)));
-		this.recallMap.put(Correspondence.TYPE_DIFFICULT_SIMILAR_VERB, 
-				Characteristic.computeRecall(this.numOfMatcherMap.get(Correspondence.TYPE_DIFFICULT_SIMILAR_VERB), 
-						this.numOfGoldMap.get(Correspondence.TYPE_DIFFICULT_SIMILAR_VERB)));
-		this.recallMap.put(Correspondence.TYPE_ONE_WORD_SIMILAR, 
-				Characteristic.computeRecall(this.numOfMatcherMap.get(Correspondence.TYPE_ONE_WORD_SIMILAR), 
-						this.numOfGoldMap.get(Correspondence.TYPE_ONE_WORD_SIMILAR)));
-		this.recallMap.put(Correspondence.TYPE_TRIVIAL, 
-				Characteristic.computeRecall(this.numOfMatcherMap.get(Correspondence.TYPE_TRIVIAL), 
-						this.numOfGoldMap.get(Correspondence.TYPE_TRIVIAL)));
-		this.recallMap.put(Correspondence.TYPE_TRIVIAL_BASIC_NORM, 
-				Characteristic.computeRecall(this.numOfMatcherMap.get(Correspondence.TYPE_TRIVIAL_BASIC_NORM), 
-						this.numOfGoldMap.get(Correspondence.TYPE_TRIVIAL_BASIC_NORM)));
-		this.recallMap.put(Correspondence.TYPE_TRIVIAL_EXTENDED_NORM, 
-				Characteristic.computeRecall(this.numOfMatcherMap.get(Correspondence.TYPE_TRIVIAL_EXTENDED_NORM), 
-						this.numOfGoldMap.get(Correspondence.TYPE_TRIVIAL_EXTENDED_NORM)));
-		this.recallMap.put(Correspondence.TYPE_MISC, 
-				Characteristic.computeRecall(this.numOfMatcherMap.get(Correspondence.TYPE_MISC), 
-						this.numOfGoldMap.get(Correspondence.TYPE_MISC)));
+		for(CorrespondenceType type : CorrespondenceType.values()) {
+			this.recallMap.put(type, Characteristic.computeRecall(
+					this.numOfMatcherMap.get(type), this.numOfGoldMap.get(type)));
+		}
 	}
 	
 	/**
@@ -165,10 +141,7 @@ public class TypeCharacteristic extends Characteristic{
 	 * @return number of correspondences
 	 * @throws CorrespondenceException
 	 */
-	public int getNumOfMatcher(String type) throws CorrespondenceException {
-		if(!Correspondence.isSupportedType(type)) {
-			throw new CorrespondenceException(CorrespondenceException.UNSUPPORTED_TYPE, type);
-		}
+	public int getNumOfMatcher(CorrespondenceType type) throws CorrespondenceException {
 		return this.numOfMatcherMap.get(type);
 	}
 	
@@ -178,10 +151,7 @@ public class TypeCharacteristic extends Characteristic{
 	 * @return number of correspondences
 	 * @throws CorrespondenceException
 	 */
-	public int getNumOfGold(String type) throws CorrespondenceException {
-		if(!Correspondence.isSupportedType(type)) {
-			throw new CorrespondenceException(CorrespondenceException.UNSUPPORTED_TYPE, type);
-		}
+	public int getNumOfGold(CorrespondenceType type) throws CorrespondenceException {
 		return this.numOfGoldMap.get(type);
 	}
 
@@ -191,10 +161,7 @@ public class TypeCharacteristic extends Characteristic{
 	 * @return the recall for the type category
 	 * @throws CorrespondenceException 
 	 */
-	public double getRecall(String type) throws CorrespondenceException {
-		if(!Correspondence.isSupportedType(type)) {
-			throw new CorrespondenceException(CorrespondenceException.UNSUPPORTED_TYPE, type);
-		}
+	public double getRecall(CorrespondenceType type) throws CorrespondenceException {
 		return this.recallMap.get(type);
 	}
 	
@@ -206,12 +173,9 @@ public class TypeCharacteristic extends Characteristic{
 	 * @return macro recall
 	 * @throws CorrespondenceException
 	 */
-	public static double getRecallMacro(List<TypeCharacteristic> characteristics, String type) 
+	public static double getRecallMacro(List<TypeCharacteristic> characteristics, CorrespondenceType type) 
 			throws CorrespondenceException {
 		Objects.requireNonNull(characteristics);
-		if(!Correspondence.isSupportedType(type)) {
-			throw new CorrespondenceException(CorrespondenceException.UNSUPPORTED_TYPE, type);
-		}
 		double sum = 0;
 		int numOfOcc = 0;
 		for(TypeCharacteristic c : characteristics) {
@@ -232,12 +196,9 @@ public class TypeCharacteristic extends Characteristic{
 	 * @return micro recall
 	 * @throws CorrespondenceException 
 	 */
-	public static double getRecallMicro(List<TypeCharacteristic> characteristics, String type) 
+	public static double getRecallMicro(List<TypeCharacteristic> characteristics, CorrespondenceType type) 
 			throws CorrespondenceException {
 		Objects.requireNonNull(characteristics);
-		if(!Correspondence.isSupportedType(type)) {
-			throw new CorrespondenceException(CorrespondenceException.UNSUPPORTED_TYPE, type);
-		}
 		int sumNumOfMatcher = 0;
 		int sumNumOfGold = 0;
 		for(TypeCharacteristic c : characteristics) {
@@ -255,12 +216,9 @@ public class TypeCharacteristic extends Characteristic{
 	 * @return recall standard deviation
 	 * @throws CorrespondenceException 
 	 */
-	public static double getRecallStdDev(List<TypeCharacteristic> characteristics, String type) 
+	public static double getRecallStdDev(List<TypeCharacteristic> characteristics, CorrespondenceType type) 
 			throws CorrespondenceException {
 		Objects.requireNonNull(characteristics);
-		if(!Correspondence.isSupportedType(type)) {
-			throw new CorrespondenceException(CorrespondenceException.UNSUPPORTED_TYPE, type);
-		}
 		double avgMacro = TypeCharacteristic.getRecallMacro(characteristics, type);
 		double dev = 0;
 		int numOfOcc = 0;
@@ -275,15 +233,13 @@ public class TypeCharacteristic extends Characteristic{
 		return Math.sqrt(dev/numOfOcc);
 	}
 
-	public Map<String, Double> getRecallMap() {
+	public Map<CorrespondenceType, Double> getRecallMap() {
 		return recallMap;
 	}
 	
-	public static double getTypePercentage(List<TypeCharacteristic> characteristics, String type) throws CorrespondenceException {
+	public static double getTypePercentage(List<TypeCharacteristic> characteristics, CorrespondenceType type) 
+			throws CorrespondenceException {
 		Objects.requireNonNull(characteristics);
-		if(!Correspondence.isSupportedType(type)) {
-			throw new CorrespondenceException(CorrespondenceException.UNSUPPORTED_TYPE, type);
-		}
 		int sumAll = 0;
 		int sumType = 0;
 		for(TypeCharacteristic c : characteristics) {
@@ -296,7 +252,7 @@ public class TypeCharacteristic extends Characteristic{
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		for(Map.Entry<String, Double> e : this.recallMap.entrySet()) {
+		for(Map.Entry<CorrespondenceType, Double> e : this.recallMap.entrySet()) {
 			sb.append("R-" + e.getKey() + ": " + (100.0 * e.getValue()) + "%\n");
 		}
 		sb.append("Precision: " + (100.0 * this.getPrecision()) + "%\n");

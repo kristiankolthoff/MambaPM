@@ -12,7 +12,7 @@ import de.unima.ki.mamba.evaluation.TypeCharacteristic;
 import de.unima.ki.mamba.exceptions.AlignmentException;
 import de.unima.ki.mamba.exceptions.CorrespondenceException;
 import de.unima.ki.mamba.om.alignment.Alignment;
-import de.unima.ki.mamba.om.alignment.Correspondence;
+import de.unima.ki.mamba.om.alignment.CorrespondenceType;
 
 public class TypeCharacteristicTest {
 
@@ -49,79 +49,79 @@ public class TypeCharacteristicTest {
 	
 	@Test
 	public void recallDifficultTest() throws CorrespondenceException {
-		assertEquals(1/(double)2, this.typeCharacteristic.getRecall(Correspondence.TYPE_DIFFICULT),0);
+		assertEquals(1/(double)2, this.typeCharacteristic.getRecall(CorrespondenceType.DIFFICULT),0);
 	}
 	
 	@Test
 	public void recallDifficultSimilarVerbTest() throws CorrespondenceException {
-		assertEquals(1/(double)3, this.typeCharacteristic.getRecall(Correspondence.TYPE_DIFFICULT_SIMILAR_VERB),0);
+		assertEquals(1/(double)3, this.typeCharacteristic.getRecall(CorrespondenceType.DIFFICULT_SIMILAR_VERB),0);
 	}
 	
 	@Test
 	public void recallOneWordSimilarTest() throws CorrespondenceException {
-		assertTrue(Double.isNaN(this.typeCharacteristic.getRecall(Correspondence.TYPE_ONE_WORD_SIMILAR)));
+		assertTrue(Double.isNaN(this.typeCharacteristic.getRecall(CorrespondenceType.ONE_WORD_SIMILAR)));
 	}
 	
 	@Test
 	public void recallTrivialTest() throws CorrespondenceException {
-		assertEquals(1, this.typeCharacteristic.getRecall(Correspondence.TYPE_TRIVIAL),0);
+		assertEquals(1, this.typeCharacteristic.getRecall(CorrespondenceType.TRIVIAL),0);
 	}
 	
 	@Test
 	public void recallTrivialBasicNormTest() throws CorrespondenceException {
-		assertEquals(1, this.typeCharacteristic.getRecall(Correspondence.TYPE_TRIVIAL_BASIC_NORM),0);
+		assertEquals(1, this.typeCharacteristic.getRecall(CorrespondenceType.TRIVIAL_BASIC_NORM),0);
 	}
 	
 	@Test
 	public void recallTrivialExtendedNormTest() throws CorrespondenceException {
-		assertEquals(0, this.typeCharacteristic.getRecall(Correspondence.TYPE_TRIVIAL_EXTENDED_NORM),0);
+		assertEquals(0, this.typeCharacteristic.getRecall(CorrespondenceType.TRIVIAL_EXTENDED_NORM),0);
 	}
 	
 	@Test
 	public void recallMiscTest() throws CorrespondenceException {
-		assertEquals(1/(double)3, this.typeCharacteristic.getRecall(Correspondence.TYPE_MISC),0);
+		assertEquals(1/(double)3, this.typeCharacteristic.getRecall(CorrespondenceType.MISC),0);
 	}
 	
 	@Test
 	public void recallDifficultMicroTest() throws CorrespondenceException {
-		assertEquals(0.5, TypeCharacteristic.getRecallMicro(this.characteristics, Correspondence.TYPE_DIFFICULT), 0);
+		assertEquals(0.5, TypeCharacteristic.getRecallMicro(this.characteristics, CorrespondenceType.DIFFICULT), 0);
 	}
 	
 	@Test
 	public void recallDifficultMacroTest() throws CorrespondenceException {
-		assertEquals(0.5, TypeCharacteristic.getRecallMacro(this.characteristics, Correspondence.TYPE_DIFFICULT), 0);
+		assertEquals(0.5, TypeCharacteristic.getRecallMacro(this.characteristics, CorrespondenceType.DIFFICULT), 0);
 	}
 	
 	@Test
 	public void recallDifficultStdDevTest() throws CorrespondenceException {
-		assertEquals(0, TypeCharacteristic.getRecallStdDev(this.characteristics, Correspondence.TYPE_DIFFICULT), 0);
+		assertEquals(0, TypeCharacteristic.getRecallStdDev(this.characteristics, CorrespondenceType.DIFFICULT), 0);
 	}
 	
 	@Test
 	public void recallMiscMicroTest() throws CorrespondenceException {
-		assertEquals(1/(double)3, TypeCharacteristic.getRecallMicro(this.characteristics, Correspondence.TYPE_MISC), 0);
+		assertEquals(1/(double)3, TypeCharacteristic.getRecallMicro(this.characteristics, CorrespondenceType.MISC), 0);
 	}
 	
 	@Test
 	public void recallMiscMacroTest() throws CorrespondenceException {
-		assertEquals(1/(double)3, TypeCharacteristic.getRecallMacro(this.characteristics, Correspondence.TYPE_MISC), 0);
+		assertEquals(1/(double)3, TypeCharacteristic.getRecallMacro(this.characteristics, CorrespondenceType.MISC), 0);
 	}
 	
 	@Test
 	public void recallTrivialAfterBasicNormMicroTest() throws CorrespondenceException {
-		assertEquals(1, TypeCharacteristic.getRecallMicro(this.characteristics, Correspondence.TYPE_TRIVIAL_BASIC_NORM), 0);
+		assertEquals(1, TypeCharacteristic.getRecallMicro(this.characteristics, CorrespondenceType.TRIVIAL_BASIC_NORM), 0);
 	}
 	
 	@Test
 	public void recallTrivialAfterBasicNormMacroTest() throws CorrespondenceException {
-		assertEquals(1, TypeCharacteristic.getRecallMacro(this.characteristics, Correspondence.TYPE_TRIVIAL_BASIC_NORM), 0);
+		assertEquals(1, TypeCharacteristic.getRecallMacro(this.characteristics, CorrespondenceType.TRIVIAL_BASIC_NORM), 0);
 	}
 	
 	@Test
 	public void typePercentageTest() throws CorrespondenceException {
-		assertEquals(0.25, TypeCharacteristic.getTypePercentage(this.characteristics, Correspondence.TYPE_MISC), 0);
-		assertEquals(1/12d, TypeCharacteristic.getTypePercentage(this.characteristics, Correspondence.TYPE_TRIVIAL), 0);
-		assertEquals(1/6d, TypeCharacteristic.getTypePercentage(this.characteristics, Correspondence.TYPE_DIFFICULT), 0);
+		assertEquals(0.25, TypeCharacteristic.getTypePercentage(this.characteristics, CorrespondenceType.MISC), 0);
+		assertEquals(1/12d, TypeCharacteristic.getTypePercentage(this.characteristics, CorrespondenceType.TRIVIAL), 0);
+		assertEquals(1/6d, TypeCharacteristic.getTypePercentage(this.characteristics, CorrespondenceType.DIFFICULT), 0);
 	}
 	
 }
