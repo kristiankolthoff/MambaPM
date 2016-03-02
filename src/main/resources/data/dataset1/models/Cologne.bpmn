@@ -59,7 +59,7 @@
          <incoming>sid-D804D457-C740-424E-85A4-CA44B477E015</incoming>
          <outgoing>sid-4875FE4E-FE8C-4FD1-8D7B-C56D776ADFA5</outgoing>
       </task>
-      <task completionQuantity="1" id="sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3" isForCompensation="false" name="Send online protocäl" startQuantity="1">
+      <task completionQuantity="1" id="sid-2A61C308-48B4-4C26-9CB3-D489A0BBC1E3" isForCompensation="false" name="Send online protocol" startQuantity="1">
          <extensionElements>
             <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
             <signavio:signavioMetaData metaKey="risklevel" metaValue=""/>

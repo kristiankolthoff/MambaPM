@@ -22,12 +22,12 @@ public class RunBasicMatcher {
 
 	private static BasicMatcher basicMatcher;
 	private static Parser parser;
-	private static final String[] MODELS_DATASET1;
-	private static final String[] MODELS_DATASET2;
-	private static final String MODELS_DATASET1_SRC;
-	private static final String MODELS_DATASET2_SRC;
-	private static final String RESULTS_DATASET1_SRC;
-	private static final String RESULTS_DATASET2_SRC;
+	public static final String[] MODELS_DATASET1;
+	public static final String[] MODELS_DATASET2;
+	public static final String MODELS_DATASET1_SRC;
+	public static final String MODELS_DATASET2_SRC;
+	public static final String RESULTS_DATASET1_SRC;
+	public static final String RESULTS_DATASET2_SRC;
 	
 	static {
 		MODELS_DATASET1 = new String[]  {

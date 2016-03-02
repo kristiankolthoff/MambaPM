@@ -31,11 +31,39 @@ public class NLPHelperTest {
 		assertEquals("find results in the documents", NLPHelper.getSanitizeLabel(label5));
 	}
 	
-	public void getWordStemsTest() {
-		List<String> stems = NLPHelper.getStemmedTokens("Sending bachelors documents to universities");
+	@Test
+	public void getWordStemsSendingTest() {
+		List<String> stems = NLPHelper.getStemmedTokens("sending bachelors documents to universities");
 		assertEquals("send", stems.get(0));
+		assertEquals("bachelor", stems.get(1));
 		assertEquals("document", stems.get(2));
+		assertEquals("university", stems.get(4));
 	}
+	
+	
+	@Test
+	public void getWordStemsWaitingTest() {
+		List<String> stems = NLPHelper.getStemmedTokens("waiting for certificates");
+		assertEquals("wait", stems.get(0));
+		assertEquals("certificate", stems.get(2));
+	}
+	
+	@Test
+	public void getWordStemsRejectionTest() {
+		List<String> stems1 = NLPHelper.getStemmedTokens("rejected");
+		List<String> stems2 = NLPHelper.getStemmedTokens("rejection");
+		System.out.println(stems1);
+		System.out.println(stems2);
+		assertEquals("reject", stems1.get(0));
+		assertEquals("reject", stems2.get(0));
+	}
+	
+	@Test
+	public void getStemmedSentenceTest() {
+		String stemmed = NLPHelper.getStemmedString("sending bachelors documents to universities");
+		assertEquals("send bachelor document to university", stemmed);
+	}
+	
 	
 	public static void main(String[] args) {
 		

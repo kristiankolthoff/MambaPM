@@ -203,4 +203,7 @@ public class Alignment implements Iterable<Correspondence>{
 	}
 
 
+	public boolean isEmpty() {
+		return this.correspondences.isEmpty();
+	}
 }

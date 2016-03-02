@@ -1,7 +1,15 @@
 package de.unima.ki.mamba.pm.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+
+import de.unima.ki.mamba.om.alignment.Alignment;
+import de.unima.ki.mamba.om.alignment.Correspondence;
 
 public class Model {
 
@@ -54,5 +62,32 @@ public class Model {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public static List<String> transformedAlignment(List<Model> models, Alignment alignment) {
+		if(models.isEmpty()) {
+			return Collections.emptyList();
+		}
+		List<String> correspondences = new ArrayList<>();
+		for(Correspondence c : alignment) {
+			String[] labels = new String[2];
+			for(Model m : models) {
+				for(Activity a : m.getActivities()) {
+					if(c.getUri1().contains(a.getId())) {
+						labels[0] = a.getLabel();
+					} else if(c.getUri2().contains(a.getId())) {
+						labels[1] = a.getLabel();
+						if(c.getType().isPresent()) {
+							labels[1] += " (" + c.getType().get() + ")";
+							if(c.getType().get().equals(Correspondence.TYPE_TRIVIAL_EXTENDED_NORM)) {
+								System.err.println(String.join(" = ", labels));
+							}
+						}
+					}
+				}
+			}
+			correspondences.add(String.join(" = ", labels));
+		}
+		return correspondences;
 	}
 }

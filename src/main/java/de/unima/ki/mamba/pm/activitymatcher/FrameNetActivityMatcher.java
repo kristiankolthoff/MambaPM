@@ -46,7 +46,7 @@ public class FrameNetActivityMatcher implements BiFunction<Activity, Activity, D
 	private MaxentTagger tagger;
 	private Map<String, List<Frame>> frameMap;
 	
-	public static final int MAX_K = 20;
+	public static final int MAX_K = 5;
 	public static final boolean LOAD_IN_MEMORY = false;
 	
 	public FrameNetActivityMatcher() throws FileNotFoundException, CorruptIndexException, 
@@ -103,10 +103,10 @@ public class FrameNetActivityMatcher implements BiFunction<Activity, Activity, D
 		for(Frame f1 : frames1) {
 			for(Frame f2 : frames2) {
 				if(f1.equals(f2)) {
-					System.out.println("--------Matching Frame--------");
-					System.out.println(f1.toString());
-					System.out.println(f2.toString());
-					System.out.println("------------------------------");
+//					System.out.println("--------Matching Frame--------");
+//					System.out.println(f1.toString());
+//					System.out.println(f2.toString());
+//					System.out.println("------------------------------");
 					return MAX_K / ((double) MAX_K + 1);
 				}
 			}
@@ -119,10 +119,10 @@ public class FrameNetActivityMatcher implements BiFunction<Activity, Activity, D
 		List<Frame> frames1 = this.getSimilarFrames(a1);
 		/**Get all frames for the k similar sentences for the label of activity a2**/
 		List<Frame> frames2 = this.getSimilarFrames(a2);
-		System.err.println("---Majority-1---");
+		System.out.println("---Majority-1---");
 		List<Frame> frameMaj1 = this.majorityVoteFrames(frames1);
 		System.out.println(frameMaj1);
-		System.err.println("---Majority-2---");
+		System.out.println("---Majority-2---");
 		List<Frame> frameMaj2 = this.majorityVoteFrames(frames2);
 		System.out.println(frameMaj2);
 		for(Frame f1 : frameMaj1) {

@@ -41,6 +41,9 @@ public class Characteristic {
 	private int numOfRulesGold;
 	private int numOfRulesMatcher;
 	private int numOfRulesCorrect;
+	private Alignment alignmentMapping;
+	private Alignment alignmentReference;
+	private Alignment alignmentCorrect;
 	
 	/**
 	* If set to false, it uses jeromes way of counting. 
@@ -98,10 +101,12 @@ public class Characteristic {
 				}
 			}			
 		}
-		
 		this.numOfRulesGold = reference.size();
 		this.numOfRulesMatcher = mapping.size();
 		this.numOfRulesCorrect = correct.size();
+		this.alignmentReference = reference;
+		this.alignmentMapping = mapping;
+		this.alignmentCorrect = correct;
 	}	
 	
 	/**
@@ -219,6 +224,14 @@ public class Characteristic {
 
 	public static boolean strictEvaluationActive() {
 		return strictEvaluation;
+	}
+	
+	public Alignment getFalsePositives() {
+		return this.alignmentMapping.minus(this.alignmentCorrect);
+	}
+	
+	public Alignment getFalseNegatives() {
+		return this.alignmentReference.minus(this.alignmentCorrect);
 	}
 	
 	/**

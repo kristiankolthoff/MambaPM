@@ -168,7 +168,7 @@ public class FrameNetAnnotator {
 		this.fnService.runFNSemanticParsing();
 		Map<String, List<Frame>> frameMap = this.fnParser.fetchFNData(FrameNetOptions.ABS_PATH_FNDATA + 
 				FrameNetOptions.FN_FILE_OUT_NAME);
-//		this.fnService.cleanAll();
+		this.fnService.cleanAll();
 		this.sentences.clear();
 		return frameMap;
 	}

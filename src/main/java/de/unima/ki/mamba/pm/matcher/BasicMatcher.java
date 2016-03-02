@@ -34,7 +34,7 @@ public class BasicMatcher {
 	private void registerActivityMatcher() throws FileNotFoundException, CorruptIndexException, IOException, 
 			CorruptConfigFileException, ParserConfigurationException {
 		this.activityMatchers.add(new SimpleSyntacticActivityMatcher());
-//		this.activityMatchers.add(new FrameNetActivityMatcher());	
+		this.activityMatchers.add(new FrameNetActivityMatcher());	
 	}
 	
 	public void setNamespacePrefixes(String sourceNS, String targetNS)  {
@@ -43,9 +43,9 @@ public class BasicMatcher {
 	}
 	
 	public Alignment match(Model sourceModel, Model targetModel) throws ParserConfigurationException, SAXException, IOException {
-//		FrameNetActivityMatcher fnActMatcher = (FrameNetActivityMatcher) this.activityMatchers.get(0);
-//		fnActMatcher.annotateFNActivities(sourceModel)
-//					.annotateFNActivities(targetModel);
+		FrameNetActivityMatcher fnActMatcher = (FrameNetActivityMatcher) this.activityMatchers.get(1);
+		fnActMatcher.annotateFNActivities(sourceModel)
+					.annotateFNActivities(targetModel);
 		Alignment alignment = new Alignment();
 		for (Activity sourceActivity : sourceModel.getActivities()) {
 			for (Activity targetActivity : targetModel.getActivities()) {

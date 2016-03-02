@@ -12,9 +12,9 @@ import de.unima.ki.mamba.om.alignment.Correspondence;
 
 public class TypeCharacteristic extends Characteristic{
 
-	private HashMap<String, Integer> numOfGoldMap;
-	private HashMap<String, Integer> numOfMatcherMap;
-	private HashMap<String, Double> recallMap;
+	private Map<String, Integer> numOfGoldMap;
+	private Map<String, Integer> numOfMatcherMap;
+	private Map<String, Double> recallMap;
 	
 	public TypeCharacteristic(Alignment mapping, Alignment reference) throws CorrespondenceException {
 		super(mapping, reference);
@@ -275,7 +275,7 @@ public class TypeCharacteristic extends Characteristic{
 		return Math.sqrt(dev/numOfOcc);
 	}
 
-	public HashMap<String, Double> getRecallMap() {
+	public Map<String, Double> getRecallMap() {
 		return recallMap;
 	}
 	

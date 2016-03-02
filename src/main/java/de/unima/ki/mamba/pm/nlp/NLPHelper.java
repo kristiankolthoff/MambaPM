@@ -198,6 +198,13 @@ public class NLPHelper {
 		return sb.toString();
 	}
 	
+	public static String getStemmedString(String sentence) {
+		return getStemmedTokens(sentence)
+				.stream()
+				.reduce("", (s,t) -> (s + " " + t))
+				.trim();
+	}
+	
 	public static List<String> getTokens(String sentence) {
 		PTBTokenizer<CoreLabel> tokenizer = new PTBTokenizer<CoreLabel>(new StringReader(sentence),
 				new CoreLabelTokenFactory(), "");
@@ -214,8 +221,15 @@ public class NLPHelper {
 		List<String> stemmedTokens = new ArrayList<>();
 		for (int i = 0; i < tokens.size(); i++) {
 			List<String> possibleStems = getWordStem(tokens.get(i));
-			if(possibleStems.size() >= 1) {
-				stemmedTokens.add(possibleStems.get(0));				
+			if(possibleStems.size() > 1) {
+				for(String stem : possibleStems) {
+					if(!tokens.get(i).equals(stem)) {
+						stemmedTokens.add(stem);
+						break;
+					}
+				}				
+			} else if(possibleStems.size() == 1){
+				stemmedTokens.add(possibleStems.get(0));
 			} else {
 				stemmedTokens.add(tokens.get(i));
 			}

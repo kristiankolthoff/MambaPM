@@ -18,6 +18,8 @@ import de.unima.ki.mamba.exceptions.CorrespondenceException;
 import de.unima.ki.mamba.om.alignment.Alignment;
 import de.unima.ki.mamba.om.alignment.AlignmentReader;
 import de.unima.ki.mamba.om.alignment.AlignmentReaderXml;
+import de.unima.ki.mamba.pm.model.Model;
+import de.unima.ki.mamba.pm.model.parser.Parser;
 
 
 public class RunEvaluation {
@@ -83,6 +85,8 @@ public class RunEvaluation {
 		/**
 		 * Compute typecharacteristcs for each alignment
 		 */
+		List<Model> models = RunBasicMatcher.readModels(RunBasicMatcher.MODELS_DATASET1, 
+				Parser.TYPE_BPMN, RunBasicMatcher.MODELS_DATASET1_SRC);
 		List<List<TypeCharacteristic>> characteristics = new ArrayList<>();
 		for (int i = 1; i < alignments.size(); i++) {
 			List<Alignment> aligns = alignments.get(i);
@@ -93,6 +97,18 @@ public class RunEvaluation {
 				Alignment reference = alignments.get(0).get(j);
 				TypeCharacteristic tc = new TypeCharacteristic(mapping, reference);
 				tcharacteristics.add(tc);
+//				Alignment alignmentFP = tc.getFalsePositives();
+//				List<String> labelsFP = Model.transformedAlignment(models, alignmentFP);
+//				if(!labelsFP.isEmpty()) {
+//					System.out.println(labelsFP);
+//					System.out.println(alignmentFP);
+//				}
+				Alignment alginmentFN = tc.getFalseNegatives();
+				List<String> labelsFN = Model.transformedAlignment(models, alginmentFN);
+				if(!labelsFN.isEmpty()) {
+					System.out.println(labelsFN);
+					System.out.println(alginmentFN);
+				}	
 				} catch (CorrespondenceException ex){
 					ex.printStackTrace();
 				} catch(IndexOutOfBoundsException ex) {

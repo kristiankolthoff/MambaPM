@@ -3,6 +3,7 @@ package de.unima.ki.mamba.pm.activitymatcher;
 import java.util.function.BiFunction;
 
 import de.unima.ki.mamba.pm.model.Activity;
+import de.unima.ki.mamba.pm.nlp.NLPHelper;
 
 public class SimpleSyntacticActivityMatcher implements BiFunction<Activity, Activity, Double>{
 
@@ -22,7 +23,8 @@ public class SimpleSyntacticActivityMatcher implements BiFunction<Activity, Acti
 	}
 	
 	public double trivialAfterExtendedNorm(String label1, String label2) {
-		return 0d;
+		return NLPHelper.getStemmedString(label1).
+		equals(NLPHelper.getStemmedString(label2)) ? 1d : 0d;
 	}
 
 }
