@@ -45,36 +45,8 @@ public class TypeCharacteristic extends Characteristic{
 		 */
 		for(Correspondence cRef : reference.getCorrespondences()) {
 			if(cRef.getType().isPresent()) {
-				switch (cRef.getType().get()) {
-				case DIFFICULT:
-					this.numOfGoldMap.put(CorrespondenceType.DIFFICULT, 
-							this.numOfGoldMap.get(CorrespondenceType.DIFFICULT) + 1);
-					break;
-				case DIFFICULT_SIMILAR_VERB:
-					this.numOfGoldMap.put(CorrespondenceType.DIFFICULT_SIMILAR_VERB, 
-							this.numOfGoldMap.get(CorrespondenceType.DIFFICULT_SIMILAR_VERB) + 1);
-					break;
-				case ONE_WORD_SIMILAR:
-					this.numOfGoldMap.put(CorrespondenceType.ONE_WORD_SIMILAR, 
-							this.numOfGoldMap.get(CorrespondenceType.ONE_WORD_SIMILAR) + 1);
-					break;
-				case TRIVIAL:
-					this.numOfGoldMap.put(CorrespondenceType.TRIVIAL, 
-							this.numOfGoldMap.get(CorrespondenceType.TRIVIAL) + 1);
-					break;
-				case TRIVIAL_BASIC_NORM:
-					this.numOfGoldMap.put(CorrespondenceType.TRIVIAL_BASIC_NORM, 
-							this.numOfGoldMap.get(CorrespondenceType.TRIVIAL_BASIC_NORM) + 1);
-					break;
-				case TRIVIAL_EXTENDED_NORM:
-					this.numOfGoldMap.put(CorrespondenceType.TRIVIAL_EXTENDED_NORM, 
-							this.numOfGoldMap.get(CorrespondenceType.TRIVIAL_EXTENDED_NORM) + 1);
-					break;
-				case MISC:
-					this.numOfGoldMap.put(CorrespondenceType.MISC, 
-							this.numOfGoldMap.get(CorrespondenceType.MISC) + 1);
-					break;
-				}
+				CorrespondenceType type = cRef.getType().get();
+				this.numOfGoldMap.put(type, this.numOfGoldMap.get(type) + 1);
 			} else {
 				throw new CorrespondenceException(CorrespondenceException.MISSING_TYPE_ANNOTATION);
 			}
@@ -83,36 +55,8 @@ public class TypeCharacteristic extends Characteristic{
 		 * Init number of types of correct mappings
 		 */
 		for(Correspondence cMap : correct.getCorrespondences()) {
-			switch (cMap.getType().get()) {
-			case DIFFICULT:
-				this.numOfMatcherMap.put(CorrespondenceType.DIFFICULT, 
-						this.numOfMatcherMap.get(CorrespondenceType.DIFFICULT) + 1);
-				break;
-			case DIFFICULT_SIMILAR_VERB:
-				this.numOfMatcherMap.put(CorrespondenceType.DIFFICULT_SIMILAR_VERB, 
-						this.numOfMatcherMap.get(CorrespondenceType.DIFFICULT_SIMILAR_VERB) + 1);
-				break;
-			case ONE_WORD_SIMILAR:
-				this.numOfMatcherMap.put(CorrespondenceType.ONE_WORD_SIMILAR, 
-						this.numOfMatcherMap.get(CorrespondenceType.ONE_WORD_SIMILAR) + 1);
-				break;
-			case TRIVIAL:
-				this.numOfMatcherMap.put(CorrespondenceType.TRIVIAL, 
-						this.numOfMatcherMap.get(CorrespondenceType.TRIVIAL) + 1);
-				break;
-			case TRIVIAL_BASIC_NORM:
-				this.numOfMatcherMap.put(CorrespondenceType.TRIVIAL_BASIC_NORM, 
-						this.numOfMatcherMap.get(CorrespondenceType.TRIVIAL_BASIC_NORM) + 1);
-				break;
-			case TRIVIAL_EXTENDED_NORM:
-				this.numOfMatcherMap.put(CorrespondenceType.TRIVIAL_EXTENDED_NORM, 
-						this.numOfMatcherMap.get(CorrespondenceType.TRIVIAL_EXTENDED_NORM) + 1);
-				break;
-			case MISC:
-				this.numOfMatcherMap.put(CorrespondenceType.MISC, 
-						this.numOfMatcherMap.get(CorrespondenceType.MISC) + 1);
-				break;
-			}
+			CorrespondenceType type = cMap.getType().get();
+			this.numOfMatcherMap.put(type, this.numOfMatcherMap.get(type) + 1);
 		}
 	}
 	
