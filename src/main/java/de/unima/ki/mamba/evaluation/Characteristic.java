@@ -171,7 +171,7 @@ public class Characteristic {
 	* @return The precision.
 	*/
 	public double getPrecision() {
-		return (double)this.numOfRulesCorrect /  (double)this.numOfRulesMatcher;
+		return this.getConfSumCorrect() / (double)this.numOfRulesMatcher;
 	}
 	
 	public String getP() {
@@ -184,7 +184,7 @@ public class Characteristic {
 	* @return The recall.
 	*/
 	public double getRecall() {
-		return (double)this.numOfRulesCorrect /  (double)this.numOfRulesGold;
+		return this.getConfSumCorrect() / this.getConfSumReference();
 	}
 	
 	public String getR() {
@@ -226,12 +226,33 @@ public class Characteristic {
 		return strictEvaluation;
 	}
 	
+	public Alignment getTruePositives() {
+		return this.alignmentCorrect;
+	}
+	
 	public Alignment getFalsePositives() {
 		return this.alignmentMapping.minus(this.alignmentCorrect);
 	}
 	
 	public Alignment getFalseNegatives() {
 		return this.alignmentReference.minus(this.alignmentCorrect);
+	}
+	
+	private double getConfSumReference() {
+		double sum = 0;
+		for(Correspondence cRef : this.alignmentReference) {
+			sum += cRef.getConfidence();
+		}
+		return sum;
+	}
+
+	
+	private double getConfSumCorrect() {
+		double sum = 0;
+		for(Correspondence cCorr : this.alignmentCorrect) {
+			sum += cCorr.getConfidence();
+		}
+		return sum;
 	}
 	
 	/**
@@ -278,13 +299,13 @@ public class Characteristic {
 	 * @return micro precision
 	 */
 	public static double getPrecisionMicro(List<Characteristic> characteristics) {
-		int sumNumOfRulesCorrect = 0;
+		double sumConfCorr = 0;
 		int sumNumOfRulesMatcher = 0;
 		for(Characteristic c : characteristics) {
-			sumNumOfRulesCorrect += c.getNumOfRulesCorrect();
+			sumConfCorr += c.getConfSumCorrect();
 			sumNumOfRulesMatcher += c.getNumOfRulesMatcher();
 		}
-		return sumNumOfRulesCorrect / (double)sumNumOfRulesMatcher;
+		return sumConfCorr / (double)sumNumOfRulesMatcher;
 	}
 	
 	/**
@@ -294,13 +315,13 @@ public class Characteristic {
 	 * @return micro recall
 	 */
 	public static double getRecallMicro(List<Characteristic> characteristics) {
-		int sumNumOfRulesCorrect = 0;
-		int sumNumOfRulesGold = 0;
+		double sumConfCorr = 0;
+		double sumConfRef = 0;
 		for(Characteristic c : characteristics) {
-			sumNumOfRulesCorrect += c.getNumOfRulesCorrect();
-			sumNumOfRulesGold += c.getNumOfRulesGold();
+			sumConfCorr += c.getConfSumCorrect();
+			sumConfRef += c.getConfSumReference();
 		}
-		return computeRecall(sumNumOfRulesCorrect, sumNumOfRulesGold);
+		return sumConfCorr / sumConfRef;
 	}
 	
 	/**
@@ -324,16 +345,17 @@ public class Characteristic {
 	 * @return micro f measure
 	 */
 	public static double getFMeasureMicro(List<Characteristic> characteristics) {
-		int sumNumOfMatcher = 0;
-		int sumNumOfGold = 0;
-		int sumNumOfCorrect = 0;
+		double confSumRef = 0;
+		double confSumCorr = 0;
+		int sumOfMappings = 0;
 		for(Characteristic c : characteristics) {
-			sumNumOfMatcher += c.getNumOfRulesMatcher();
-			sumNumOfGold += c.getNumOfRulesGold();
-			sumNumOfCorrect += c.getNumOfRulesCorrect();
+			confSumRef = c.getConfSumCorrect();
+			confSumCorr = c.getConfSumCorrect();
+			sumOfMappings = c.getNumOfRulesMatcher();
 		}
-		return Characteristic.computeFFromPR(Characteristic.computeRecall(sumNumOfCorrect, sumNumOfMatcher), 
-				Characteristic.computeRecall(sumNumOfCorrect, sumNumOfGold));
+		double recall = confSumCorr / confSumRef;
+		double precision = confSumCorr / sumOfMappings;
+		return Characteristic.computeFFromPR(precision, recall);
 	}
 	
 	public static double getPrecisionStdDev(List<Characteristic> characteristics) {
