@@ -171,7 +171,7 @@ public class Characteristic {
 	* @return The precision.
 	*/
 	public double getPrecision() {
-		return this.getConfSumCorrect() / (double)this.numOfRulesMatcher;
+		return this.getConfSumCorrect() / ((double)this.numOfRulesMatcher + this.getConfSumCorrect());
 	}
 	
 	public String getP() {
