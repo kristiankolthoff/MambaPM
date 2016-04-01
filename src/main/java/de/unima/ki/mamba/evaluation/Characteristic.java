@@ -171,7 +171,7 @@ public class Characteristic {
 	* @return The precision.
 	*/
 	public double getPrecision() {
-		return this.getConfSumCorrect() / ((double)this.numOfRulesMatcher + this.getConfSumCorrect());
+		return this.getConfSumCorrect() / ((double) this.getFalsePositives().size() + this.getConfSumCorrect());
 	}
 	
 	public String getP() {
@@ -300,12 +300,12 @@ public class Characteristic {
 	 */
 	public static double getPrecisionMicro(List<Characteristic> characteristics) {
 		double sumConfCorr = 0;
-		int sumNumOfRulesMatcher = 0;
+		int sumFP = 0;
 		for(Characteristic c : characteristics) {
 			sumConfCorr += c.getConfSumCorrect();
-			sumNumOfRulesMatcher += c.getNumOfRulesMatcher();
+			sumFP += c.getFalsePositives().size();
 		}
-		return sumConfCorr / (double)sumNumOfRulesMatcher;
+		return sumConfCorr / ((double)sumFP + sumConfCorr);
 	}
 	
 	/**
