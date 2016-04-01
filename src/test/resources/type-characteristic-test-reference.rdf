@@ -19,7 +19,7 @@
 				<entity1 rdf:resource="http://Frankfurt#sid-B296B105-D85C-47FE-A200-50F7C64E65CF"/>
 				<entity2 rdf:resource="http://Hohenheim#sid-EA76CC8B-DB97-46CB-A2A0-5F44667C8B2E"/>
 				<relation>=</relation>
-				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.75</measure>
                 <type>difficult</type>
 			</Cell>
 		</map>
@@ -28,7 +28,7 @@
 				<entity1 rdf:resource="http://Frankfurt#sid-445A78A6-1CA7-40BF-B7BF-B8CCCAAEF703"/>
 				<entity2 rdf:resource="http://Hohenheim#sid-0018F174-AA16-4850-98AB-1FB3C0AE4DA8"/>
 				<relation>=</relation>
-				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.25</measure>
                 <type>difficult</type>
 			</Cell>
 		</map>
@@ -37,7 +37,7 @@
 				<entity1 rdf:resource="http://Frankfurt#sid-445A78A6-1CA7-40BF-B7BF-B8CCCAAEF70355"/>
 				<entity2 rdf:resource="http://Hohenheim#sid-0018F174-AA16-4850-98AB-1FB3C0AE4DA832"/>
 				<relation>=</relation>
-				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.45</measure>
                 <type>difficult-similar-verb</type>
 			</Cell>
 		</map>
@@ -46,7 +46,7 @@
 				<entity1 rdf:resource="http://Frankfurt#sid-445A78A6-1CA7-40BF-B7BF-B8CCCAAEF70321"/>
 				<entity2 rdf:resource="http://Hohenheim#sid-0018F174-AA16-4850-98AB-1FB3C0AE4DA811"/>
 				<relation>=</relation>
-				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.55</measure>
                 <type>difficult-similar-verb</type>
 			</Cell>
 		</map>
@@ -73,7 +73,7 @@
 				<entity1 rdf:resource="http://Frankfurt#sid-445A78A6-1CA7-40BF-B7BF-B8CCCAAEF7039223"/>
 				<entity2 rdf:resource="http://Hohenheim#sid-0018F174-AA16-4850-98AB-1FB3C0AE4DA83156"/>
 				<relation>=</relation>
-				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.2</measure>
                 <type>trivial-after-basic-normalization</type>
 			</Cell>
 		</map>
@@ -82,7 +82,7 @@
 				<entity1 rdf:resource="http://Frankfurt#sid-445A78A6-1CA7-40BF-B7BF-B8CCCAAEF703342"/>
 				<entity2 rdf:resource="http://Hohenheim#sid-0018F174-AA16-4850-98AB-1FB3C0AE4DA835267892"/>
 				<relation>=</relation>
-				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.2</measure>
                 <type>trivial-after-basic-normalization</type>
 			</Cell>
 		</map>
@@ -109,7 +109,7 @@
 				<entity1 rdf:resource="http://Frankfurt#sid-445A78A6-1CA7-40BF-B7BF-B8CCCAAEF7039843"/>
 				<entity2 rdf:resource="http://Hohenheim#sid-0018F174-AA16-4850-98AB-1FB3C0AE4DA8782"/>
 				<relation>=</relation>
-				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.6</measure>
                 <type>misc</type>
 			</Cell>
 		</map>
@@ -118,7 +118,7 @@
 				<entity1 rdf:resource="http://Frankfurt#sid-445A78A6-1CA7-40BF-B7BF-B8CCCAAEF703141516"/>
 				<entity2 rdf:resource="http://Hohenheim#sid-0018F174-AA16-4850-98AB-1FB3C0AE4DA81421907"/>
 				<relation>=</relation>
-				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+				<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.3</measure>
                 <type>misc</type>
 			</Cell>
 		</map>

@@ -49,12 +49,12 @@ public class TypeCharacteristicTest {
 	
 	@Test
 	public void recallDifficultTest() throws CorrespondenceException {
-		assertEquals(1/(double)2, this.typeCharacteristic.getRecall(CorrespondenceType.DIFFICULT),0);
+		assertEquals(0.75, this.typeCharacteristic.getRecall(CorrespondenceType.DIFFICULT),0);
 	}
 	
 	@Test
 	public void recallDifficultSimilarVerbTest() throws CorrespondenceException {
-		assertEquals(1/(double)3, this.typeCharacteristic.getRecall(CorrespondenceType.DIFFICULT_SIMILAR_VERB),0);
+		assertEquals(0.225, this.typeCharacteristic.getRecall(CorrespondenceType.DIFFICULT_SIMILAR_VERB),0.01);
 	}
 	
 	@Test
@@ -79,17 +79,17 @@ public class TypeCharacteristicTest {
 	
 	@Test
 	public void recallMiscTest() throws CorrespondenceException {
-		assertEquals(1/(double)3, this.typeCharacteristic.getRecall(CorrespondenceType.MISC),0);
+		assertEquals(1/1.9, this.typeCharacteristic.getRecall(CorrespondenceType.MISC),0.01);
 	}
 	
 	@Test
 	public void recallDifficultMicroTest() throws CorrespondenceException {
-		assertEquals(0.5, TypeCharacteristic.getRecallMicro(this.characteristics, CorrespondenceType.DIFFICULT), 0);
+		assertEquals(0.75, TypeCharacteristic.getRecallMicro(this.characteristics, CorrespondenceType.DIFFICULT), 0);
 	}
 	
 	@Test
 	public void recallDifficultMacroTest() throws CorrespondenceException {
-		assertEquals(0.5, TypeCharacteristic.getRecallMacro(this.characteristics, CorrespondenceType.DIFFICULT), 0);
+		assertEquals(0.75, TypeCharacteristic.getRecallMacro(this.characteristics, CorrespondenceType.DIFFICULT), 0);
 	}
 	
 	@Test
@@ -99,12 +99,12 @@ public class TypeCharacteristicTest {
 	
 	@Test
 	public void recallMiscMicroTest() throws CorrespondenceException {
-		assertEquals(1/(double)3, TypeCharacteristic.getRecallMicro(this.characteristics, CorrespondenceType.MISC), 0);
+		assertEquals(1/1.9, TypeCharacteristic.getRecallMicro(this.characteristics, CorrespondenceType.MISC), 0.01);
 	}
 	
 	@Test
 	public void recallMiscMacroTest() throws CorrespondenceException {
-		assertEquals(1/(double)3, TypeCharacteristic.getRecallMacro(this.characteristics, CorrespondenceType.MISC), 0);
+		assertEquals(1/1.9, TypeCharacteristic.getRecallMacro(this.characteristics, CorrespondenceType.MISC), 0.01);
 	}
 	
 	@Test

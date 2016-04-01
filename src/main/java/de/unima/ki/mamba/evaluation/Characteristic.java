@@ -43,7 +43,7 @@ public class Characteristic {
 	private int numOfRulesCorrect;
 	private Alignment alignmentMapping;
 	private Alignment alignmentReference;
-	private Alignment alignmentCorrect;
+	protected Alignment alignmentCorrect;
 	
 	/**
 	* If set to false, it uses jeromes way of counting. 

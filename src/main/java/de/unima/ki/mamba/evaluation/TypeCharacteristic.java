@@ -15,12 +15,14 @@ public class TypeCharacteristic extends Characteristic{
 
 	private Map<CorrespondenceType, Integer> numOfGoldMap;
 	private Map<CorrespondenceType, Integer> numOfMatcherMap;
+	private Map<CorrespondenceType, Alignment> alignmentGold;
 	private Map<CorrespondenceType, Double> recallMap;
 	
 	public TypeCharacteristic(Alignment mapping, Alignment reference) throws CorrespondenceException {
 		super(mapping, reference);
 		this.numOfGoldMap = new HashMap<>();
 		this.numOfMatcherMap = new HashMap<>();
+		this.alignmentGold = new HashMap<>();
 		this.recallMap = new HashMap<>();
 		this.initNumOfGoldMap();
 		this.initNumOfMatcherMap();
@@ -29,17 +31,6 @@ public class TypeCharacteristic extends Characteristic{
 	}
 	
 	private void init(Alignment mapping, Alignment reference) throws CorrespondenceException {
-		Alignment correct = new Alignment();
-		/**
-		 * Find correct correspondences in the mapping alignment
-		 */
-		for(Correspondence cMap : mapping.getCorrespondences()) {
-			for(Correspondence cRef : reference.getCorrespondences()) {
-				if(cMap.equals(cRef)) {
-					correct.add(cRef);
-				}
-			}
-		}
 		/**
 		 * Init number of types of gold standard
 		 */
@@ -47,6 +38,10 @@ public class TypeCharacteristic extends Characteristic{
 			if(cRef.getType().isPresent()) {
 				CorrespondenceType type = cRef.getType().get();
 				this.numOfGoldMap.put(type, this.numOfGoldMap.get(type) + 1);
+				Alignment alignType = this.alignmentGold.get(type);
+				alignType.add(cRef);
+				this.alignmentGold.put(type, alignType);
+				
 			} else {
 				throw new CorrespondenceException(CorrespondenceException.MISSING_TYPE_ANNOTATION);
 			}
@@ -54,7 +49,7 @@ public class TypeCharacteristic extends Characteristic{
 		/**
 		 * Init number of types of correct mappings
 		 */
-		for(Correspondence cMap : correct.getCorrespondences()) {
+		for(Correspondence cMap : this.alignmentCorrect.getCorrespondences()) {
 			CorrespondenceType type = cMap.getType().get();
 			this.numOfMatcherMap.put(type, this.numOfMatcherMap.get(type) + 1);
 		}
@@ -63,6 +58,7 @@ public class TypeCharacteristic extends Characteristic{
 	private void initNumOfGoldMap() {
 		for(CorrespondenceType type : CorrespondenceType.values()) {
 			this.numOfGoldMap.put(type, 0);
+			this.alignmentGold.put(type, new Alignment());
 		}
 	}
 	
@@ -105,8 +101,31 @@ public class TypeCharacteristic extends Characteristic{
 	 * @return the recall for the type category
 	 * @throws CorrespondenceException 
 	 */
-	public double getRecall(CorrespondenceType type) throws CorrespondenceException {
-		return this.recallMap.get(type);
+	public double getRecall(CorrespondenceType type) {
+		return this.getConfSumCorrect(type) / this.getConfSumReference(type);
+	}
+	
+	private double getConfSumReference(CorrespondenceType type) {
+		Alignment alignment = this.alignmentGold.get(type);
+		double sum = 0;
+		for(Correspondence c : alignment) {
+			sum += c.getConfidence();
+		}
+		return sum;
+	}
+
+	
+	private double getConfSumCorrect(CorrespondenceType type) {
+		Alignment alignment = this.alignmentGold.get(type);
+		double sumCorr = 0;
+		for(Correspondence cCorr : this.alignmentCorrect) {
+			for(Correspondence cRef : alignment) {
+				if(cRef.equals(cCorr)) {
+					sumCorr += cRef.getConfidence();
+				}
+			}
+		}
+		return sumCorr;
 	}
 	
 	/**
@@ -117,8 +136,7 @@ public class TypeCharacteristic extends Characteristic{
 	 * @return macro recall
 	 * @throws CorrespondenceException
 	 */
-	public static double getRecallMacro(List<TypeCharacteristic> characteristics, CorrespondenceType type) 
-			throws CorrespondenceException {
+	public static double getRecallMacro(List<TypeCharacteristic> characteristics, CorrespondenceType type) {
 		Objects.requireNonNull(characteristics);
 		double sum = 0;
 		int numOfOcc = 0;
@@ -140,16 +158,15 @@ public class TypeCharacteristic extends Characteristic{
 	 * @return micro recall
 	 * @throws CorrespondenceException 
 	 */
-	public static double getRecallMicro(List<TypeCharacteristic> characteristics, CorrespondenceType type) 
-			throws CorrespondenceException {
+	public static double getRecallMicro(List<TypeCharacteristic> characteristics, CorrespondenceType type) {
 		Objects.requireNonNull(characteristics);
-		int sumNumOfMatcher = 0;
-		int sumNumOfGold = 0;
+		double sumCorr = 0;
+		double sum = 0;
 		for(TypeCharacteristic c : characteristics) {
-			sumNumOfMatcher += c.getNumOfMatcher(type);
-			sumNumOfGold += c.getNumOfGold(type);
+			sumCorr += c.getConfSumCorrect(type);
+			sum += c.getConfSumReference(type);
 		}
-		return Characteristic.computeRecall(sumNumOfMatcher, sumNumOfGold);
+		return sumCorr / sum;
 	}
 	
 	/**
@@ -160,8 +177,7 @@ public class TypeCharacteristic extends Characteristic{
 	 * @return recall standard deviation
 	 * @throws CorrespondenceException 
 	 */
-	public static double getRecallStdDev(List<TypeCharacteristic> characteristics, CorrespondenceType type) 
-			throws CorrespondenceException {
+	public static double getRecallStdDev(List<TypeCharacteristic> characteristics, CorrespondenceType type) {
 		Objects.requireNonNull(characteristics);
 		double avgMacro = TypeCharacteristic.getRecallMacro(characteristics, type);
 		double dev = 0;
