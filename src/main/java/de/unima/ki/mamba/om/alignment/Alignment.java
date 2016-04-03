@@ -206,4 +206,25 @@ public class Alignment implements Iterable<Correspondence>{
 	public boolean isEmpty() {
 		return this.correspondences.isEmpty();
 	}
+	
+	public void join(Alignment a) {
+		for(Correspondence c : a) {
+			if(!this.contained(c)) {
+				this.add(c);
+			}
+		}
+	}
+	
+	public static Alignment join(Alignment a1, Alignment a2) {
+		Alignment align = new Alignment();
+		for(Correspondence c : a1) {
+			align.add(c);
+		}
+		for(Correspondence c : a2) {
+			if(!align.contained(c)) {
+				align.add(c);
+			}
+		}
+		return align;
+	}
 }

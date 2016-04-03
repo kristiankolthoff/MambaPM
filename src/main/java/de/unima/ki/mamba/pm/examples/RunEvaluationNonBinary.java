@@ -34,7 +34,7 @@ public class RunEvaluationNonBinary {
 		final String END_DIR = "/dataset1";
 		final String[] dirs = new String[] {
 				"src/main/resources/data/results/goldstandard/dataset1_goldstandard_experts",
-				"src/main/resources/data/results/basicmatcher1/dataset1-majvote",
+//				"src/main/resources/data/results/basicmatcher1/dataset1-majvote",
 				RESULTS_PATH + "AML-PM" + END_DIR,
 				RESULTS_PATH + "BPLangMatch" + END_DIR,
 				RESULTS_PATH + "KnoMa-Proc" + END_DIR,
@@ -45,10 +45,11 @@ public class RunEvaluationNonBinary {
 				RESULTS_PATH + "RMM-NHCM" + END_DIR,
 				RESULTS_PATH + "RMM-NLM" + END_DIR,
 				RESULTS_PATH + "RMM-SMSL" + END_DIR,
+				RESULTS_PATH + "RMM-VM2" + END_DIR,
 				RESULTS_PATH + "TripleS" + END_DIR
 		};
 		final String[] mappingInfo = new String[] {
-				"MambaPM",
+//				"MambaPM",
 				"AML-PM",
 				"BPLangMatch",
 				"KnoMa-Proc",
@@ -58,6 +59,7 @@ public class RunEvaluationNonBinary {
 				"pPalm-DS",
 				"RMM-NHCM",
 				"RMM-NLM",
+				"RMM-VM2",
 				"RMM-SMSL",
 				"TripleS"
 		};

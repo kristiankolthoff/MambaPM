@@ -288,21 +288,69 @@ public class Characteristic {
 		return sum;
 	}
 	
-	private double getAverageConfidence(Alignment alignment) {
-		double sum = 0;
-		for(Correspondence c : alignment) {
-			sum += c.getConfidence();
+	
+	public double getCorrelation(boolean allowZeros) {
+		Alignment joinAlign = Alignment.join(this.alignmentReference, this.alignmentMapping);
+		//Compute the averages
+		double avgGold = 0;
+		double avgMapper = 0;
+		for(Correspondence c : joinAlign) {
+			for(Correspondence cRef :this.alignmentReference) {
+				if(c.equals(cRef) && (allowZeros || this.alignmentMapping.contained(cRef))) {
+					avgGold+= cRef.getConfidence();
+					break;
+				}
+			}
+			for(Correspondence cMap :this.alignmentMapping) {
+				if(c.equals(cMap) && (allowZeros || this.alignmentReference.contained(cMap))) {
+					avgMapper += cMap.getConfidence();
+					break;
+				}
+			}
 		}
-		return sum / alignment.size();
+		if(allowZeros) {
+			avgGold /= joinAlign.size();
+			avgMapper /= joinAlign.size();			
+		} else {
+			avgGold /= this.getDiffNum(this.alignmentReference, this.alignmentMapping);
+			avgMapper /= this.getDiffNum(this.alignmentMapping, this.alignmentReference);
+		}
+		double sumDev = 0;
+		double sumSqDevGold = 0;
+		double sumSqDevMapper = 0;
+		for(Correspondence c : joinAlign) {
+			double cRefConf = 0;
+			double cMapConf = 0;
+			for(Correspondence cCurr : this.alignmentReference) {
+				if(c.equals(cCurr)) {
+					cRefConf = cCurr.getConfidence();
+					break;
+				}
+			}
+			for(Correspondence cCurr : this.alignmentMapping) {
+				if(c.equals(cCurr)) {
+					cMapConf = cCurr.getConfidence();
+					break;
+				}
+			}
+			//Compute sum deviation
+			if(allowZeros || (cRefConf != 0 && cMapConf != 0)) {
+				sumDev += (cRefConf - avgGold) * (cMapConf - avgMapper);
+				sumSqDevGold += Math.pow((cRefConf - avgGold), 2);
+				sumSqDevMapper += Math.pow((cMapConf - avgMapper), 2);
+			}
+		}
+		return sumDev / (Math.sqrt(sumSqDevGold) * Math.sqrt(sumSqDevMapper));
 	}
 	
-	public double getCorrelation() {
-		double avgGold = this.getAverageConfidence(this.alignmentReference);
-		double avgCorr = this.getAverageConfidence(this.alignmentCorrect);
-		for(Correspondence c : this.alignmentReference) {
-			
+	private int getDiffNum(Alignment a1, Alignment a2) {
+		int diffNum = 0;
+		for(Correspondence c : a1) {
+			if(a2.contained(c)) {
+				diffNum++;
+			}
 		}
-		return 0;
+		return diffNum;
 	}
 	
 	/**
@@ -399,7 +447,7 @@ public class Characteristic {
 		double confSumCorr = 0;
 		int sumOfMappings = 0;
 		for(Characteristic c : characteristics) {
-			confSumRef = c.getConfSumCorrect();
+			confSumRef = c.getConfSumReference();
 			confSumCorr = c.getConfSumCorrect();
 			sumOfMappings = c.getNumOfRulesMatcher();
 		}
