@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-import de.unima.ki.mamba.evaluation.TypeCharacteristic;
+import de.unima.ki.mamba.evaluation.Characteristic;
 import de.unima.ki.mamba.exceptions.CorrespondenceException;
 
 
@@ -20,7 +20,7 @@ public abstract class Renderer {
 		this.bw = new BufferedWriter(new FileWriter(this.file));
 	}
 
-	public abstract void render(List<TypeCharacteristic> characteristics, String mappingInfo) throws IOException, CorrespondenceException;
+	public abstract void render(List<? extends Characteristic> characteristics, String mappingInfo) throws IOException, CorrespondenceException;
 	
 	public void flush() throws IOException {
 		this.bw.flush();

@@ -42,12 +42,18 @@ public class HTMLTableRenderer extends Renderer{
 	}
 	
 	@Override
-	public void render(List<TypeCharacteristic> characteristics, String mappingInfo)
+	public void render(List<? extends Characteristic> characteristics, String mappingInfo)
 			throws IOException, CorrespondenceException {
-		if(!this.initialized) {
-			this.init(characteristics);			
+		List<TypeCharacteristic> typeCharacteristics = new ArrayList<>();
+		for(Characteristic c : characteristics) {
+			if(c instanceof TypeCharacteristic) {
+				typeCharacteristics.add((TypeCharacteristic) c);
+			}
 		}
-		this.appendMetricData(characteristics, mappingInfo);
+		if(!this.initialized) {
+			this.init(typeCharacteristics);			
+		}
+		this.appendMetricData(typeCharacteristics, mappingInfo);
 	}
 	
 	@Override
@@ -210,4 +216,5 @@ public class HTMLTableRenderer extends Renderer{
 			this.table.addElement(new TD(typeRecallStdDev));
 		}
 	}
+
 }

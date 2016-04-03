@@ -36,7 +36,7 @@ public class RunEvaluation {
 		final String END_DIR = "/dataset1";
 		final String[] dirs = new String[] {
 				"src/main/resources/data/results/goldstandard/dataset1",
-				"src/main/resources/data/results/basicmatcher1/dataset1",
+				"src/main/resources/data/results/basicmatcher1/dataset1-majvote",
 				RESULTS_PATH + "AML-PM" + END_DIR,
 				RESULTS_PATH + "BPLangMatch" + END_DIR,
 				RESULTS_PATH + "KnoMa-Proc" + END_DIR,
@@ -103,12 +103,12 @@ public class RunEvaluation {
 //					System.out.println(labelsFP);
 //					System.out.println(alignmentFP);
 //				}
-				Alignment alginmentFN = tc.getFalseNegatives();
-				List<String> labelsFN = Model.transformedAlignment(models, alginmentFN);
-				if(!labelsFN.isEmpty()) {
-					System.out.println(labelsFN);
-					System.out.println(alginmentFN);
-				}	
+//				Alignment alginmentFN = tc.getFalseNegatives();
+//				List<String> labelsFN = Model.transformedAlignment(models, alginmentFN);
+//				if(!labelsFN.isEmpty()) {
+//					System.out.println(labelsFN);
+//					System.out.println(alginmentFN);
+//				}	
 				} catch (CorrespondenceException ex){
 					ex.printStackTrace();
 				} catch(IndexOutOfBoundsException ex) {

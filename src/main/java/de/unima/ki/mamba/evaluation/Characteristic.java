@@ -131,6 +131,9 @@ public class Characteristic {
 		sb.append("Precision: " + (100.0 * this.getPrecision()) + "%\n");
 		sb.append("Recall:    " + (100.0 * this.getRecall()) + "%\n");
 		sb.append("F-measure: " + (100.0 * this.getFMeasure()) + "%\n");
+		sb.append("NB-Precision: " + (100.0 * this.getNBPrecision()) + "%\n");
+		sb.append("NB-Recall:    " + (100.0 * this.getNBRecall()) + "%\n");
+		sb.append("NB-F-measure: " + (100.0 * this.getNBFMeasure()) + "%\n");
 		sb.append("Gold: " + this.numOfRulesGold + " Matcher: " + numOfRulesMatcher +  " Correct: " + numOfRulesCorrect + "\n");
 		return sb.toString();
 	}
@@ -144,6 +147,10 @@ public class Characteristic {
 		return (2 * this.getPrecision() * this.getRecall()) / (this.getPrecision() + this.getRecall());
 	}
 	
+	public double getNBFMeasure() {
+		if ((this.getNBPrecision() == 0.0f) || (this.getNBRecall() == 0.0f)) { return 0.0f; }
+		return (2 * this.getNBPrecision() * this.getNBRecall()) / (this.getNBPrecision() + this.getNBRecall());
+	}
 
 	public static double computeFFromPR(double precision, double recall) {
 		if ((precision == 0.0f) || (recall == 0.0f)) { return 0.0f; }
@@ -164,18 +171,36 @@ public class Characteristic {
 	public String getF() {
 		return toDecimalFormat(this.getFMeasure());
 	}
-
+	
 	/**
 	* Returns the precision.
 	* 
 	* @return The precision.
 	*/
 	public double getPrecision() {
+		return (double)this.numOfRulesCorrect /  (double)this.numOfRulesMatcher;
+	}
+
+	/**
+	* Returns the precision.
+	* 
+	* @return The precision.
+	*/
+	public double getNBPrecision() {
 		return this.getConfSumCorrect() / ((double) this.getFalsePositives().size() + this.getConfSumCorrect());
+	}
+	
+	
+	public String getNBP() {
+		return toDecimalFormat(this.getNBPrecision());
 	}
 	
 	public String getP() {
 		return toDecimalFormat(this.getPrecision());
+	}
+	
+	public double getRecall() {
+		return (double)this.numOfRulesCorrect /  (double)this.numOfRulesGold;
 	}
 	
 	/**
@@ -183,8 +208,12 @@ public class Characteristic {
 	* 
 	* @return The recall.
 	*/
-	public double getRecall() {
+	public double getNBRecall() {
 		return this.getConfSumCorrect() / this.getConfSumReference();
+	}
+	
+	public String getNBR() {
+		return toDecimalFormat(this.getNBRecall());
 	}
 	
 	public String getR() {
@@ -208,8 +237,12 @@ public class Characteristic {
 		double precision = this.getPrecision();
 		double recall = this.getRecall();
 		double f = this.getFMeasure();
+		double nbPrecision = this.getNBPrecision();
+		double nbRecall = this.getNBRecall();
+		double nbF = this.getNBFMeasure();
 
-		return toDecimalFormat(precision) + "\t" + toDecimalFormat(recall) + "\t" + toDecimalFormat(f);
+		return toDecimalFormat(precision) + "\t" + toDecimalFormat(recall) + "\t" + toDecimalFormat(f)
+				+ toDecimalFormat(nbPrecision) + "\t" + toDecimalFormat(nbRecall) + "\t" + toDecimalFormat(nbF);
 	}
 
 	private static String toDecimalFormat(double precision) {
@@ -253,6 +286,161 @@ public class Characteristic {
 			sum += cCorr.getConfidence();
 		}
 		return sum;
+	}
+	
+	private double getAverageConfidence(Alignment alignment) {
+		double sum = 0;
+		for(Correspondence c : alignment) {
+			sum += c.getConfidence();
+		}
+		return sum / alignment.size();
+	}
+	
+	public double getCorrelation() {
+		double avgGold = this.getAverageConfidence(this.alignmentReference);
+		double avgCorr = this.getAverageConfidence(this.alignmentCorrect);
+		for(Correspondence c : this.alignmentReference) {
+			
+		}
+		return 0;
+	}
+	
+	/**
+	 * Compute the macro precision over a list of characteristics. The
+	 * macro precision is the average of all the precision values of
+	 * all characteristics. Note that this metric can be easily biased
+	 * if the testsets are not equally large.
+	 * @param characteristics - the characteristic to compute the macro precision from
+	 * @return macro precision
+	 */
+	public static double getNBPrecisionMacro(List<Characteristic> characteristics) {
+		double sum = 0;
+		int numOfOcc = 0;
+		for(Characteristic c : characteristics) {
+			double currPrecision = c.getNBPrecision();
+			if(!Double.isNaN(currPrecision)) {
+				sum += currPrecision;
+				numOfOcc++;
+			}
+		}
+		return sum / numOfOcc;
+	}
+	
+	/**
+	 * Compute the macro recall over a list of characteristics. The
+	 * macro recall is the average of all the recall values of
+	 * all characteristics. Note that this metric can be easily biased
+	 * if the testsets are not equally large.
+	 * @param characteristics - the characteristic to compute the macro recall from
+	 * @return macro recall
+	 */
+	public static double getNBRecallMacro(List<Characteristic> characteristics) {
+		double sum = 0;
+		for(Characteristic c : characteristics) {
+			sum += c.getNBRecall();
+		}
+		return sum / characteristics.size();
+	}
+	
+	/**
+	 * Compute the micro precision over a list of characteristics. 
+	 * Avoids biasing the value by unequally large data sets.
+	 * @param characteristics - the characteristic to compute the micro precision from
+	 * @return micro precision
+	 */
+	public static double getNBPrecisionMicro(List<Characteristic> characteristics) {
+		double sumConfCorr = 0;
+		int sumFP = 0;
+		for(Characteristic c : characteristics) {
+			sumConfCorr += c.getConfSumCorrect();
+			sumFP += c.getFalsePositives().size();
+		}
+		return sumConfCorr / ((double)sumFP + sumConfCorr);
+	}
+	
+	/**
+	 * Compute the micro recall over a list of characteristics. 
+	 * Avoids biasing the value by unequally large data sets.
+	 * @param characteristics - the characteristic to compute the micro recall from
+	 * @return micro recall
+	 */
+	public static double getNBRecallMicro(List<Characteristic> characteristics) {
+		double sumConfCorr = 0;
+		double sumConfRef = 0;
+		for(Characteristic c : characteristics) {
+			sumConfCorr += c.getConfSumCorrect();
+			sumConfRef += c.getConfSumReference();
+		}
+		return sumConfCorr / sumConfRef;
+	}
+	
+	/**
+	 * Compute the macro f measure over a list of characteristics. 
+	 * Avoids biasing the value by unequally large data sets.
+	 * @param characteristics - the characteristic to compute the f measure from
+	 * @return macro f measure
+	 */
+	public static double getNBFMeasureMacro(List<Characteristic> characteristics) {
+		double sum = 0;
+		for(Characteristic c : characteristics) {
+			sum += c.getNBFMeasure();
+		}
+		return sum / characteristics.size();
+	}
+	
+	/**
+	 * Compute the micro f measure over a list of characteristics. 
+	 * Avoids biasing the value by unequally large data sets.
+	 * @param characteristics - the characteristic to compute the f measure from
+	 * @return micro f measure
+	 */
+	public static double getNBFMeasureMicro(List<Characteristic> characteristics) {
+		double confSumRef = 0;
+		double confSumCorr = 0;
+		int sumOfMappings = 0;
+		for(Characteristic c : characteristics) {
+			confSumRef = c.getConfSumCorrect();
+			confSumCorr = c.getConfSumCorrect();
+			sumOfMappings = c.getNumOfRulesMatcher();
+		}
+		double recall = confSumCorr / confSumRef;
+		double precision = confSumCorr / sumOfMappings;
+		return Characteristic.computeFFromPR(precision, recall);
+	}
+	
+	public static double getNBPrecisionStdDev(List<Characteristic> characteristics) {
+		double avgMacro = Characteristic.getNBPrecisionMacro(characteristics);
+		double dev = 0;
+		int numOfOcc = 0;
+		for(Characteristic c : characteristics) {
+			double currPrecision = c.getNBPrecision();
+			if(!Double.isNaN(currPrecision)) {
+				double currDev = Math.abs(currPrecision - avgMacro);
+				dev += Math.pow(currDev, 2);	
+				numOfOcc++;
+			}
+		}
+		return Math.sqrt(dev/numOfOcc);
+	}
+	
+	public static double getNBRecallStdDev(List<Characteristic> characteristics) {
+		double avgMacro = Characteristic.getNBRecallMacro(characteristics);
+		double dev = 0;
+		for(Characteristic c : characteristics) {
+			double currDev = Math.abs(c.getNBRecall() - avgMacro);
+			dev += Math.pow(currDev, 2);
+		}
+		return Math.sqrt(dev/characteristics.size());
+	}
+	
+	public static double getNBFMeasureStdDev(List<Characteristic> characteristics) {
+		double avgMacro = Characteristic.getNBFMeasureMacro(characteristics);
+		double dev = 0;
+		for(Characteristic c : characteristics) {
+			double currDev = Math.abs(c.getNBFMeasure() - avgMacro);
+			dev += Math.pow(currDev, 2);
+		}
+		return Math.sqrt(dev/characteristics.size());
 	}
 	
 	/**
@@ -299,13 +487,13 @@ public class Characteristic {
 	 * @return micro precision
 	 */
 	public static double getPrecisionMicro(List<Characteristic> characteristics) {
-		double sumConfCorr = 0;
-		int sumFP = 0;
+		int sumNumOfRulesCorrect = 0;
+		int sumNumOfRulesMatcher = 0;
 		for(Characteristic c : characteristics) {
-			sumConfCorr += c.getConfSumCorrect();
-			sumFP += c.getFalsePositives().size();
+			sumNumOfRulesCorrect += c.getNumOfRulesCorrect();
+			sumNumOfRulesMatcher += c.getNumOfRulesMatcher();
 		}
-		return sumConfCorr / ((double)sumFP + sumConfCorr);
+		return sumNumOfRulesCorrect / (double)sumNumOfRulesMatcher;
 	}
 	
 	/**
@@ -315,13 +503,13 @@ public class Characteristic {
 	 * @return micro recall
 	 */
 	public static double getRecallMicro(List<Characteristic> characteristics) {
-		double sumConfCorr = 0;
-		double sumConfRef = 0;
+		int sumNumOfRulesCorrect = 0;
+		int sumNumOfRulesGold = 0;
 		for(Characteristic c : characteristics) {
-			sumConfCorr += c.getConfSumCorrect();
-			sumConfRef += c.getConfSumReference();
+			sumNumOfRulesCorrect += c.getNumOfRulesCorrect();
+			sumNumOfRulesGold += c.getNumOfRulesGold();
 		}
-		return sumConfCorr / sumConfRef;
+		return computeRecall(sumNumOfRulesCorrect, sumNumOfRulesGold);
 	}
 	
 	/**
@@ -345,17 +533,16 @@ public class Characteristic {
 	 * @return micro f measure
 	 */
 	public static double getFMeasureMicro(List<Characteristic> characteristics) {
-		double confSumRef = 0;
-		double confSumCorr = 0;
-		int sumOfMappings = 0;
+		int sumNumOfMatcher = 0;
+		int sumNumOfGold = 0;
+		int sumNumOfCorrect = 0;
 		for(Characteristic c : characteristics) {
-			confSumRef = c.getConfSumCorrect();
-			confSumCorr = c.getConfSumCorrect();
-			sumOfMappings = c.getNumOfRulesMatcher();
+			sumNumOfMatcher += c.getNumOfRulesMatcher();
+			sumNumOfGold += c.getNumOfRulesGold();
+			sumNumOfCorrect += c.getNumOfRulesCorrect();
 		}
-		double recall = confSumCorr / confSumRef;
-		double precision = confSumCorr / sumOfMappings;
-		return Characteristic.computeFFromPR(precision, recall);
+		return Characteristic.computeFFromPR(Characteristic.computeRecall(sumNumOfCorrect, sumNumOfMatcher), 
+				Characteristic.computeRecall(sumNumOfCorrect, sumNumOfGold));
 	}
 	
 	public static double getPrecisionStdDev(List<Characteristic> characteristics) {

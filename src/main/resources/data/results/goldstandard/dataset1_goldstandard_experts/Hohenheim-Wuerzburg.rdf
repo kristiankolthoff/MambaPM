@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns="http://knowledgeweb.semanticweb.org/heterogeneity/alignment" 
+	 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+	 xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+<Alignment>
+<xml>yes</xml>
+<level>0</level>
+<type>??</type>
+
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-DB4C0A6E-9FFA-4DA6-9DBA-94407BADD758"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-03231681-FE58-415D-AECB-BC1143526ED5"/>
+		<measure rdf:datatype="xsd:float">0.375</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-DB4C0A6E-9FFA-4DA6-9DBA-94407BADD758"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-7CE86B77-22F4-48FE-9208-86063463AB6C"/>
+		<measure rdf:datatype="xsd:float">0.375</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-DB4C0A6E-9FFA-4DA6-9DBA-94407BADD758"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5A0807EA-8206-4037-A55F-0A3C9605ABF7"/>
+		<measure rdf:datatype="xsd:float">0.625</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-24D47A96-E6D1-472F-9C6F-24BFBA55CE27"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-7334C78B-F3F1-449E-9B9B-D39C17261BD9"/>
+		<measure rdf:datatype="xsd:float">0.5</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-F5DF9B8C-3421-4AD8-8E35-862722F230D5"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">0.125</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-F5DF9B8C-3421-4AD8-8E35-862722F230D5"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-8C628809-B4AD-4A0E-9BB9-E3AFAB22381C"/>
+		<measure rdf:datatype="xsd:float">0.75</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-F5DF9B8C-3421-4AD8-8E35-862722F230D5"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-48539062-6B70-468F-BF19-F74EEE12F0EB"/>
+		<measure rdf:datatype="xsd:float">0.125</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-16C5EDE2-242D-446A-B150-5E1A5D3F6ED2"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-BE11AE1D-B085-42FA-B004-A17ABBDB94F0"/>
+		<measure rdf:datatype="xsd:float">1.0</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-4811DA9B-DECF-4423-95F9-DF9AE5A3053E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-4905EF0C-869A-4E84-B972-D562472547A0"/>
+		<measure rdf:datatype="xsd:float">0.875</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-4811DA9B-DECF-4423-95F9-DF9AE5A3053E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5545318C-6215-4794-ACBD-3A422064C54E"/>
+		<measure rdf:datatype="xsd:float">0.75</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-BEB61ACC-4977-43FF-BA82-A8D400C1FDB3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-5A0807EA-8206-4037-A55F-0A3C9605ABF7"/>
+		<measure rdf:datatype="xsd:float">0.625</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-A0F4F7A5-C581-456C-85EE-0EA5E831BBB3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
+		<measure rdf:datatype="xsd:float">0.75</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-65B886A3-3075-4605-961B-5C2FB73ED1B3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-8C069EC3-1A91-4327-9C7C-364898A9A6BF"/>
+		<measure rdf:datatype="xsd:float">0.875</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-127FF88D-82B1-497C-810F-A233C9815279"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-31ACAFC9-DEA8-4F26-8AC2-16751B0B91A2"/>
+		<measure rdf:datatype="xsd:float">0.75</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-127FF88D-82B1-497C-810F-A233C9815279"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-925591B8-59CC-4806-B43B-3B5F10D7794F"/>
+		<measure rdf:datatype="xsd:float">0.875</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-EA76CC8B-DB97-46CB-A2A0-5F44667C8B2E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-B06626EF-C70E-4D70-B20F-BA3DAC313DD9"/>
+		<measure rdf:datatype="xsd:float">0.625</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-EA76CC8B-DB97-46CB-A2A0-5F44667C8B2E"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-B06626EF-C70E-4D70-B20F-BA3DAC313DD9"/>
+		<measure rdf:datatype="xsd:float">0.5</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-5F59D760-9062-4ECA-A984-61D03B97FDE6"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-48539062-6B70-468F-BF19-F74EEE12F0EB"/>
+		<measure rdf:datatype="xsd:float">0.125</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-A0F4F7A5-C581-456C-85EE-0EA5E831BBB3"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
+		<measure rdf:datatype="xsd:float">0.125</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+
+</Alignment>
+</rdf:RDF>
