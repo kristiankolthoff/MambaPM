@@ -529,15 +529,16 @@ public class Characteristic {
 	public static double getNBFMeasureMicro(List<Characteristic> characteristics) {
 		double confSumRef = 0;
 		double confSumCorr = 0;
-		int sumOfMappings = 0;
+		int numfp = 0;
 		for(Characteristic c : characteristics) {
-			confSumRef = c.getConfSumReference();
-			confSumCorr = c.getConfSumCorrect();
-			sumOfMappings = c.getNumOfRulesMatcher();
+			confSumRef += c.getConfSumReference();
+			confSumCorr += c.getConfSumCorrect();
+			numfp += c.getFalsePositives().size();
 		}
 		double recall = confSumCorr / confSumRef;
-		double precision = confSumCorr / sumOfMappings;
-		return Characteristic.computeFFromPR(precision, recall);
+		double precision = confSumCorr / ((double)numfp + confSumCorr) ;
+		double fmeasure = Characteristic.computeFFromPR(precision, recall);
+		return fmeasure;
 	}
 	
 	public static double getNBPrecisionStdDev(List<Characteristic> characteristics) {
