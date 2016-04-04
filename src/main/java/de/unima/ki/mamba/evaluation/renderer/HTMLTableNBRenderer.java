@@ -88,6 +88,11 @@ public class HTMLTableNBRenderer extends Renderer{
 		trHead1.addElement(th3.addAttribute("width", "20"));
 		trHead1.addElement(new TH("F-Measure").addAttribute("colspan", "3"));
 		this.table.addElement(trHead1);
+		TH th4 = new TH();
+		th4.setStyle("border:none;");
+		trHead1.addElement(th4.addAttribute("width", "20"));
+		trHead1.addElement(new TH("Corr.").addAttribute("colspan", "3"));
+		this.table.addElement(trHead1);
 	}
 	
 	
@@ -103,6 +108,7 @@ public class HTMLTableNBRenderer extends Renderer{
 			trHead2.addElement(new TD("SD"));
 			trHead2.addElement(new TD().setStyle("border:none;"));
 		}
+		trHead2.addElement(new TD());
 		this.table.addElement(trHead2);
 	}
 	
@@ -121,6 +127,7 @@ public class HTMLTableNBRenderer extends Renderer{
 		String microFMeasure = this.df.format(Characteristic.getNBFMeasureMicro(characteristics));
 		String macroFMeasure = this.df.format(Characteristic.getNBFMeasureMacro(characteristics));
 		String stdDevFMeasure = this.df.format(Characteristic.getNBFMeasureStdDev(characteristics));
+		String correlation = this.df.format(Characteristic.getCorrelationMicro(characteristics, false));
 		
 		this.table.addElement(new TD(mappingInfo));
 		this.table.addElement(new TD().setStyle("border:none;"));
@@ -135,6 +142,8 @@ public class HTMLTableNBRenderer extends Renderer{
 		this.table.addElement(new TD(microFMeasure));
 		this.table.addElement(new TD(macroFMeasure));
 		this.table.addElement(new TD(stdDevFMeasure));
+		this.table.addElement(new TD().setStyle("border:none;"));
+		this.table.addElement(new TD(correlation));
 	}
 
 }

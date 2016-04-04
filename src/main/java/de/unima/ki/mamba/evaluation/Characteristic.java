@@ -28,6 +28,7 @@ package de.unima.ki.mamba.evaluation;
 import java.text.DecimalFormat;
 import java.util.List;
 
+
 import de.unima.ki.mamba.om.alignment.Alignment;
 import de.unima.ki.mamba.om.alignment.Correspondence;
 
@@ -44,6 +45,8 @@ public class Characteristic {
 	private Alignment alignmentMapping;
 	private Alignment alignmentReference;
 	protected Alignment alignmentCorrect;
+	//TODO: note this can cause nullpointerexceptions
+	private boolean allowZeros;
 	
 	/**
 	* If set to false, it uses jeromes way of counting. 
@@ -134,6 +137,7 @@ public class Characteristic {
 		sb.append("NB-Precision: " + (100.0 * this.getNBPrecision()) + "%\n");
 		sb.append("NB-Recall:    " + (100.0 * this.getNBRecall()) + "%\n");
 		sb.append("NB-F-measure: " + (100.0 * this.getNBFMeasure()) + "%\n");
+		sb.append("Correlation: " + (100.0 * this.getCorrelation(this.allowZeros)) + "%\n");
 		sb.append("Gold: " + this.numOfRulesGold + " Matcher: " + numOfRulesMatcher +  " Correct: " + numOfRulesCorrect + "\n");
 		return sb.toString();
 	}
@@ -240,9 +244,11 @@ public class Characteristic {
 		double nbPrecision = this.getNBPrecision();
 		double nbRecall = this.getNBRecall();
 		double nbF = this.getNBFMeasure();
+		double correlation = this.getCorrelation(this.allowZeros);
 
 		return toDecimalFormat(precision) + "\t" + toDecimalFormat(recall) + "\t" + toDecimalFormat(f)
-				+ toDecimalFormat(nbPrecision) + "\t" + toDecimalFormat(nbRecall) + "\t" + toDecimalFormat(nbF);
+				+ toDecimalFormat(nbPrecision) + "\t" + toDecimalFormat(nbRecall) + "\t" + toDecimalFormat(nbF)
+				+ "\t" + toDecimalFormat(correlation);
 	}
 
 	private static String toDecimalFormat(double precision) {
@@ -288,33 +294,40 @@ public class Characteristic {
 		return sum;
 	}
 	
-	
+	/**
+	 * 
+	 * @param allowZeros
+	 * @return
+	 */
 	public double getCorrelation(boolean allowZeros) {
 		Alignment joinAlign = Alignment.join(this.alignmentReference, this.alignmentMapping);
 		//Compute the averages
-		double avgGold = 0;
-		double avgMapper = 0;
+		double avgGold = 0, avgMapper = 0;
+		int numGold = 0, numMapper = 0;
 		for(Correspondence c : joinAlign) {
 			for(Correspondence cRef :this.alignmentReference) {
-				if(c.equals(cRef) && (allowZeros || this.alignmentMapping.contained(cRef))) {
-					avgGold+= cRef.getConfidence();
+				if(c.equals(cRef)) {
+					avgGold += cRef.getConfidence();
+					numGold++;
 					break;
 				}
 			}
 			for(Correspondence cMap :this.alignmentMapping) {
 				if(c.equals(cMap) && (allowZeros || this.alignmentReference.contained(cMap))) {
 					avgMapper += cMap.getConfidence();
+					numMapper++;
 					break;
 				}
 			}
 		}
 		if(allowZeros) {
+			avgMapper /= joinAlign.size();
 			avgGold /= joinAlign.size();
-			avgMapper /= joinAlign.size();			
 		} else {
-			avgGold /= this.getDiffNum(this.alignmentReference, this.alignmentMapping);
-			avgMapper /= this.getDiffNum(this.alignmentMapping, this.alignmentReference);
+			avgGold /= numGold;
+			avgMapper /= numMapper;
 		}
+		//Compute correlation
 		double sumDev = 0;
 		double sumSqDevGold = 0;
 		double sumSqDevMapper = 0;
@@ -334,7 +347,7 @@ public class Characteristic {
 				}
 			}
 			//Compute sum deviation
-			if(allowZeros || (cRefConf != 0 && cMapConf != 0)) {
+			if(allowZeros || cRefConf != 0) {
 				sumDev += (cRefConf - avgGold) * (cMapConf - avgMapper);
 				sumSqDevGold += Math.pow((cRefConf - avgGold), 2);
 				sumSqDevMapper += Math.pow((cMapConf - avgMapper), 2);
@@ -343,14 +356,91 @@ public class Characteristic {
 		return sumDev / (Math.sqrt(sumSqDevGold) * Math.sqrt(sumSqDevMapper));
 	}
 	
-	private int getDiffNum(Alignment a1, Alignment a2) {
-		int diffNum = 0;
-		for(Correspondence c : a1) {
-			if(a2.contained(c)) {
-				diffNum++;
+	public static double getCorrelationMicro(List<Characteristic> characteristics, boolean allowZeros) {
+		//Compute the averages
+		double avgGold = 0, avgMapper = 0;
+		int numGold = 0, numMapper = 0, numJoinAlign = 0;
+		for(Characteristic c : characteristics) {
+			Alignment alignRef = c.getAlignmentReference();
+			Alignment alignMap = c.getAlignmentMapping();
+			Alignment joinAlign = Alignment.join(alignRef, alignMap);
+			numJoinAlign += joinAlign.size();
+			for(Correspondence cCurr : joinAlign) {
+				for(Correspondence cRef : alignRef) {
+					if(cCurr.equals(cRef)) {
+						avgGold += cRef.getConfidence();
+						numGold++;
+						break;
+					}
+				}
+				for(Correspondence cMap : alignMap) {
+					if(cCurr.equals(cMap) && (allowZeros || alignRef.contained(cMap))) {
+						avgMapper += cMap.getConfidence();
+						numMapper++;
+						break;
+					}
+				}
 			}
 		}
-		return diffNum;
+		if(allowZeros) {
+			avgGold /= numJoinAlign;
+			avgMapper /= numJoinAlign;
+		} else {
+			avgGold /= numGold;
+			avgMapper /= numMapper;
+		}
+		//Compute correlation
+		double sumDev = 0;
+		double sumSqDevGold = 0;
+		double sumSqDevMapper = 0;
+		for(Characteristic c : characteristics) {
+			Alignment alignRef = c.getAlignmentReference();
+			Alignment alignMap = c.getAlignmentMapping();
+			Alignment joinAlign = Alignment.join(alignRef, alignMap);
+			for(Correspondence cCurr : joinAlign) {
+				double cRefConf = 0;
+				double cMapConf = 0;
+				for(Correspondence cCurr1 : alignRef) {
+					if(cCurr.equals(cCurr1)) {
+						cRefConf = cCurr1.getConfidence();
+						break;
+					}
+				}
+				for(Correspondence cCurr1 : alignMap) {
+					if(cCurr.equals(cCurr1)) {
+						cMapConf = cCurr1.getConfidence();
+						break;
+					}
+				}
+				//Compute sum deviation
+				if(allowZeros || cRefConf != 0) {
+					sumDev += (cRefConf - avgGold) * (cMapConf - avgMapper);
+					sumSqDevGold += Math.pow((cRefConf - avgGold), 2);
+					sumSqDevMapper += Math.pow((cMapConf - avgMapper), 2);
+				}
+			}
+		}
+		return sumDev / (Math.sqrt(sumSqDevGold) * Math.sqrt(sumSqDevMapper));
+	}
+
+	
+	/**
+	 * 
+	 * @param characteristics
+	 * @param allowZeros
+	 * @return
+	 */
+	public static double getCorrelationMakro(List<Characteristic> characteristics, boolean allowZeros) {
+		double sum = 0;
+		int num = 0;
+		for(Characteristic c : characteristics) {
+			double corr = c.getCorrelation(allowZeros);
+			if(!Double.isNaN(corr)) {
+				sum += corr;
+				num++;
+			}
+		}
+		return sum / num;
 	}
 	
 	/**
@@ -627,5 +717,26 @@ public class Characteristic {
 		}
 		return Math.sqrt(dev/characteristics.size());
 	}
+
+	public boolean isAllowZeros() {
+		return allowZeros;
+	}
+
+	public void setAllowZeros(boolean allowZeros) {
+		this.allowZeros = allowZeros;
+	}
+
+	public Alignment getAlignmentMapping() {
+		return alignmentMapping;
+	}
+
+	public Alignment getAlignmentReference() {
+		return alignmentReference;
+	}
+
+	public Alignment getAlignmentCorrect() {
+		return alignmentCorrect;
+	}
+	
 	
 }

@@ -94,6 +94,7 @@ public class RunEvaluationNonBinary {
 				Alignment mapping = aligns.get(j);
 				Alignment reference = alignments.get(0).get(j);
 				Characteristic tc = new Characteristic(mapping, reference);
+				tc.setAllowZeros(false);
 				tcharacteristics.add(tc);
 				} catch(IndexOutOfBoundsException ex) {
 					System.err.println("Number of reference and matcher "

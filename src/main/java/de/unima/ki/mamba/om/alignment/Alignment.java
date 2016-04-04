@@ -223,6 +223,7 @@ public class Alignment implements Iterable<Correspondence>{
 		for(Correspondence c : a2) {
 			if(!align.contained(c)) {
 				align.add(c);
+				System.out.println(c);
 			}
 		}
 		return align;
