@@ -303,19 +303,13 @@ public class Characteristic {
 		Alignment joinAlign = Alignment.join(this.alignmentReference, this.alignmentMapping);
 		//Compute the averages
 		double avgGold = 0, avgMapper = 0;
-		int numGold = 0, numMapper = 0;
+		for(Correspondence cRef :this.alignmentReference) {
+				avgGold += cRef.getConfidence();
+		}
 		for(Correspondence c : joinAlign) {
-			for(Correspondence cRef :this.alignmentReference) {
-				if(c.equals(cRef)) {
-					avgGold += cRef.getConfidence();
-					numGold++;
-					break;
-				}
-			}
 			for(Correspondence cMap :this.alignmentMapping) {
 				if(c.equals(cMap) && (allowZeros || this.alignmentReference.contained(cMap))) {
 					avgMapper += cMap.getConfidence();
-					numMapper++;
 					break;
 				}
 			}
@@ -324,8 +318,8 @@ public class Characteristic {
 			avgMapper /= joinAlign.size();
 			avgGold /= joinAlign.size();
 		} else {
-			avgGold /= numGold;
-			avgMapper /= numMapper;
+			avgGold /= this.alignmentReference.size();
+			avgMapper /= this.alignmentReference.size();
 		}
 		//Compute correlation
 		double sumDev = 0;
@@ -334,15 +328,19 @@ public class Characteristic {
 		for(Correspondence c : joinAlign) {
 			double cRefConf = 0;
 			double cMapConf = 0;
+			Correspondence cRef = null;
+			Correspondence cMap = null;
 			for(Correspondence cCurr : this.alignmentReference) {
 				if(c.equals(cCurr)) {
 					cRefConf = cCurr.getConfidence();
+					cRef = cCurr;
 					break;
 				}
 			}
 			for(Correspondence cCurr : this.alignmentMapping) {
 				if(c.equals(cCurr)) {
 					cMapConf = cCurr.getConfidence();
+					cMap = cCurr;
 					break;
 				}
 			}
@@ -359,24 +357,20 @@ public class Characteristic {
 	public static double getCorrelationMicro(List<Characteristic> characteristics, boolean allowZeros) {
 		//Compute the averages
 		double avgGold = 0, avgMapper = 0;
-		int numGold = 0, numMapper = 0, numJoinAlign = 0;
+		int numRef = 0, numJoinAlign = 0;
 		for(Characteristic c : characteristics) {
 			Alignment alignRef = c.getAlignmentReference();
 			Alignment alignMap = c.getAlignmentMapping();
 			Alignment joinAlign = Alignment.join(alignRef, alignMap);
 			numJoinAlign += joinAlign.size();
+			numRef += alignRef.size();
+			for(Correspondence cRef : alignRef) {
+					avgGold += cRef.getConfidence();
+			}
 			for(Correspondence cCurr : joinAlign) {
-				for(Correspondence cRef : alignRef) {
-					if(cCurr.equals(cRef)) {
-						avgGold += cRef.getConfidence();
-						numGold++;
-						break;
-					}
-				}
 				for(Correspondence cMap : alignMap) {
 					if(cCurr.equals(cMap) && (allowZeros || alignRef.contained(cMap))) {
 						avgMapper += cMap.getConfidence();
-						numMapper++;
 						break;
 					}
 				}
@@ -386,8 +380,8 @@ public class Characteristic {
 			avgGold /= numJoinAlign;
 			avgMapper /= numJoinAlign;
 		} else {
-			avgGold /= numGold;
-			avgMapper /= numMapper;
+			avgGold /= numRef;
+			avgMapper /= numRef;
 		}
 		//Compute correlation
 		double sumDev = 0;
@@ -430,7 +424,7 @@ public class Characteristic {
 	 * @param allowZeros
 	 * @return
 	 */
-	public static double getCorrelationMakro(List<Characteristic> characteristics, boolean allowZeros) {
+	public static double getCorrelationMacro(List<Characteristic> characteristics, boolean allowZeros) {
 		double sum = 0;
 		int num = 0;
 		for(Characteristic c : characteristics) {
