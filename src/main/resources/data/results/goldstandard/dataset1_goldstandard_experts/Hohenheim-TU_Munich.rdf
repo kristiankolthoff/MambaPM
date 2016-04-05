@@ -90,6 +90,14 @@
 </map>
 <map>
 	<Cell>
+		<entity1 rdf:resource="http://Hohenheim#sid-EA76CC8B-DB97-46CB-A2A0-5F44667C8B2E"/>
+		<entity2 rdf:resource="http://TU_Munich#sid-40FCF57B-44A4-443F-80D6-D2778D1045CD"/>
+		<measure rdf:datatype="xsd:float">0.75</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
 		<entity1 rdf:resource="http://Hohenheim#sid-24D47A96-E6D1-472F-9C6F-24BFBA55CE27"/>
 		<entity2 rdf:resource="http://TU_Munich#sid-3B9A1679-D9C0-48D4-B6EB-EE354AB529F2"/>
 		<measure rdf:datatype="xsd:float">0.125</measure>

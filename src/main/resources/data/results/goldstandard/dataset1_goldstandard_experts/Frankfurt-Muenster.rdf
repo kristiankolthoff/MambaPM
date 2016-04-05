@@ -12,15 +12,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Frankfurt#sid-56CF457C-E58D-4519-AD80-5EDE6DD9E302"/>
 		<entity2 rdf:resource="http://Muenster#sid-182346E3-C3CF-4CF6-B8E6-4D3D4BDA3D1B"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Frankfurt#sid-56CF457C-E58D-4519-AD80-5EDE6DD9E302"/>
-		<entity2 rdf:resource="http://Muenster#sid-182346E3-C3CF-4CF6-B8E6-4D3D4BDA3D1B"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
+		<measure rdf:datatype="xsd:float">0.5</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -132,15 +124,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Frankfurt#sid-64E18B0C-527B-4E00-97A1-DD9A8EA9FEB5"/>
 		<entity2 rdf:resource="http://Muenster#sid-5D36CFBD-36D5-4A2F-81E6-83F468923C4B"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Frankfurt#sid-64E18B0C-527B-4E00-97A1-DD9A8EA9FEB5"/>
-		<entity2 rdf:resource="http://Muenster#sid-5D36CFBD-36D5-4A2F-81E6-83F468923C4B"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
+		<measure rdf:datatype="xsd:float">0.375</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

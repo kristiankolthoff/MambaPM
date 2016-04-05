@@ -100,15 +100,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Hohenheim#sid-BEB61ACC-4977-43FF-BA82-A8D400C1FDB3"/>
 		<entity2 rdf:resource="http://Muenster#sid-BDCFC466-A624-4FD3-B69D-D5C08CEC4BC9"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Hohenheim#sid-BEB61ACC-4977-43FF-BA82-A8D400C1FDB3"/>
-		<entity2 rdf:resource="http://Muenster#sid-BDCFC466-A624-4FD3-B69D-D5C08CEC4BC9"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
+		<measure rdf:datatype="xsd:float">0.75</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

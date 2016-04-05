@@ -100,7 +100,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Hohenheim#sid-A0F4F7A5-C581-456C-85EE-0EA5E831BBB3"/>
 		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
-		<measure rdf:datatype="xsd:float">0.75</measure>
+		<measure rdf:datatype="xsd:float">0.875</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -132,15 +132,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Hohenheim#sid-EA76CC8B-DB97-46CB-A2A0-5F44667C8B2E"/>
 		<entity2 rdf:resource="http://Wuerzburg#sid-B06626EF-C70E-4D70-B20F-BA3DAC313DD9"/>
-		<measure rdf:datatype="xsd:float">0.625</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Hohenheim#sid-EA76CC8B-DB97-46CB-A2A0-5F44667C8B2E"/>
-		<entity2 rdf:resource="http://Wuerzburg#sid-B06626EF-C70E-4D70-B20F-BA3DAC313DD9"/>
-		<measure rdf:datatype="xsd:float">0.5</measure>
+		<measure rdf:datatype="xsd:float">1.0</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -148,14 +140,6 @@
 	<Cell>
 		<entity1 rdf:resource="http://Hohenheim#sid-5F59D760-9062-4ECA-A984-61D03B97FDE6"/>
 		<entity2 rdf:resource="http://Wuerzburg#sid-48539062-6B70-468F-BF19-F74EEE12F0EB"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Hohenheim#sid-A0F4F7A5-C581-456C-85EE-0EA5E831BBB3"/>
-		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
 		<measure rdf:datatype="xsd:float">0.125</measure>
 		<relation>=</relation>
 	</Cell>

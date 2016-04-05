@@ -60,7 +60,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Frankfurt#sid-5108D3F6-5D84-4ECB-B826-1A54D3D17B20"/>
 		<entity2 rdf:resource="http://FU_Berlin#sid-3572686C-9AEC-4B27-85AC-6A1F1C28883C"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
+		<measure rdf:datatype="xsd:float">0.625</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -100,7 +100,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Frankfurt#sid-0FB8FB77-B1AF-4D8C-A203-3730AA67E6A4"/>
 		<entity2 rdf:resource="http://FU_Berlin#sid-9C365BD2-58D0-443D-9FD4-AC287BF377F6"/>
-		<measure rdf:datatype="xsd:float">0.5</measure>
+		<measure rdf:datatype="xsd:float">0.75</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -116,7 +116,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Frankfurt#sid-6A55CE80-9951-465C-B375-41109E798BF7"/>
 		<entity2 rdf:resource="http://FU_Berlin#sid-C8972681-3E1C-408F-8595-59226D48CF52"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
+		<measure rdf:datatype="xsd:float">0.625</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -130,24 +130,8 @@
 </map>
 <map>
 	<Cell>
-		<entity1 rdf:resource="http://Frankfurt#sid-6A55CE80-9951-465C-B375-41109E798BF7"/>
-		<entity2 rdf:resource="http://FU_Berlin#sid-3572686C-9AEC-4B27-85AC-6A1F1C28883C"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
 		<entity1 rdf:resource="http://Frankfurt#sid-6952982C-0D18-4456-93A2-B60B5B3BA047"/>
 		<entity2 rdf:resource="http://FU_Berlin#sid-B6AB9BD8-F756-41D5-9C17-8E03673B22CC"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Frankfurt#sid-0FB8FB77-B1AF-4D8C-A203-3730AA67E6A4"/>
-		<entity2 rdf:resource="http://FU_Berlin#sid-9C365BD2-58D0-443D-9FD4-AC287BF377F6"/>
 		<measure rdf:datatype="xsd:float">0.25</measure>
 		<relation>=</relation>
 	</Cell>
@@ -165,14 +149,6 @@
 		<entity1 rdf:resource="http://Frankfurt#sid-445A78A6-1CA7-40BF-B7BF-B8CCCAAEF703"/>
 		<entity2 rdf:resource="http://FU_Berlin#sid-40E8C5AF-D744-4471-A64D-96313973FB7E"/>
 		<measure rdf:datatype="xsd:float">0.375</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Frankfurt#sid-6A55CE80-9951-465C-B375-41109E798BF7"/>
-		<entity2 rdf:resource="http://FU_Berlin#sid-C8972681-3E1C-408F-8595-59226D48CF52"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

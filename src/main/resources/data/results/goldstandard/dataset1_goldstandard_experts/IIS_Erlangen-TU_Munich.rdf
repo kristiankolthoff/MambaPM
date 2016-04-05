@@ -76,15 +76,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://IIS_Erlangen#sid-E326A826-24F7-4033-96F3-C5842831A3D7"/>
 		<entity2 rdf:resource="http://TU_Munich#sid-B9C01B9A-294C-4E27-A0A8-DB69025E4284"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://IIS_Erlangen#sid-E326A826-24F7-4033-96F3-C5842831A3D7"/>
-		<entity2 rdf:resource="http://TU_Munich#sid-B9C01B9A-294C-4E27-A0A8-DB69025E4284"/>
-		<measure rdf:datatype="xsd:float">0.5</measure>
+		<measure rdf:datatype="xsd:float">0.875</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -181,14 +173,6 @@
 		<entity1 rdf:resource="http://IIS_Erlangen#sid-F7DEFF89-0D0A-4BC8-B024-1361C31D3C9B"/>
 		<entity2 rdf:resource="http://TU_Munich#sid-8C188CB2-5CD5-451F-B76D-B14C777E9556"/>
 		<measure rdf:datatype="xsd:float">0.625</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://IIS_Erlangen#sid-E326A826-24F7-4033-96F3-C5842831A3D7"/>
-		<entity2 rdf:resource="http://TU_Munich#sid-B9C01B9A-294C-4E27-A0A8-DB69025E4284"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

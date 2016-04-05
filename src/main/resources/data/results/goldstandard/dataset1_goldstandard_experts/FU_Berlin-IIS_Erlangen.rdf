@@ -132,15 +132,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://FU_Berlin#sid-8CD99AE0-12FB-4062-AEDC-AA4457745B90"/>
 		<entity2 rdf:resource="http://IIS_Erlangen#sid-E326A826-24F7-4033-96F3-C5842831A3D7"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://FU_Berlin#sid-8CD99AE0-12FB-4062-AEDC-AA4457745B90"/>
-		<entity2 rdf:resource="http://IIS_Erlangen#sid-E326A826-24F7-4033-96F3-C5842831A3D7"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
+		<measure rdf:datatype="xsd:float">0.5</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -148,7 +140,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://FU_Berlin#sid-C7F816A3-51CD-4003-959F-D7334F288544"/>
 		<entity2 rdf:resource="http://IIS_Erlangen#sid-CD0AAA0A-DA33-49A7-9210-91A50CE637A4"/>
-		<measure rdf:datatype="xsd:float">0.875</measure>
+		<measure rdf:datatype="xsd:float">1.0</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -188,14 +180,6 @@
 	<Cell>
 		<entity1 rdf:resource="http://FU_Berlin#sid-3572686C-9AEC-4B27-85AC-6A1F1C28883C"/>
 		<entity2 rdf:resource="http://IIS_Erlangen#sid-6DFE0930-0501-4B8A-A303-C56864B1E852"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://FU_Berlin#sid-C7F816A3-51CD-4003-959F-D7334F288544"/>
-		<entity2 rdf:resource="http://IIS_Erlangen#sid-CD0AAA0A-DA33-49A7-9210-91A50CE637A4"/>
 		<measure rdf:datatype="xsd:float">0.125</measure>
 		<relation>=</relation>
 	</Cell>

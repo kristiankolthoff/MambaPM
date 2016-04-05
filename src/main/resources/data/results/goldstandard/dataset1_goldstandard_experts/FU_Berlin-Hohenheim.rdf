@@ -116,7 +116,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://FU_Berlin#sid-8CD99AE0-12FB-4062-AEDC-AA4457745B90"/>
 		<entity2 rdf:resource="http://Hohenheim#sid-127FF88D-82B1-497C-810F-A233C9815279"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
+		<measure rdf:datatype="xsd:float">0.375</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -165,14 +165,6 @@
 		<entity1 rdf:resource="http://FU_Berlin#sid-8CD99AE0-12FB-4062-AEDC-AA4457745B90"/>
 		<entity2 rdf:resource="http://Hohenheim#sid-5F59D760-9062-4ECA-A984-61D03B97FDE6"/>
 		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://FU_Berlin#sid-8CD99AE0-12FB-4062-AEDC-AA4457745B90"/>
-		<entity2 rdf:resource="http://Hohenheim#sid-127FF88D-82B1-497C-810F-A233C9815279"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

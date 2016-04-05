@@ -52,7 +52,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-A3568080-F469-4D86-BB96-7A5C48342857"/>
 		<entity2 rdf:resource="http://TU_Munich#sid-C35B2287-57A3-420B-A8B3-86E1FBC12BDA"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
+		<measure rdf:datatype="xsd:float">0.875</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -61,14 +61,6 @@
 		<entity1 rdf:resource="http://Cologne#sid-257EB9F2-1203-4F54-8E2E-43FE6ABA096E"/>
 		<entity2 rdf:resource="http://TU_Munich#sid-AFB67B06-BDE2-40B6-B3C2-A3665192D791"/>
 		<measure rdf:datatype="xsd:float">0.75</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Cologne#sid-A3568080-F469-4D86-BB96-7A5C48342857"/>
-		<entity2 rdf:resource="http://TU_Munich#sid-C35B2287-57A3-420B-A8B3-86E1FBC12BDA"/>
-		<measure rdf:datatype="xsd:float">0.625</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

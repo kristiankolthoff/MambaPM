@@ -91,6 +91,14 @@
 <map>
 	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-B11703D1-08C3-416B-8947-76CE10A27978"/>
+		<entity2 rdf:resource="http://Muenster#sid-F1349441-49AF-4AC2-8A31-EB0BA9BACB9D"/>
+		<measure rdf:datatype="xsd:float">0.625</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-B11703D1-08C3-416B-8947-76CE10A27978"/>
 		<entity2 rdf:resource="http://Muenster#sid-6AC1166A-C7A0-46B7-99D0-8BE2D24163BB"/>
 		<measure rdf:datatype="xsd:float">0.5</measure>
 		<relation>=</relation>
@@ -138,9 +146,25 @@
 </map>
 <map>
 	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-257EB9F2-1203-4F54-8E2E-43FE6ABA096E"/>
+		<entity2 rdf:resource="http://Muenster#sid-C28F8767-5ADE-4467-9F6B-92B0B07939A5"/>
+		<measure rdf:datatype="xsd:float">0.75</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-A3568080-F469-4D86-BB96-7A5C48342857"/>
 		<entity2 rdf:resource="http://Muenster#sid-653B2E61-D08D-4038-A632-603B74BAAD45"/>
-		<measure rdf:datatype="xsd:float">0.5</measure>
+		<measure rdf:datatype="xsd:float">0.625</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
+		<entity1 rdf:resource="http://Cologne#sid-FF649B0C-30F0-4E43-9BEC-02E1B22AA554"/>
+		<entity2 rdf:resource="http://Muenster#sid-182346E3-C3CF-4CF6-B8E6-4D3D4BDA3D1B"/>
+		<measure rdf:datatype="xsd:float">0.375</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -194,14 +218,6 @@
 </map>
 <map>
 	<Cell>
-		<entity1 rdf:resource="http://Cologne#sid-A3568080-F469-4D86-BB96-7A5C48342857"/>
-		<entity2 rdf:resource="http://Muenster#sid-653B2E61-D08D-4038-A632-603B74BAAD45"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-B41B5C8F-D1D5-4641-943B-DB396FD69D0B"/>
 		<entity2 rdf:resource="http://Muenster#sid-AC882752-8183-4B69-A4D5-0F42117E1465"/>
 		<measure rdf:datatype="xsd:float">0.375</measure>
@@ -213,14 +229,6 @@
 		<entity1 rdf:resource="http://Cologne#sid-885F9233-8A3A-470C-90D9-FA7F483D69CA"/>
 		<entity2 rdf:resource="http://Muenster#sid-66E14D25-5238-4638-AB88-E366DA178D51"/>
 		<measure rdf:datatype="xsd:float">0.25</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Cologne#sid-257EB9F2-1203-4F54-8E2E-43FE6ABA096E"/>
-		<entity2 rdf:resource="http://Muenster#sid-C28F8767-5ADE-4467-9F6B-92B0B07939A5"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

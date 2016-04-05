@@ -194,6 +194,14 @@
 </map>
 <map>
 	<Cell>
+		<entity1 rdf:resource="http://Muenster#sid-ADC31BF6-B98E-4ECC-9EED-6E5AEB7A60D0"/>
+		<entity2 rdf:resource="http://Wuerzburg#sid-48539062-6B70-468F-BF19-F74EEE12F0EB"/>
+		<measure rdf:datatype="xsd:float">0.25</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
 		<entity1 rdf:resource="http://Muenster#sid-E82C3C01-40A1-4E7D-B642-E6FFFA9008E8"/>
 		<entity2 rdf:resource="http://Wuerzburg#sid-8C628809-B4AD-4A0E-9BB9-E3AFAB22381C"/>
 		<measure rdf:datatype="xsd:float">0.375</measure>

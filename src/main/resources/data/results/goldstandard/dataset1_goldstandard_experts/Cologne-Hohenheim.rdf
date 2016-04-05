@@ -84,7 +84,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
 		<entity2 rdf:resource="http://Hohenheim#sid-127FF88D-82B1-497C-810F-A233C9815279"/>
-		<measure rdf:datatype="xsd:float">0.5</measure>
+		<measure rdf:datatype="xsd:float">0.625</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -100,7 +100,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
 		<entity2 rdf:resource="http://Hohenheim#sid-B5436D2E-8B89-442C-9DB9-340A5ADFFB00"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
+		<measure rdf:datatype="xsd:float">0.5</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -108,7 +108,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
 		<entity2 rdf:resource="http://Hohenheim#sid-4811DA9B-DECF-4423-95F9-DF9AE5A3053E"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
+		<measure rdf:datatype="xsd:float">0.625</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -138,33 +138,9 @@
 </map>
 <map>
 	<Cell>
-		<entity1 rdf:resource="http://Cologne#sid-4C4748D1-DBC6-4155-91C8-F71F3796A768"/>
-		<entity2 rdf:resource="http://Hohenheim#sid-127FF88D-82B1-497C-810F-A233C9815279"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
 		<entity2 rdf:resource="http://Hohenheim#sid-09FD9E11-6B6F-4776-AD6F-840EA15E0FBF"/>
 		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Cologne#sid-400B2392-557D-41E3-AD14-C95E3B135E45"/>
-		<entity2 rdf:resource="http://Hohenheim#sid-4811DA9B-DECF-4423-95F9-DF9AE5A3053E"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Cologne#sid-50620B60-4F01-4DFD-8EB8-BBCAAECE6026"/>
-		<entity2 rdf:resource="http://Hohenheim#sid-4811DA9B-DECF-4423-95F9-DF9AE5A3053E"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

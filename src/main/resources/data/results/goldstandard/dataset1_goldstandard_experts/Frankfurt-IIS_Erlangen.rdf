@@ -180,7 +180,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Frankfurt#sid-56CF457C-E58D-4519-AD80-5EDE6DD9E302"/>
 		<entity2 rdf:resource="http://IIS_Erlangen#sid-E1B48426-0D24-401B-8294-62FB8A9118DF"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
+		<measure rdf:datatype="xsd:float">0.5</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -189,14 +189,6 @@
 		<entity1 rdf:resource="http://Frankfurt#sid-445A78A6-1CA7-40BF-B7BF-B8CCCAAEF703"/>
 		<entity2 rdf:resource="http://IIS_Erlangen#sid-C2CD7A77-DD54-4B76-9226-22C848009BB6"/>
 		<measure rdf:datatype="xsd:float">0.5</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Frankfurt#sid-56CF457C-E58D-4519-AD80-5EDE6DD9E302"/>
-		<entity2 rdf:resource="http://IIS_Erlangen#sid-E1B48426-0D24-401B-8294-62FB8A9118DF"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

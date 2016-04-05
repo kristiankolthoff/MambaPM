@@ -68,7 +68,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Frankfurt#sid-6A55CE80-9951-465C-B375-41109E798BF7"/>
 		<entity2 rdf:resource="http://Wuerzburg#sid-03231681-FE58-415D-AECB-BC1143526ED5"/>
-		<measure rdf:datatype="xsd:float">0.625</measure>
+		<measure rdf:datatype="xsd:float">0.875</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -77,14 +77,6 @@
 		<entity1 rdf:resource="http://Frankfurt#sid-6A55CE80-9951-465C-B375-41109E798BF7"/>
 		<entity2 rdf:resource="http://Wuerzburg#sid-7CE86B77-22F4-48FE-9208-86063463AB6C"/>
 		<measure rdf:datatype="xsd:float">0.75</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Frankfurt#sid-6A55CE80-9951-465C-B375-41109E798BF7"/>
-		<entity2 rdf:resource="http://Wuerzburg#sid-03231681-FE58-415D-AECB-BC1143526ED5"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

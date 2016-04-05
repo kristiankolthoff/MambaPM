@@ -44,7 +44,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Hohenheim#sid-09FD9E11-6B6F-4776-AD6F-840EA15E0FBF"/>
 		<entity2 rdf:resource="http://Potsdam#sid-7E31973F-0987-4E8B-B586-05886C31EBD7"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
+		<measure rdf:datatype="xsd:float">0.625</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -52,7 +52,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Hohenheim#sid-B5436D2E-8B89-442C-9DB9-340A5ADFFB00"/>
 		<entity2 rdf:resource="http://Potsdam#sid-D257B8C8-40C7-45B7-81BC-074AA5772C45"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
+		<measure rdf:datatype="xsd:float">0.625</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

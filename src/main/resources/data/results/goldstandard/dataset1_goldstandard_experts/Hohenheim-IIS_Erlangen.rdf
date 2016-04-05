@@ -20,7 +20,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Hohenheim#sid-DB4C0A6E-9FFA-4DA6-9DBA-94407BADD758"/>
 		<entity2 rdf:resource="http://IIS_Erlangen#sid-BD8FD14C-DB01-4B07-AD11-AF2417ACE06C"/>
-		<measure rdf:datatype="xsd:float">0.875</measure>
+		<measure rdf:datatype="xsd:float">1.0</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -106,14 +106,6 @@
 </map>
 <map>
 	<Cell>
-		<entity1 rdf:resource="http://Hohenheim#sid-DB4C0A6E-9FFA-4DA6-9DBA-94407BADD758"/>
-		<entity2 rdf:resource="http://IIS_Erlangen#sid-BD8FD14C-DB01-4B07-AD11-AF2417ACE06C"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
 		<entity1 rdf:resource="http://Hohenheim#sid-BEB61ACC-4977-43FF-BA82-A8D400C1FDB3"/>
 		<entity2 rdf:resource="http://IIS_Erlangen#sid-7FE86054-7714-47D1-B91A-7215AC3688B0"/>
 		<measure rdf:datatype="xsd:float">0.125</measure>
@@ -164,7 +156,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Hohenheim#sid-127FF88D-82B1-497C-810F-A233C9815279"/>
 		<entity2 rdf:resource="http://IIS_Erlangen#sid-E326A826-24F7-4033-96F3-C5842831A3D7"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
+		<measure rdf:datatype="xsd:float">0.625</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -229,14 +221,6 @@
 		<entity1 rdf:resource="http://Hohenheim#sid-65B886A3-3075-4605-961B-5C2FB73ED1B3"/>
 		<entity2 rdf:resource="http://IIS_Erlangen#sid-C849D28D-C573-445E-B502-9555E993FFE6"/>
 		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Hohenheim#sid-127FF88D-82B1-497C-810F-A233C9815279"/>
-		<entity2 rdf:resource="http://IIS_Erlangen#sid-E326A826-24F7-4033-96F3-C5842831A3D7"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

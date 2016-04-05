@@ -12,7 +12,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://IIS_Erlangen#sid-E326A826-24F7-4033-96F3-C5842831A3D7"/>
 		<entity2 rdf:resource="http://Muenster#sid-4811BF85-FF42-4251-8F8A-7C9A07E6EC55"/>
-		<measure rdf:datatype="xsd:float">0.625</measure>
+		<measure rdf:datatype="xsd:float">0.875</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -28,7 +28,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://IIS_Erlangen#sid-E1B48426-0D24-401B-8294-62FB8A9118DF"/>
 		<entity2 rdf:resource="http://Muenster#sid-182346E3-C3CF-4CF6-B8E6-4D3D4BDA3D1B"/>
-		<measure rdf:datatype="xsd:float">0.75</measure>
+		<measure rdf:datatype="xsd:float">0.875</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -84,7 +84,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://IIS_Erlangen#sid-A5F778C1-162A-4616-BF72-B27C8D984B7C"/>
 		<entity2 rdf:resource="http://Muenster#sid-7A3C1CD7-9190-48A3-A21E-58EAA921B7C7"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
+		<measure rdf:datatype="xsd:float">1.0</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -124,14 +124,6 @@
 	<Cell>
 		<entity1 rdf:resource="http://IIS_Erlangen#sid-36CD8B1D-483C-4AB0-B548-C8E82A6C993A"/>
 		<entity2 rdf:resource="http://Muenster#sid-E82C3C01-40A1-4E7D-B642-E6FFFA9008E8"/>
-		<measure rdf:datatype="xsd:float">0.875</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://IIS_Erlangen#sid-A5F778C1-162A-4616-BF72-B27C8D984B7C"/>
-		<entity2 rdf:resource="http://Muenster#sid-7A3C1CD7-9190-48A3-A21E-58EAA921B7C7"/>
 		<measure rdf:datatype="xsd:float">0.875</measure>
 		<relation>=</relation>
 	</Cell>
@@ -268,22 +260,6 @@
 	<Cell>
 		<entity1 rdf:resource="http://IIS_Erlangen#sid-66EBC702-0667-40E6-892E-CC76E7810F79"/>
 		<entity2 rdf:resource="http://Muenster#sid-2ABBD369-5AD6-42A5-A7B7-57F843E8408C"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://IIS_Erlangen#sid-E326A826-24F7-4033-96F3-C5842831A3D7"/>
-		<entity2 rdf:resource="http://Muenster#sid-4811BF85-FF42-4251-8F8A-7C9A07E6EC55"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://IIS_Erlangen#sid-E1B48426-0D24-401B-8294-62FB8A9118DF"/>
-		<entity2 rdf:resource="http://Muenster#sid-182346E3-C3CF-4CF6-B8E6-4D3D4BDA3D1B"/>
 		<measure rdf:datatype="xsd:float">0.125</measure>
 		<relation>=</relation>
 	</Cell>

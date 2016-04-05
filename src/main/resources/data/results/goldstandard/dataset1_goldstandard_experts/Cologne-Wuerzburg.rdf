@@ -68,7 +68,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-B41B5C8F-D1D5-4641-943B-DB396FD69D0B"/>
 		<entity2 rdf:resource="http://Wuerzburg#sid-4C472B5F-9246-41F6-8544-E43B5C588540"/>
-		<measure rdf:datatype="xsd:float">0.75</measure>
+		<measure rdf:datatype="xsd:float">1.0</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -84,7 +84,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-885F9233-8A3A-470C-90D9-FA7F483D69CA"/>
 		<entity2 rdf:resource="http://Wuerzburg#sid-03231681-FE58-415D-AECB-BC1143526ED5"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
+		<measure rdf:datatype="xsd:float">0.5</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -92,7 +92,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-885F9233-8A3A-470C-90D9-FA7F483D69CA"/>
 		<entity2 rdf:resource="http://Wuerzburg#sid-7CE86B77-22F4-48FE-9208-86063463AB6C"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
+		<measure rdf:datatype="xsd:float">0.625</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -100,7 +100,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-FF649B0C-30F0-4E43-9BEC-02E1B22AA554"/>
 		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
+		<measure rdf:datatype="xsd:float">0.625</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -108,23 +108,7 @@
 	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-8712EF38-01F5-4812-ACB7-8F0EF759F38C"/>
 		<entity2 rdf:resource="http://Wuerzburg#sid-8C069EC3-1A91-4327-9C7C-364898A9A6BF"/>
-		<measure rdf:datatype="xsd:float">0.375</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Cologne#sid-885F9233-8A3A-470C-90D9-FA7F483D69CA"/>
-		<entity2 rdf:resource="http://Wuerzburg#sid-7CE86B77-22F4-48FE-9208-86063463AB6C"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Cologne#sid-FF649B0C-30F0-4E43-9BEC-02E1B22AA554"/>
-		<entity2 rdf:resource="http://Wuerzburg#sid-5545318C-6215-4794-ACBD-3A422064C54E"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
+		<measure rdf:datatype="xsd:float">0.5</measure>
 		<relation>=</relation>
 	</Cell>
 </map>
@@ -138,33 +122,9 @@
 </map>
 <map>
 	<Cell>
-		<entity1 rdf:resource="http://Cologne#sid-FF649B0C-30F0-4E43-9BEC-02E1B22AA554"/>
-		<entity2 rdf:resource="http://Wuerzburg#sid-9A5FD3B9-73DF-4C23-9E85-6298D3E6685F"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Cologne#sid-8712EF38-01F5-4812-ACB7-8F0EF759F38C"/>
-		<entity2 rdf:resource="http://Wuerzburg#sid-8C069EC3-1A91-4327-9C7C-364898A9A6BF"/>
-		<measure rdf:datatype="xsd:float">0.125</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
 		<entity1 rdf:resource="http://Cologne#sid-DF0BF153-C7B8-47A6-9436-2217B6A02FB9"/>
 		<entity2 rdf:resource="http://Wuerzburg#sid-B06626EF-C70E-4D70-B20F-BA3DAC313DD9"/>
 		<measure rdf:datatype="xsd:float">0.5</measure>
-		<relation>=</relation>
-	</Cell>
-</map>
-<map>
-	<Cell>
-		<entity1 rdf:resource="http://Cologne#sid-B41B5C8F-D1D5-4641-943B-DB396FD69D0B"/>
-		<entity2 rdf:resource="http://Wuerzburg#sid-4C472B5F-9246-41F6-8544-E43B5C588540"/>
-		<measure rdf:datatype="xsd:float">0.25</measure>
 		<relation>=</relation>
 	</Cell>
 </map>

@@ -106,6 +106,14 @@
 </map>
 <map>
 	<Cell>
+		<entity1 rdf:resource="http://Muenster#sid-04580F97-3E04-4CFC-9904-FF4A851B560C"/>
+		<entity2 rdf:resource="http://TU_Munich#sid-465F693F-A9A4-43B7-86FB-B6F16EAD8DE7"/>
+		<measure rdf:datatype="xsd:float">0.375</measure>
+		<relation>=</relation>
+	</Cell>
+</map>
+<map>
+	<Cell>
 		<entity1 rdf:resource="http://Muenster#sid-F82549DA-EE9A-45E6-A7A2-CD07DEAA9769"/>
 		<entity2 rdf:resource="http://TU_Munich#sid-465F693F-A9A4-43B7-86FB-B6F16EAD8DE7"/>
 		<measure rdf:datatype="xsd:float">0.125</measure>
