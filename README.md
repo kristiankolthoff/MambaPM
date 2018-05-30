@@ -13,7 +13,7 @@ In general, distributional semantics is about harvesting large text corpora and
 producing word vectors as a result. Multiple word vectors form a word space.
 Based on these vector representations of words, we can compute semantic sim-
 ilarities between words. It exploits the fact that similar words occur in similar
-contexts. For our process matching system we particularly employ DISCO [6]
+contexts. For our process matching system we particularly employ DISCO [[6](https://github.com/kristiankolthoff/MambaPM#publications)]
 allowing us to compute the cosine similarity between two words based on a
 precomputed word space.
 
@@ -89,3 +89,38 @@ Since we solely rely on a general semantic frame comparison, the matcher produce
 Since the second layer in the process model alignment generation involves solving an optimization problem based on the previously generated correspondences, we observed another important finding. The first syntactic and semantic matching layer is required to generate reliable confidence scores. At the moment, the algorithm produces correct correspondences with low confidences and vice versa. Thus, we strive for producing accurate and more varying confidence scores.
 
 # References
+
+[1] Collin F Baker, Charles J Fillmore, and John B Lowe. The berkeley framenet
+project. In Proceedings of the 36th Annual Meeting of the Association for
+Computational Linguistics and 17th International Conference on Computational
+Linguistics-Volume 1, pages 86–90. Association for Computational Linguistics,
+1998.
+
+[2] Dipanjan Das, Desai Chen, Andr´ e FT Martins, Nathan Schneider, and Noah A
+Smith. Frame-semantic parsing. Computational linguistics, 40(1):9–56, 2014.
+
+[3] Dipanjan Das, Nathan Schneider, Desai Chen, and Noah A Smith. Probabilistic
+frame-semantic parsing. In Human language technologies: The 2010 annual confer-
+ence of the North American chapter of the association for computational linguistics,
+pages 948–956. Association for Computational Linguistics, 2010.
+
+[4] Dipanjan Das, Nathan Schneider, Desai Chen, and Noah A Smith. Semafor 1.0:
+A probabilistic frame-semantic parser. Language Technologies Institute, School of
+Computer Science, Carnegie Mellon University, 2010.
+
+[5] Charles J Fillmore and Collin Baker. A frames approach to semantic analysis.
+2010.
+
+[6] Peter Kolb. Disco: A multilingual database of distributionally similar words. Pro-
+ceedings of KONVENS-2008, Berlin, 2008.
+
+[7] Meghana Kshirsagar, Sam Thomson, Nathan Schneider, Jaime Carbonell, Noah A
+Smith, and Chris Dyer. Frame-semantic role labeling with heterogeneous annota-
+tions. people, 3:A0, 2015.
+
+[8] Claudia Leacock and Martin Chodorow. Combining local context and wordnet
+similarity for word sense identification. WordNet: An electronic lexical database,
+49(2):265–283, 1998.
+
+[9] George A Miller. Wordnet: a lexical database for english. Communications of the
+ACM, 38(11):39–41, 1995.
