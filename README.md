@@ -7,7 +7,7 @@ Generating highly accurate process model alignments is a difficult task, however
 
 # Preliminaries
 
-## Distributional Semantics with DISCO
+## a. Distributional Semantics with DISCO
 
 In general, distributional semantics is about harvesting large text corpora and
 producing word vectors as a result. Multiple word vectors form a word space.
@@ -17,7 +17,7 @@ contexts. For our process matching system we particularly employ DISCO [6]
 allowing us to compute the cosine similarity between two words based on a
 precomputed word space.
 
-## Semantic Role Labeling with FrameNet
+## b. Semantic Role Labeling with FrameNet
 
 The [FrameNet project](https://framenet.icsi.berkeley.edu/fndrupal/) is building a lexical database consisting of thousands of manually annotated sentences trying to facilitate and improve the semantic analysis of words in sentences for machines. This framework is build on the notion of frame semantics. Basically, the meaning of words can be understood best if placed within a semantic frame describing for instance the events or participants. Such a semantic frame consists of multiple smaller fragments, called frame elements. A lexical unit evokes a frame and often provides the basis for detecting the surrounding components in the text which belong to a specific frame element.
 
@@ -34,7 +34,28 @@ This section introduces \mamba, a process matching system combining semantic par
 
 The Figure illustrates the described two-layer process for generating alignments. The illustration contains abstractions of a BPMN process models, which neglects many important components of a process model, however, shows swimlanes and embedded activities as well as correspondences generated between two process models. Note that the main contribution of this paper is to present only the first layer in detail. However, the evaluation of the experiments also involves the application of the second layer.
 
-## Syntactic Matching
+## a. Syntactic Matching
 
-## Semantic Matching
+The first and straightforward step for generating the process model alignment is achieved by identifying correspondences by syntactically matching activity labels. That is, we use well-known NLP techniques to preprocess the activity labels, and then generate the final correspondences by evaluating the string similarity and equality. This syntactic activity matching phase is capable of producing correspondences which are easy to identify. The basic NLP steps we apply to the activity labels are the following. First, we simply lower case all letters. Afterwards, we apply stemming of each word in the label to obtain the stems of the word. To produce the final correspondence, we check for string equality after applying all normalization techniques. Note that the appropriate confidence score of an identified correspondence is set to 1 manually, since we generate only correct correspondences with the described syntactic matching approach.
+
+## b. Semantic Matching
+
+After applying the simple syntactic activity matching, the semantic activity matching component receives all remaining activity pairs. Hence, the characteristics of the activity pair the system tries to match are beyond the scope of simple syntactic matching. Therefore, we apply, as a second step, a more sophisticated semantic matching of the activity labels. To achieve this, we combine semantic annotation by FrameNet with distributional semantics. Incorporating distributional semantics in the frame generation process, at the same time incorporates a fuzzy component and facilitates to recognize correspondences which are semantically similar. 
+
+![alt text](https://raw.githubusercontent.com/kristiankolthoff/MambaPM/master/src/main/resources/images/framenet_activity.PNG "Semantic matching approach using FrameNet")
+
+The Figure illustrates the general notion of semantic activity matching using FrameNet annotations. In the presented example, the semantic matching component tests whether activity **A1** with the label **l1** matches activity **A2** with corresponding label **l2**, as we would typically observe in a university application process model. First of all, we apply POS-Tagging of the activity label to identify the verb. Afterwards, we generate *k*-many additional labels which are similar to the basic activity label, however, with its verb replaced by a similar word computed by the distributional semantics framework DISCO. We denote such a label by similar label **s** for the rest of the description. Note that the primarily label is a similar label trivially. The verb replacements are ordered descending based on the cosine similarity to the primarily label. DISCO also computes similar words which are no verbs. To identify and retain only similar verbs, we use the WordNet dictionary \cite{miller1995wordnet,leacock1998combining,pedersen2004wordnet}. Each of the *k* similar labels are semantically annotated with semantic frames of FrameNet. Each similar label can trigger *n*-many frames. Overall we obtain *k x n*-many frames for each activity.
+
+After deriving all frames following the procedure described previously for each of the two activities, we compare the resulting frame colletions. Here we use two distinct comparison strategies for generating the final correspondence between activity **A1** and **A2**. 
+
+1. Single frame identical
+	
+If only one frame of the two frame collections is identical, we generate a correspondence **C**. The confidence score for **C** is computed as **conf(C) = k / (k+1)**.
+
+2. Majority vote frame identical
+	
+If the majority vote frame of each of the two frame collections is identical, we generate a correspondence **C**. To compute the majority vote frame, we iterate over the *k* similar labels and increase the frame count for frame **f**, denoted as *count(f)*, if a frame was triggered at the current similar label. Hence, the maximum count for a frame is *k*, since a frame can only be evoked once per label. The majority vote frame **f** has the largest *count(f)* value among all produced frames. Note that the majority vote frame is actually a frame set, since different frames can have the same maximum count. If we obtain two majority vote frame sets, only one frame of them is required to be equal to generate a correspondence **C**. The confidence score for the generated correspondence **C** is computed as **conf(C) = min(count(f1),count(f2)) / (k+1)** with **f1** being the majority vote frame of activity **A1** and **f2** being the majority vote frame of **A2**.
+
+The figure above shows an explicit example taken from a set of university application process models. The two activity labels involved are semantically very identical, however, the simple syntactic matching component is not able to detect the correspondence. Let frame number parameter *k = 2*. Since 'Sending' is identified as the verb in **l1**, we generate the two similar labels. As the first similar label, we use the primarily label itself. To derive a second similar label, we replace 'Sending' by 'Dispatch', which has a high cosine similarity according to DISCO. For these two similar labels, three equal frames are evoked which are **Amassing**, **Text** and **Education Teaching**. However, the **Sending** frame is only triggered for the first label. Hence, we obtain *count$(Text) = 2* and *count(Sending) = 1* for activity **A1**. Therefore, the majority vote frame set consists of the three frames having a count of 2. The majority vote frame set for activity **A2** is identical to the previously described one. Finally, we generate the correspondence **C** between **A1** and **A2** with **conf(C) = 2/3**.
+
 # References
